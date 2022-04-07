@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed86394b-9342-4c71-bfdc-ba8ca42e7335" name="Changes" comment="add some config files">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ed86394b-9342-4c71-bfdc-ba8ca42e7335" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myfin/controller/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="login" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,7 +57,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MTHome" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="MyFinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -80,7 +79,7 @@
       <workItem from="1649307639779" duration="2673000" />
       <workItem from="1649318342983" duration="78000" />
       <workItem from="1649318444914" duration="468000" />
-      <workItem from="1649318917167" duration="680000" />
+      <workItem from="1649318917167" duration="1043000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1649307865234</created>
@@ -103,7 +102,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649318966076</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add layered package">
+      <created>1649319661586</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649319661586</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix a mybatis bug">
+      <created>1649319931931</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649319931931</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +150,8 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="add compiler config" />
     <MESSAGE value="add some config files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some config files" />
+    <MESSAGE value="Add layered package" />
+    <MESSAGE value="Fix a mybatis bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix a mybatis bug" />
   </component>
 </project>
