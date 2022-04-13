@@ -1,5 +1,10 @@
 package com.myfin.service;
 
+import com.myfin.entity.User;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * @author Zihang Gao 
  */
@@ -10,5 +15,7 @@ public interface LoginService {
      * @param password account password
      * @return result of login
      */
-    public String login(int userId, String password);
+    String login(int userId, String password);
+    
+    List<User> findUserById(int userId);
 }
