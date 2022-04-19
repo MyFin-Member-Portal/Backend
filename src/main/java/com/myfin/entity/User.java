@@ -1,18 +1,21 @@
 package com.myfin.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * @author Zihang Gao
  */
-public class User implements Serializable {
-    private int userId;
-    private String userName;
-    private String userEmail;
-    private String userGender;
+@Data
+public class User {
+    private Integer user_id;
+    private String user_name;
+    private String user_email;
+    private String user_gender;
 
     /**
      * user description
      */
-    private String userDesc;
+    private String user_desc;
 }

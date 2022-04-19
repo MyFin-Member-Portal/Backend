@@ -5,11 +5,12 @@ import com.myfin.mapper.UserMapper;
 import com.myfin.service.LoginService;
 import com.myfin.util.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
+/**
+ * @author Zihang Gao
+ */
 @Service
 public class LoginServiceImpl implements LoginService {
 
@@ -21,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public List<User> findUserById(int userId) {
+    public User findUserById(int userId) {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         return mapper.findUserById(userId);

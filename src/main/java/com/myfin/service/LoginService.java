@@ -17,5 +17,5 @@ public interface LoginService {
      */
     String login(int userId, String password);
     
-    List<User> findUserById(int userId);
+    User findUserById(int userId);
 }
