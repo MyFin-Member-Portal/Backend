@@ -1,9 +1,7 @@
 package com.myfin.service;
 
 import com.myfin.entity.User;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 /**
  * @author Zihang Gao 

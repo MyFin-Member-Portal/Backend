@@ -10,12 +10,13 @@
             <transactionManager type="JDBC" />
             <!-- 数据库连接池 -->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
                 <property name="url"
-                          value="jdbc:mysql://localhost:3306/myfin?characterEncoding=utf-8" />
-                <property name="username" value="root" />
-                <property name="password" value="gzh2000115" />
+                          value="jdbc:mysql://myfin.cw9clyxaozqj.ap-southeast-2.rds.amazonaws.com:3306/myfin?characterEncoding=utf-8" />
+                <property name="username" value="admin" />
+                <property name="password" value="MyFin_4002" />
             </dataSource>
+            
         </environment>
     </environments>
 
