@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 5000
   
 spring:
   datasource:
@@ -7,13 +7,12 @@ spring:
     username: admin
     password: MyFin_4002
     driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       validation-query: select 1
       test-on-borrow: true
 
 mybatis:
-  mapper-locations: classpath*:config/sqlmap/*Mapper.xml
+  mapper-locations: src/main/resources/sqlmap/*Mapper.xml
   config-location: classpath:mybatis-config.xml
 
 
