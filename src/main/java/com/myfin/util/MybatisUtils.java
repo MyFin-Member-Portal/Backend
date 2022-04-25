@@ -38,7 +38,6 @@ public class MybatisUtils {
         if (sqlSessionFactory != null){
             sqlSession = sqlSessionFactory.openSession();
         }
-        
         return sqlSession;
     }
 }

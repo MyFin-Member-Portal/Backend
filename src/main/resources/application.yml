@@ -10,8 +10,13 @@ spring:
     dbcp2:
       validation-query: select 1
       test-on-borrow: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
   mapper-locations: src/main/resources/sqlmap/*Mapper.xml
   config-location: classpath:mybatis-config.xml
 
