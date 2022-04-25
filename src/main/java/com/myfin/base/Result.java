@@ -12,11 +12,11 @@ public class Result<T> implements Serializable {
     private String message;
 
     /**
-     * 状态code
+     *  status code
      */
     private String code;
     /**
-     * 结果信息
+     * error message
      */
     private T data;
 

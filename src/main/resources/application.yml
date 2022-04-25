@@ -1,7 +1,9 @@
 server:
-  port: 8888
+  port: 5000
   
 spring:
+  application:
+    name: MyFin
   datasource:
     url: jdbc:mysql://myfin.cw9clyxaozqj.ap-southeast-2.rds.amazonaws.com:3306/myfin?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
     username: admin
@@ -11,8 +13,13 @@ spring:
     dbcp2:
       validation-query: select 1
       test-on-borrow: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
   mapper-locations: classpath*:config/sqlmap/*Mapper.xml
   config-location: classpath:mybatis-config.xml
 
