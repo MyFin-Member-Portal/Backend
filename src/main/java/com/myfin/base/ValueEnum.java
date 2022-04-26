@@ -5,14 +5,14 @@ import java.util.stream.Stream;
 public interface ValueEnum <T>{
     /**
      * <p>
-     * 根据value获取枚举
+     * get enum from value
      * </p>
      *
-     * @param enumType 枚举类型
-     * @param value    枚举值
-     * @param <V>      值泛型
-     * @param <E>      枚举泛型
-     * @return 对应的枚举
+     * @param enumType enum type
+     * @param value    enum value
+     * @param <V>      value type
+     * @param <E>      enum fan type
+     * @return response enum
      */
     static <V, E extends ValueEnum<V>> E valueToEnum(Class<E> enumType, V value) {
         return Stream.of(enumType.getEnumConstants())

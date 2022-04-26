@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * @author Zihang Gao
+ * @author Zihang Gao, Yuhzhuo Ma
  */
 @Service
 public class LoginServiceImpl implements LoginService {

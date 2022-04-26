@@ -2,12 +2,12 @@ package com.myfin.base;
 
 public enum ResponseStatusEnum implements ValueEnum<String> {
     /**
-     * 请求的响应错误码
+     * response error code
      */
 
     SUCCESS("200", "Success"), 
     FAIL("A100", "Bad request"), 
-    CONNECT_FAIL("C102", "连接数据库失败");
+    CONNECT_FAIL("C102", "failed to connect database");
 
     private String code;
     private String message;

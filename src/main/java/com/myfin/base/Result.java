@@ -3,7 +3,7 @@ package com.myfin.base;
 import java.io.Serializable;
 
 /**
- * @author Zihang Gao
+ * @author Zihang Gao, Yuzhuo Ma
  */
 public class Result<T> implements Serializable {
     /**

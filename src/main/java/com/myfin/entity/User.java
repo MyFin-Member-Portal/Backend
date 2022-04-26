@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author Zihang Gao
+ * @author Zihang Gao, Yuzhuo Ma
  */
 @Data
 @ApiModel(value="user object",description="user object description")

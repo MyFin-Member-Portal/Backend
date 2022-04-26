@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author Zihang Gao
+ * @author Zihang Gao, Yuzhuo Ma
  */
 public class MybatisUtils {
     static SqlSessionFactory sqlSessionFactory = null;

@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Zihang Gao
+ * @author Zihang Gao, Yuzhuo Ma
  */
 @Mapper
 @Repository

@@ -4,7 +4,7 @@ import com.myfin.entity.User;
 
 
 /**
- * @author Zihang Gao 
+ * @author Zihang Gao, Yuhzhuo Ma
  */
 public interface LoginService{
     /**

@@ -22,11 +22,11 @@ public class Response {
     
 
     /**
-     * 设置响应
+     * set response
      *
-     * @param status 响应状态
-     * @param data 要响应的数据
-     * @param <T> 数据类型
+     * @param status response status
+     * @param data response data
+     * @param <T> response type
      * @return {@link Result<T>}
      */
     public static <T> Result<T> result(ResponseStatusEnum status, T data) {
@@ -34,12 +34,12 @@ public class Response {
     }
 
     /**
-     * 设置响应
+     * set response
      *
-     * @param code 响应状态
-     * @param message 响应信息
-     * @param data 要响应的数据
-     * @param <T> 数据类型
+     * @param code response status
+     * @param message response info
+     * @param data response data
+     * @param <T> response type
      * @return {@link Result<T>}
      */
     public static <T> Result<T> result(String code, String message, T data) {

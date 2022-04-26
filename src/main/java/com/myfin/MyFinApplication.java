@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
- * @author Zihang Gao
+ * @author Zihang Gao, Yuhzhuo Ma
  */
 @MapperScan("com.myfin.mapper")
 @Slf4j
