@@ -1,13 +1,12 @@
 package com.myfin.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.myfin.entity.User;
 
 
 /**
  * @author Zihang Gao 
  */
-public interface LoginService extends IService<User> {
+public interface LoginService{
     /**
      * log the user into system
      * @param userId user id

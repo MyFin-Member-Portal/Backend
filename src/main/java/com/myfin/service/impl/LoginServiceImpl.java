@@ -1,6 +1,5 @@
 package com.myfin.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.myfin.entity.User;
 import com.myfin.mapper.UserMapper;
 import com.myfin.service.LoginService;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author Zihang Gao
  */
 @Service
-public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements LoginService {
+public class LoginServiceImpl implements LoginService {
     
     @Autowired
     private UserMapper userMapper;

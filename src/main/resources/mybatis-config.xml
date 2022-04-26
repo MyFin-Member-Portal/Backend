@@ -16,7 +16,6 @@
                 <property name="username" value="admin" />
                 <property name="password" value="MyFin_4002" />
             </dataSource>
-            
         </environment>
     </environments>
 
