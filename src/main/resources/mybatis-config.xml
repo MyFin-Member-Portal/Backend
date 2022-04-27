@@ -21,6 +21,7 @@
 
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
+        <mapper resource="sqlmap/AccountMapper.xml"/>
     </mappers>
 
 </configuration>

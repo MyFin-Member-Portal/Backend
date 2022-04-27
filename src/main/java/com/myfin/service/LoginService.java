@@ -14,6 +14,14 @@ public interface LoginService{
      * @return result of login
      */
     String login(int userId, String password);
-    
+
+    /**
+     * find the user information from the user id
+     * 
+     * @param userId user id
+     * @return the user information 
+     */
     User findUserById(int userId);
+
+    int addUser(String userName, String email, String password);
 }
