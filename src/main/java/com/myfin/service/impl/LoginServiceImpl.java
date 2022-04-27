@@ -19,16 +19,7 @@ public class LoginServiceImpl implements LoginService {
     private UserMapper userMapper;
     @Autowired
     private AccountMapper accountMapper;
-    
-    @Override
-    public String login(int userId, String password) {
-        return null;
-    }
 
-    @Override
-    public User findUserById(int userId) {
-        return userMapper.findUserById(userId);
-    }
 
     @Override
     public User findUserByEmail(String userEmail) {
@@ -36,8 +27,10 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Account findPasswordByUserId(int userId) {
+    public Account findAccountByUserId(int userId) {
         System.out.println("-------------"+userId);
-        return accountMapper.findPasswordByUserId(userId);
+        System.out.println(accountMapper.findAccountByUserId(userId));
+
+        return accountMapper.findAccountByUserId(userId);
     }
 }

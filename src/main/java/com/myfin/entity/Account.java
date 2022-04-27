@@ -11,8 +11,8 @@ import lombok.Data;
 @ApiModel(value="user object",description="user object description")
 public class Account {
     @ApiModelProperty(value = "userid",required = true,example = "1")
-    private Integer userId;
+    private Integer user_id;
 
     @ApiModelProperty(value = "user_password",required = true,example = "yefbhew+_wd3")
-    private String userPassword;
+    private String account_password;
 }

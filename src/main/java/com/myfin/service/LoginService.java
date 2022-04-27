@@ -10,15 +10,10 @@ import com.myfin.entity.User;
 public interface LoginService{
     /**
      * log the user into system
-     * @param userId user id
-     * @param password account password
      * @return result of login
      */
-    String login(int userId, String password);
-    
-    User findUserById(int userId);
 
     User findUserByEmail(String userEmail);
 
-    Account findPasswordByUserId(int userId);
+    Account findAccountByUserId(int userId);
 }

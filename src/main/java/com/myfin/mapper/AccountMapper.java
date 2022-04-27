@@ -23,5 +23,5 @@ public interface AccountMapper {
      * find password by the user id
      * @param userId user id
      */
-    Account findPasswordByUserId(int userId);
+    Account findAccountByUserId(Integer userId);
 }

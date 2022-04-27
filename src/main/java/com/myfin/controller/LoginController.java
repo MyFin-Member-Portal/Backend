@@ -43,8 +43,8 @@ public class LoginController {
         String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
 
         //query password from database account
-        Account account = loginService.findPasswordByUserId(user.getUser_id()) ;
-        String userPassword = account.getUserPassword();
+        Account account = loginService.findAccountByUserId(user.getUser_id()) ;
+        String userPassword = account.getAccount_password();
 
 //        if not match password
         if (!userPassword.equals(md5Password)){

@@ -10,9 +10,9 @@
     </insert>
 
 
-    <!--  find user password by user ID  -->
-    <select id="findPasswordByUserId" parameterType="int" resultType="com.myfin.entity.Account">
-        select * from account where user_id = #{v}
+    <!--  find user account by user ID  -->
+    <select id="findAccountByUserId" parameterType="Integer" resultType="com.myfin.entity.Account">
+        SELECT * from account where user_id = #{v}
     </select>
 
 
