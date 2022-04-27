@@ -7,13 +7,16 @@ import com.myfin.controller.reqeust.LoginRequest;
 import com.myfin.entity.Account;
 import com.myfin.entity.User;
 import com.myfin.service.LoginService;
+import com.myfin.util.Md5Encryption;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 /**
  * @author Zihang Gao, Yuzhuo Ma
@@ -40,7 +43,9 @@ public class LoginController {
 
         //get password from frontend page, make password to md5 password
         String password = loginRequest.getPassword();
-        String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
+        String md5Password = Md5Encryption.encode(password);
+
+        System.out.println("--------------------"+md5Password);
 
         //query password from database account
         Account account = loginService.findAccountByUserId(user.getUser_id()) ;

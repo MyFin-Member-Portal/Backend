@@ -28,9 +28,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Account findAccountByUserId(int userId) {
-        System.out.println("-------------"+userId);
-        System.out.println(accountMapper.findAccountByUserId(userId));
-
         return accountMapper.findAccountByUserId(userId);
     }
 }
