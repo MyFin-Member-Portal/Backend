@@ -8,4 +8,20 @@
     <select id="findUserById" parameterType="Integer" resultType="com.myfin.entity.User">
         select * from user where user_id = #{v}
     </select>
+
+    <!--  add a new user -->
+    <insert id="addUser" parameterType="String">
+        INSERT INTO user(user_name, user_email) values(#{userName}, #{email})
+    </insert>
+
+    <!--  find the newest user id  -->
+    <select id="findMaxId" parameterType="Integer" resultType="Integer">
+        SELECT max(user_id) from user
+    </select>
+
+    <!--  find the user by email address  -->
+    <select id="findUserByEmail" parameterType="String" resultType="com.myfin.entity.User">
+        SELECT * from user where user_email = #{v}
+    </select>
+
 </mapper>

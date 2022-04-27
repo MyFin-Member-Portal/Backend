@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.AccountMapper">
+
+    <!--  add password on users account -->
+    <insert id="addPassword" parameterType="String">
+        INSERT INTO account(user_id,account_paasword) values(#{userId}, #{password})
+    </insert>
+
+
+    <!--  find user password by user ID  -->
+    <select id="findPasswordByUserId" parameterType="int" resultType="com.myfin.entity.Account">
+        select * from account where user_id = #{v}
+    </select>
+
+
+</mapper>

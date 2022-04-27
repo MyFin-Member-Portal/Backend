@@ -1,5 +1,6 @@
 package com.myfin.service;
 
+import com.myfin.entity.Account;
 import com.myfin.entity.User;
 
 
@@ -16,4 +17,8 @@ public interface LoginService{
     String login(int userId, String password);
     
     User findUserById(int userId);
+
+    User findUserByEmail(String userEmail);
+
+    Account findPasswordByUserId(int userId);
 }

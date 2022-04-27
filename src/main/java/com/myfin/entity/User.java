@@ -27,6 +27,6 @@ public class User {
     /**
      * user description
      */
-    @ApiModelProperty(value = "user_desc",required = true,example = "Male")
+    @ApiModelProperty(value = "user_desc",required = true,example = "this is married person")
     private String user_desc;
 }
