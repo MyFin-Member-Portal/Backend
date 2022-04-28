@@ -33,24 +33,24 @@ public class LoginController {
 
 
         //get email from frontend page, then query from database
-        String email = loginRequest.getUserEmail();
+        String email = loginRequest.getEmail();
         User user = loginService.findUserByEmail(email);
-//        if not find in database
+        // if not find in database
         if (user == null){
             return Response.fail("no such user");
         }
 
-        //get password from frontend page, make password to md5 password
+        // get password from frontend page, make password to md5 password
         String password = loginRequest.getPassword();
         String md5Password = Md5Encryption.encode(password);
 
         System.out.println("--------------------"+md5Password);
 
-        //query password from database account
+        // query password from database account
         Account account = loginService.findAccountByUserId(user.getUser_id()) ;
         String userPassword = account.getAccount_password();
 
-//        if not match password
+        // if not match password
         if (!userPassword.equals(md5Password)){
             return Response.fail("password is wrong");
         }
