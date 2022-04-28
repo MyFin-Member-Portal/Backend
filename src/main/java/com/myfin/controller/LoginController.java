@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.net.BindException;
 import java.util.Arrays;
 
 /**
@@ -31,12 +32,12 @@ public class LoginController {
     @PostMapping("/login")
     public Result<Object> login(HttpServletRequest request, @RequestBody LoginRequest loginRequest){
 
-
         //get email from frontend page, then query from database
         String email = loginRequest.getEmail();
-        User user = loginService.findUserByEmail(email);
+        int userId = loginService.findUserByEmail(email);
+        
         // if not find in database
-        if (user == null){
+        if(userId == 0){
             return Response.fail("no such user");
         }
 
@@ -44,10 +45,8 @@ public class LoginController {
         String password = loginRequest.getPassword();
         String md5Password = Md5Encryption.encode(password);
 
-        System.out.println("--------------------"+md5Password);
-
         // query password from database account
-        Account account = loginService.findAccountByUserId(user.getUser_id()) ;
+        Account account = loginService.findAccountByUserId(userId) ;
         String userPassword = account.getAccount_password();
 
         // if not match password
@@ -55,8 +54,8 @@ public class LoginController {
             return Response.fail("password is wrong");
         }
 
-        request.getSession().setAttribute("user", user.getUser_id());
-        return Response.success(user);
+        request.getSession().setAttribute("user", userId);
+        return Response.success(userId);
     }
     
     @PostMapping("/register")

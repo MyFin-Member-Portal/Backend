@@ -17,7 +17,8 @@ public interface UserMapper{
      * @return the data of the user 
      */
     User findUserById(Integer userId);
-    User findUserByEmail(String userEmail);
+    
+    int findUserIdByEmail(String userEmail);
 
     /**
      * Add a new user into DB

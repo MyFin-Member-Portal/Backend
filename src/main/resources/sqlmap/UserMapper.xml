@@ -20,8 +20,10 @@
     </select>
 
     <!--  find the user by email address  -->
-    <select id="findUserByEmail" parameterType="String" resultType="com.myfin.entity.User">
-        SELECT * from user where user_email = #{v}
+    <select id="findUserIdByEmail" parameterType="String" resultType="Integer">
+        select ifnull(MAX(user_id),0) AS role_id
+        from  user
+        where  user_email = #{v,jdbcType=VARCHAR}
     </select>
 
 </mapper>

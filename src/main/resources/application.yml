@@ -1,5 +1,5 @@
 server:
-  port: 5000
+  port: 8080
   
 spring:
   datasource:
@@ -13,6 +13,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+# log configuration
+logging:
+  level:
+    com.myfin.cn.mapper: debug
 
 mybatis:
   mapper-locations: src/main/resources/sqlmap/*Mapper.xml

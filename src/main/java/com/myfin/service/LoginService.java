@@ -13,7 +13,7 @@ public interface LoginService{
      * @return result of login
      */
 
-    User findUserByEmail(String userEmail);
+    int findUserByEmail(String userEmail);
 
     Account findAccountByUserId(int userId);
 
