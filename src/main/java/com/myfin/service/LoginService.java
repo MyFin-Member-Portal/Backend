@@ -16,4 +16,14 @@ public interface LoginService{
     User findUserByEmail(String userEmail);
 
     Account findAccountByUserId(int userId);
+
+    /**
+     * find the user information from the user id
+     * 
+     * @param userId user id
+     * @return the user information 
+     */
+    User findUserById(int userId);
+
+    int addUser(String userName, String email, String password);
 }

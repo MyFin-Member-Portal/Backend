@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface AccountMapper {
+    
     /**
      * add the password of the user
      * @param userId user id

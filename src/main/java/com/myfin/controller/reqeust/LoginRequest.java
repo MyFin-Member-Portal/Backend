@@ -14,6 +14,9 @@ public class LoginRequest {
 //    @ApiModelProperty(value = "userId", example = "1")
 //    private int userId;
 
+    @ApiModelProperty(value = "userEmail",required = true,example = "xxx@gmail.com")
+    private String email;
+
     @ApiModelProperty(value = "password",required = true,example = "123456")
     private String password;
 }

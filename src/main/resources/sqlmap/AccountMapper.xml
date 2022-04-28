@@ -5,8 +5,8 @@
 <mapper namespace="com.myfin.mapper.AccountMapper">
 
     <!--  add password on users account -->
-    <insert id="addPassword" parameterType="String">
-        INSERT INTO account(user_id,account_paasword) values(#{userId}, #{password})
+    <insert id="addPassword">
+        INSERT INTO account(user_id,account_password) values(#{userId}, #{password})
     </insert>
 
 
