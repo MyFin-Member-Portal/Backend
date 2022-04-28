@@ -5,10 +5,9 @@
 <configuration>
     <!-- 和spring整合后 environments配置将废除 -->
     <environments default="development">
-        <environment id="development"> 
-            <!-- 使用jdbc事务管理 -->
+        <environment id="development">
             <transactionManager type="JDBC" />
-            <!-- 数据库连接池 -->
+            <!-- JDBC connection pool -->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver" />
                 <property name="url"

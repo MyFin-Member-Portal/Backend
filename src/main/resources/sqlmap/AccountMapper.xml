@@ -6,7 +6,7 @@
 
     <!--  add password on users account -->
     <insert id="addPassword">
-        INSERT INTO account(user_id,account_paasword) values(#{userId}, #{password})
+        INSERT INTO account(user_id,account_password) values(#{userId}, #{password})
     </insert>
 
 </mapper>
