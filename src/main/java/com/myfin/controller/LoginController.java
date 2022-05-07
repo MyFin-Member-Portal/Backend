@@ -4,19 +4,14 @@ import com.myfin.base.Response;
 import com.myfin.base.Result;
 import com.myfin.controller.reqeust.LoginRequest;
 import com.myfin.entity.Account;
-import com.myfin.entity.User;
 import com.myfin.service.LoginService;
 import com.myfin.util.Md5Encryption;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
-
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.net.BindException;
-import java.util.Arrays;
 
 /**
  * @author Zihang Gao, Yuzhuo Ma

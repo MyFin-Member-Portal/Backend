@@ -10,6 +10,8 @@ spring:
     dbcp2:
       validation-query: select 1
       test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -22,5 +24,3 @@ logging:
 mybatis:
   mapper-locations: src/main/resources/sqlmap/*Mapper.xml
   config-location: classpath:mybatis-config.xml
-
-
