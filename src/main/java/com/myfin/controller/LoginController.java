@@ -8,6 +8,7 @@ import com.myfin.service.LoginService;
 import com.myfin.util.Md5Encryption;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -56,7 +57,13 @@ public class LoginController {
     @PostMapping("/register")
     public Result<Object> register(@RequestBody LoginRequest loginRequest){
         log.info(loginRequest.toString());
-        int userId = loginService.addUser(loginRequest.getUserName(), loginRequest.getEmail(), loginRequest.getPassword());
+        int userId = -1;
+        try {
+            userId = loginService.addUser(loginRequest.getUserName(), loginRequest.getEmail(), loginRequest.getPassword());
+        } catch (DuplicateKeyException e){
+            return Response.duplicateKey();
+        }
+        
         return Response.success(userId);
     }
     

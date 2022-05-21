@@ -19,7 +19,10 @@ public class Response {
     public static <T> Result<T> connectFail() {
         return result(ResponseStatusEnum.CONNECT_FAIL, null);
     }
-    
+
+    public static <T> Result<T> duplicateKey() {
+        return result(ResponseStatusEnum.DUPLICATE_KEY, null);
+    }
 
     /**
      * set response

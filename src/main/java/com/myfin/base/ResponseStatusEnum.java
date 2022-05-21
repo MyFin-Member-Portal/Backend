@@ -6,7 +6,8 @@ public enum ResponseStatusEnum implements ValueEnum<String> {
      */
 
     SUCCESS("200", "Success"), 
-    FAIL("A100", "Bad request"), 
+    FAIL("A100", "Bad request"),
+    DUPLICATE_KEY("A101", "Key exist"), 
     CONNECT_FAIL("C102", "failed to connect database");
 
     private String code;
