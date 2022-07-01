@@ -1,6 +1,5 @@
 package com.myfin.service.impl;
 
-import ch.qos.logback.classic.Logger;
 import com.myfin.entity.Account;
 import com.myfin.entity.User;
 import com.myfin.mapper.AccountMapper;
@@ -8,7 +7,6 @@ import com.myfin.mapper.UserMapper;
 import com.myfin.service.LoginService;
 import com.myfin.util.Md5Encryption;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,11 +28,6 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public int findUserByEmail(String userEmail) {
         return userMapper.findUserIdByEmail(userEmail);
-    }
-
-    @Override
-    public User findUserById(int userId) {
-        return userMapper.findUserById(userId);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.myfin.mapper;
 
 import com.myfin.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -29,10 +30,21 @@ public interface UserMapper{
      */
     int addUser(String userName, String email);
 
+    int updateUserProfile(@Param("phoneNumber") String phoneNumber,
+                          @Param("Address") String Address,
+                          @Param("Gender") String Gender,
+                          @Param("Nationality") String Nationality,
+                          @Param("Heritage") String Heritage,
+                          @Param("Language") String Language,
+                          @Param("Name") String Name,
+                          @Param("Email") String Email,
+                          int userId);
     /**
      * find the maximum user id
      * 
      * @return the max id of the user table
      */
     int findMaxId();
+
+
 }

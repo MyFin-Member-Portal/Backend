@@ -24,6 +24,17 @@ public class User {
     @ApiModelProperty(value = "user_gender",required = true,example = "Male")
     private String user_gender;
 
+    @ApiModelProperty(value = "user_phone",required = true,example = "0451998888")
+    private String user_phone;
+
+    private String user_nationality;
+
+    private String user_heritage;
+
+    private String user_language;
+
+    private String user_address;
+
     /**
      * user description
      */

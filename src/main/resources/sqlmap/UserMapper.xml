@@ -26,4 +26,18 @@
         where  user_email = #{v,jdbcType=VARCHAR}
     </select>
 
+    <!-- update user information-->
+    <update id="updateUserProfile" >
+        update user
+        set user_name = #{Name},
+            user_email = #{Email},
+            user_gender = #{Gender},
+            user_desc = #{Heritage},
+            user_phone = #{phoneNumber},
+            user_nationality = #{Nationality},
+            user_heritage = #{Heritage},
+            user_language = #{Language},
+            user_address = #{Address}
+        where user_id = #{v}
+    </update>
 </mapper>

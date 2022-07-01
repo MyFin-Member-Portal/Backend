@@ -17,14 +17,6 @@ public interface LoginService{
 
     Account findAccountByUserId(int userId);
 
-    /**
-     * find the user information from the user id
-     * 
-     * @param userId user id
-     * @return the user information 
-     */
-    User findUserById(int userId);
-
     String getMd5Password(String password);
 
     int addUser(String userName, String email, String password);
