@@ -36,7 +36,13 @@ public class LoginServiceImpl implements LoginService {
     public User findUserById(int userId) {
         return userMapper.findUserById(userId);
     }
-    
+
+    @Override
+    public String getMd5Password(String password) {
+
+        return  Md5Encryption.encode(password);
+    }
+
     @Override
     public Account findAccountByUserId(int userId) {
         return accountMapper.findAccountByUserId(userId);

@@ -5,7 +5,6 @@ import com.myfin.base.Result;
 import com.myfin.controller.reqeust.LoginRequest;
 import com.myfin.entity.Account;
 import com.myfin.service.LoginService;
-import com.myfin.util.Md5Encryption;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
@@ -38,8 +37,8 @@ public class LoginController {
         }
 
         // get password from frontend page, make password to md5 password
-        String password = loginRequest.getPassword();
-        String md5Password = Md5Encryption.encode(password);
+        log.info(loginRequest.getPassword());
+        String md5Password = loginService.getMd5Password(loginRequest.getPassword());
 
         // query password from database account
         Account account = loginService.findAccountByUserId(userId) ;
