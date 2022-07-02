@@ -38,7 +38,7 @@ public interface UserMapper{
                           @Param("Language") String Language,
                           @Param("Name") String Name,
                           @Param("Email") String Email,
-                          int userId);
+                          @Param("userId") int userId);
     /**
      * find the maximum user id
      * 

@@ -38,6 +38,6 @@
             user_heritage = #{Heritage},
             user_language = #{Language},
             user_address = #{Address}
-        where user_id = #{v}
+        where user_id = #{userId}
     </update>
 </mapper>
