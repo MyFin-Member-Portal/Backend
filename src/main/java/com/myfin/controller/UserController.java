@@ -2,13 +2,17 @@ package com.myfin.controller;
 
 import com.myfin.base.Response;
 import com.myfin.base.Result;
+import com.myfin.controller.reqeust.UserChildInfoRequest;
 import com.myfin.controller.reqeust.UserInfoUpdateRequest;
 import com.myfin.entity.User;
+import com.myfin.entity.UserChild;
 import com.myfin.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import com.alibaba.fastjson.JSON;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Zihang Gao, Yuzhuo Ma
@@ -28,14 +32,8 @@ public class UserController {
         if (currentUser == null){
             return Response.fail("no such user");
         }
-        return Response.success("Name: "+currentUser.getUser_name()+
-                        " Email: "+currentUser.getUser_email()+
-                        " PhoneNumber: "+currentUser.getUser_phone()+
-                        " Address: "+currentUser.getUser_address()+
-                        " Gender: "+currentUser.getUser_gender()+
-                        " Nationality: "+currentUser.getUser_nationality()+
-                        " Heritage: "+currentUser.getUser_heritage()+
-                        " Language: "+currentUser.getUser_language());
+        String userJsonResult = JSON.toJSONString(currentUser);
+        return Response.success(userJsonResult);
     }
 
 
@@ -64,6 +62,33 @@ public class UserController {
 
 
         return Response.success(resultUserId);
+    }
+
+    @PostMapping("/setUserChildProfile")
+    public Result<Object> createUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
+        //here get current max user child ID first, then increment
+        int userMaxChildID = -1;
+        userMaxChildID = userService.getCurrentChildId(userChildInfoRequest.getUserId());
+        log.info("----------"+userMaxChildID);
+        int userChildId = userService.addUserChildService(userChildInfoRequest.getUserId(),
+                userMaxChildID,
+                userChildInfoRequest.getUserChildAge(),
+                userChildInfoRequest.getUserChildEdu());
+
+//        return new user child ID
+        return Response.success(userChildId);
+    }
+
+    @GetMapping("/getUserChildProfile")
+    public Result<Object> getUserChild(@RequestBody UserChildInfoRequest UserChildInfoRequest){
+        int user_id = UserChildInfoRequest.getUserId();
+        User currentUser = userService.findUserById(user_id);
+        if (currentUser == null){
+            return Response.fail("no such user");
+        }
+        List<UserChild> currentUserChildList =  userService.getUserChildService(UserChildInfoRequest.getUserId());
+        String jsonUserChildInfo = JSON.toJSONString(currentUserChildList);
+        return Response.success(jsonUserChildInfo);
     }
 }
 
