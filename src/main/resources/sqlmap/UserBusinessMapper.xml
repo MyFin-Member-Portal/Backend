@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.UserBusinessMapper">
+
+    <select id="findAllBusiness" parameterType="Integer" resultType="com.myfin.entity.UserBusiness">
+        SELECT business_id, business_name, business_profit_loss, business_balance_sheet FROM UserBusiness 
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="addBusiness">
+        INSERT INTO UserBusiness(user_id, business_name, business_profit_loss, business_balance_sheet) 
+        VALUES(#{userId}, #{businessName}, #{businessProfitLoss}, #{businessBalanceSheet})
+    </insert>
+    
+    <!--  delete user business by user id and business  -->
+    <delete id="deleteBusiness">
+        DELETE FROM UserBusiness WHERE user_id = #{userId} AND business_id = #{businessId}
+    </delete>
+    
+    <!--  update user business by user id and business -->
+    <update id="updateBusiness">
+        UPDATE UserBusiness SET business_name = #{businessName}, business_profit_loss = #{businessProfitLoss},
+                                business_balance_sheet = #{businessBalanceSheet} 
+        WHERE user_id = #{userId} AND business_id = #{businessId}
+    </update>
+    
+</mapper>

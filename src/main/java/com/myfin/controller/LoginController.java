@@ -48,7 +48,6 @@ public class LoginController {
         if (!userPassword.equals(md5Password)){
             return Response.fail("password is wrong");
         }
-
         request.getSession().setAttribute("user", userId);
         return Response.success(userId);
     }
@@ -56,13 +55,14 @@ public class LoginController {
     @PostMapping("/register")
     public Result<Object> register(@RequestBody LoginRequest loginRequest){
         log.info(loginRequest.toString());
+        
+        // assign a value to handle error 
         int userId = -1;
         try {
             userId = loginService.addUser(loginRequest.getUserName(), loginRequest.getEmail(), loginRequest.getPassword());
         } catch (DuplicateKeyException e){
             return Response.duplicateKey();
         }
-        
         return Response.success(userId);
     }
     

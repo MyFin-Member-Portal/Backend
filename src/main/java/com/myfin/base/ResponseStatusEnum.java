@@ -1,5 +1,9 @@
 package com.myfin.base;
 
+/**
+ * @author Zihang Gao
+ */
+
 public enum ResponseStatusEnum implements ValueEnum<String> {
     /**
      * response error code
@@ -7,7 +11,7 @@ public enum ResponseStatusEnum implements ValueEnum<String> {
 
     SUCCESS("200", "Success"), 
     FAIL("A100", "Bad request"),
-    DUPLICATE_KEY("A101", "Key exist"), 
+    DUPLICATE_KEY("A101", "User exist"), 
     CONNECT_FAIL("C100", "failed to connect database");
 
     private String code;
