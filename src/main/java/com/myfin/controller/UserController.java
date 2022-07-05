@@ -20,7 +20,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/myfin")
-
 public class UserController {
     @Resource
     private UserService userService;
