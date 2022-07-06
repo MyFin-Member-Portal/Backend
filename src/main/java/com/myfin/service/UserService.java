@@ -15,10 +15,15 @@ public interface UserService {
                           String Nationality, String Heritage, String Language,
                           String Name, String Email, int userId);
 
+//    not use curently
     int getCurrentChildId(int userId);
 
-    int addUserChildService(int userId, int userChildId, int userChildAge, String userChildEdu);
+    int addUserChildService(int userId, int userChildAge, String userChildEdu);
+
+    UserChild getSpecificUserChildService(int userId, int userChildId);
 
     List<UserChild> getUserChildService(int userId);
+
+    int updateTotalUserChildService(Object childList);
 
 }

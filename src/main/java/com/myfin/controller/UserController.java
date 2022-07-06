@@ -4,15 +4,13 @@ import com.myfin.base.Response;
 import com.myfin.base.Result;
 import com.myfin.controller.reqeust.UserChildInfoRequest;
 import com.myfin.controller.reqeust.UserInfoUpdateRequest;
-import com.myfin.entity.User;
-import com.myfin.entity.UserChild;
 import com.myfin.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSON;
 
 import javax.annotation.Resource;
-import java.util.List;
+
 
 /**
  * @author Zihang Gao, Yuzhuo Ma
@@ -24,10 +22,10 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/getUserBasicProfile")
+    @PostMapping("/getUserBasicProfile")
     public Result<Object> getUserBasicInfo(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
         int user_id = userInfoUpdateRequest.getUserId();
-        User currentUser = userService.findUserById(user_id);
+        Object currentUser = userService.findUserById(user_id);
         if (currentUser == null){
             return Response.fail("no such user");
         }
@@ -37,7 +35,7 @@ public class UserController {
 
 
     @PutMapping("/updateUserBasicProfile")
-    public Result<Object> updateUser(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
+    public Result<Object> updateUserBasicInfo(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
 
         String currentPhoneNumber = userInfoUpdateRequest.getUserPhoneNumber();
         String currentAddress = userInfoUpdateRequest.getUserAddress();
@@ -65,12 +63,7 @@ public class UserController {
 
     @PostMapping("/setUserChildProfile")
     public Result<Object> createUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
-        //here get current max user child ID first, then increment
-        int userMaxChildID = -1;
-        userMaxChildID = userService.getCurrentChildId(userChildInfoRequest.getUserId());
-        log.info("----------"+userMaxChildID);
         int userChildId = userService.addUserChildService(userChildInfoRequest.getUserId(),
-                userMaxChildID,
                 userChildInfoRequest.getUserChildAge(),
                 userChildInfoRequest.getUserChildEdu());
 
@@ -78,17 +71,39 @@ public class UserController {
         return Response.success(userChildId);
     }
 
-    @GetMapping("/getUserChildProfile")
-    public Result<Object> getUserChild(@RequestBody UserChildInfoRequest UserChildInfoRequest){
-        int user_id = UserChildInfoRequest.getUserId();
-        User currentUser = userService.findUserById(user_id);
+    @PostMapping("/getAllUserChildProfile")
+    public Result<Object> getUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
+        int user_id = userChildInfoRequest.getUserId();
+        Object currentUser = userService.findUserById(user_id);
         if (currentUser == null){
             return Response.fail("no such user");
         }
-        List<UserChild> currentUserChildList =  userService.getUserChildService(UserChildInfoRequest.getUserId());
+        Object currentUserChildList =  userService.getUserChildService(userChildInfoRequest.getUserId());
         String jsonUserChildInfo = JSON.toJSONString(currentUserChildList);
         return Response.success(jsonUserChildInfo);
     }
+//  for future
+    public Object getSpecificUserChild(int userId, int userChildId){
+        return userService.getSpecificUserChildService(userId, userChildId);
+    }
+
+
+    @PutMapping("/updateUserChildProfile")
+    public Result<Object> updateUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
+        try {
+            int userId = userService.updateTotalUserChildService(userChildInfoRequest.getUserChildList());
+            return Response.success(userId);
+        }catch (Exception e){
+            return Response.fail("Update fail");
+        }
+    }
+
+//    @DeleteMapping("/deleteUserChildProfile")
+//    public Result<Object> deleteUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest) {
+//
+//        return Response.success(userId);
+//    }
+
 }
 
 
