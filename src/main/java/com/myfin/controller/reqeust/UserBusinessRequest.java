@@ -2,6 +2,9 @@ package com.myfin.controller.reqeust;
 
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Zihang Gao
  */
@@ -17,4 +20,6 @@ public class UserBusinessRequest {
     private String businessProfitLoss;
 
     private String businessBalanceSheet;
+
+    private List<Map<String, Object>> businessList;
 }

@@ -1,8 +1,12 @@
 package com.myfin.mapper;
 
 
+import com.myfin.entity.UserBusiness;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Zihang Gao
@@ -17,7 +21,7 @@ public interface UserBusinessMapper {
      * @param userId the user id
      * @return the result of business information
      */
-    Object findAllBusiness(int userId);
+    List<UserBusiness> findAllBusiness(int userId);
 
     /**
      * add a business for user
@@ -48,4 +52,13 @@ public interface UserBusinessMapper {
      * @param businessBalanceSheet  the balance sheet of the business             
      */
     void updateBusiness(int userId, int businessId, String businessName, String businessProfitLoss, String businessBalanceSheet);
+
+
+    /**
+     * delete a business for a user
+     *
+     * @param userId the user id 
+     * @param businessList the list of businesses
+     */
+    void updateAllBusiness(int userId, List<HashMap<String, Object>> businessList);
 }

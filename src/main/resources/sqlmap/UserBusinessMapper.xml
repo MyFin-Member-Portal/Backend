@@ -5,7 +5,7 @@
 <mapper namespace="com.myfin.mapper.UserBusinessMapper">
 
     <select id="findAllBusiness" parameterType="Integer" resultType="com.myfin.entity.UserBusiness">
-        SELECT business_id, business_name, business_profit_loss, business_balance_sheet FROM UserBusiness 
+        SELECT user_id, business_id, business_name, business_profit_loss, business_balance_sheet FROM UserBusiness 
         WHERE user_id = #{userId}
     </select>
 
