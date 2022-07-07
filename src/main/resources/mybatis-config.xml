@@ -7,8 +7,11 @@
     <settings>
         <!--   open log   -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
+        
+        <!--   open      -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
-    
+
     <!-- 和spring整合后 environments配置将废除 -->
     <environments default="development">
         <environment id="development">
@@ -27,7 +30,6 @@
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
         <mapper resource="sqlmap/AccountMapper.xml"/>
-        <mapper resource="sqlmap/UserBusinessMapper.xml"/>
     </mappers>
 
 </configuration>
