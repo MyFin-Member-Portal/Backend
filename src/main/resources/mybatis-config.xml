@@ -30,6 +30,7 @@
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
         <mapper resource="sqlmap/AccountMapper.xml"/>
+        <mapper resource="sqlmap/UserBusinessMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -13,21 +13,21 @@ import java.io.Serializable;
 @ApiModel(value="user object",description="user object description")
 public class User {
     @ApiModelProperty(value = "userid",required = true,example = "1")
-    private Integer user_id;
+    private Integer userId;
 
     @ApiModelProperty(value = "user_name",required = true,example = "Patrick")
-    private String user_name;
+    private String userName;
 
     @ApiModelProperty(value = "user_email",required = true,example = "123@gmail.com")
-    private String user_email;
+    private String userEmail;
 
     @ApiModelProperty(value = "user_gender",required = true,example = "Male")
-    private String user_gender;
+    private String userGender;
 
     @ApiModelProperty(value = "user_phone",required = true,example = "0451998888")
-    private String user_phone;
+    private String userPhone;
 
-    private String user_nationality;
+    private String userNationality;
 
     private String user_heritage;
 

@@ -9,18 +9,18 @@ import lombok.Data;
 @Data
 public class UserBusiness {
     @ApiModelProperty(value = "user_id", required = true,example = "1")
-    private Integer user_id;
+    private Integer userId;
 
     @ApiModelProperty(value = "business_id", required = true,example = "1")
-    private Integer business_id;
+    private Integer businessId;
 
     @ApiModelProperty(value = "business_name", required = true,example = "Example business")
-    private String  business_name;
+    private String  businessName;
 
     @ApiModelProperty(value = "business_profit_loss", example = "Example business")
-    private String  business_profit_loss;
+    private String  businessProfitLoss;
 
     @ApiModelProperty(value = "business_balance_sheet", example = "Example business")
-    private String  business_balance_sheet;
+    private String  businessBalanceSheet;
     
 }
