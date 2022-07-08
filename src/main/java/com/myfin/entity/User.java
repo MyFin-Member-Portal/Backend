@@ -29,15 +29,15 @@ public class User {
 
     private String userNationality;
 
-    private String user_heritage;
+    private String userHeritage;
 
-    private String user_language;
+    private String userLanguage;
 
-    private String user_address;
+    private String userAddress;
 
     /**
      * user description
      */
     @ApiModelProperty(value = "user_desc",required = true,example = "this is married person")
-    private String user_desc;
+    private String userDesc;
 }

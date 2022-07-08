@@ -8,7 +8,7 @@
         <!--   open log   -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
         
-        <!--   open      -->
+        <!--   open under score to camel case  -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
