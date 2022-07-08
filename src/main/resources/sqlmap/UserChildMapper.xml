@@ -33,4 +33,10 @@
         where user_id = #{userId} and user_child_id = #{userChildId}
     </update>
 
+    <!-- delete user child information-->
+    <delete id = "deleteSpecificUserChild">
+        delete from UserChild
+        where user_id = #{userId} and user_child_id = #{userChildId}
+    </delete>
+
 </mapper>

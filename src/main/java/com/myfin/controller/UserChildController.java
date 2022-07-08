@@ -25,7 +25,7 @@ public class UserChildController {
 
 
 
-    @PostMapping("/setUserChildProfile")
+    @PostMapping("/setProfile")
     public Result<Object> createUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
         int userChildId = userChildService.addUserChildService(userChildInfoRequest.getUserId(),
                 userChildInfoRequest.getUserChildAge(),
@@ -35,7 +35,7 @@ public class UserChildController {
         return Response.success(userChildId);
     }
 
-    @PostMapping("/getAllUserChildProfile")
+    @PostMapping("/getProfile")
     public Result<Object> getUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
         Object currentUserChildList =  userChildService.getUserChildService(userChildInfoRequest.getUserId());
         String jsonUserChildInfo = JSON.toJSONString(currentUserChildList);
@@ -47,7 +47,7 @@ public class UserChildController {
     }
 
 
-    @PutMapping("/updateUserChildProfile")
+    @PutMapping("/updateProfile")
     public Result<Object> updateUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
         try {
             int userId = userChildService.updateTotalUserChildService(userChildInfoRequest.getUserChildList());
@@ -59,10 +59,15 @@ public class UserChildController {
         }
     }
 
-//    @DeleteMapping("/deleteUserChildProfile")
-//    public Result<Object> deleteUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest) {
-//
-//        return Response.success(userId);
-//    }
-
+    @PostMapping("/deleteProfile")
+    public Result<Object> deleteUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest) {
+        try {
+            int inputChildId = userChildInfoRequest.getUserChildId();
+            int childId = userChildService.deleteSpecificUserChildService(userChildInfoRequest.getUserId(), inputChildId);
+            return Response.success(childId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("Delete fail");
+        }
+    }
 }

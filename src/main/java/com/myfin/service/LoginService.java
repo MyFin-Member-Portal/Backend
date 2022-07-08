@@ -1,8 +1,5 @@
 package com.myfin.service;
 
-import com.myfin.entity.Account;
-import com.myfin.entity.User;
-
 
 /**
  * @author Zihang Gao, Yuhzhuo Ma
@@ -15,9 +12,10 @@ public interface LoginService{
 
     int findUserByEmail(String userEmail);
 
-    Account findAccountByUserId(int userId);
+    String getAccountPassword(int userId);
 
     String getMd5Password(String password);
+
 
     int addUser(String userName, String email, String password);
 }

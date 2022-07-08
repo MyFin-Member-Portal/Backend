@@ -3,7 +3,6 @@ package com.myfin.controller;
 import com.myfin.base.Response;
 import com.myfin.base.Result;
 import com.myfin.controller.reqeust.LoginRequest;
-import com.myfin.entity.Account;
 import com.myfin.service.LoginService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -37,12 +36,10 @@ public class LoginController {
         }
 
         // get password from frontend page, make password to md5 password
-        log.info(loginRequest.getPassword());
         String md5Password = loginService.getMd5Password(loginRequest.getPassword());
 
         // query password from database account
-        Account account = loginService.findAccountByUserId(userId) ;
-        String userPassword = account.getAccountPassword();
+        String userPassword = loginService.getAccountPassword(userId);
 
         // if not match password
         if (!userPassword.equals(md5Password)){
@@ -54,8 +51,6 @@ public class LoginController {
     
     @PostMapping("/register")
     public Result<Object> register(@RequestBody LoginRequest loginRequest){
-        log.info(loginRequest.toString());
-        
         // assign a value to handle error 
         int userId = -1;
         try {

@@ -68,6 +68,12 @@ public class UserChildServiceImpl implements UserChildService {
         return user_id;
     }
 
+    @Override
+    public int deleteSpecificUserChildService(int userId, int userChildId) {
+        userChildMapper.deleteSpecificUserChild(userId, userChildId);
+        return userChildId;
+    }
+
     public void updateUserChild(int childId, UserChild child){
         userChildMapper.updateUserChildProfile(child.getUserId(), childId,
                 child.getUserChildAge(), child.getUserChildEdu());

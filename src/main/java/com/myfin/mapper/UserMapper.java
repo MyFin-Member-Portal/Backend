@@ -18,7 +18,14 @@ public interface UserMapper{
      * @return the data of the user 
      */
     User findUserById(Integer userId);
-    
+
+
+    /**
+     * Find the user id by user email
+     *
+     * @param userEmail the user email
+     * @return user id
+     */
     int findUserIdByEmail(String userEmail);
 
     /**
@@ -30,6 +37,19 @@ public interface UserMapper{
      */
     int addUser(String userName, String email);
 
+    /**
+     *
+     * @param phoneNumber   user's phone number
+     * @param Address       user's Address
+     * @param Gender        user's gender
+     * @param Nationality   user's Nationality
+     * @param Heritage      user's Heritage
+     * @param Language      user's Language
+     * @param Name          user's Name
+     * @param Email         user's email
+     * @param userId        user id
+     * @return              return the user id of the current user
+     */
     int updateUserProfile(@Param("phoneNumber") String phoneNumber,
                           @Param("Address") String Address,
                           @Param("Gender") String Gender,
