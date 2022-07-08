@@ -7,7 +7,7 @@ import com.myfin.service.UserChildService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.binding.BindingException;
 import org.springframework.stereotype.Service;
-
+import com.alibaba.fastjson.JSON;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -41,6 +41,7 @@ public class UserChildServiceImpl implements UserChildService {
         List<UserChild> childList = this.getUserChildService(userId);
         for (UserChild child:childList){
             if (userChildId == child.getUserChildId()){
+
                 return child;
             }
         }

@@ -32,6 +32,7 @@
         <mapper resource="sqlmap/AccountMapper.xml"/>
         <mapper resource="sqlmap/UserBusinessMapper.xml"/>
         <mapper resource="sqlmap/UserChildMapper.xml"/>
+        <mapper resource="sqlmap/UserFamilyMapper.xml"/>
     </mappers>
 
 </configuration>
