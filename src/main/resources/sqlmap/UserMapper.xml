@@ -41,33 +41,4 @@
         where user_id = #{userId}
     </update>
 
-    <!--  add a new user child -->
-    <insert id="addUserChild" >
-        INSERT INTO UserChild(user_id, user_child_age, user_child_edu)
-        values(#{userId}, #{userChildAge}, #{userChildEdu})
-    </insert>
-
-    <!--  find the newest user child id  -->
-    <select id="findMaxUserChildId" parameterType="Integer" resultType="Integer">
-        SELECT max(user_child_id) from UserChild where user_id = #{userId}
-    </select>
-
-    <!--  find all user child  -->
-    <select id="getUserChild" resultType = "com.myfin.entity.UserChild">
-        select * from UserChild where user_id = #{userId}
-    </select>
-
-    <!--  find all user child id  -->
-    <select id="getUserChildId" resultType = "Integer">
-        select user_child_id from UserChild where user_id = #{userId}
-    </select>
-
-    <!-- update user child information-->
-    <update id="updateUserChildProfile" >
-        update UserChild
-        set user_child_age = #{userChildAge},
-            user_child_edu = #{userChildEdu}
-        where user_id = #{userId} and user_child_id = #{userChildId}
-    </update>
-
 </mapper>
