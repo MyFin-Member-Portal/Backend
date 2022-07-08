@@ -42,7 +42,7 @@ public class LoginController {
 
         // query password from database account
         Account account = loginService.findAccountByUserId(userId) ;
-        String userPassword = account.getAccount_password();
+        String userPassword = account.getAccountPassword();
 
         // if not match password
         if (!userPassword.equals(md5Password)){

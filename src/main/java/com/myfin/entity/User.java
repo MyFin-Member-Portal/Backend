@@ -12,19 +12,14 @@ import java.io.Serializable;
 @Data
 @ApiModel(value="user object",description="user object description")
 public class User {
-    @ApiModelProperty(value = "userid",required = true,example = "1")
     private Integer userId;
-
-    @ApiModelProperty(value = "user_name",required = true,example = "Patrick")
+    
     private String userName;
-
-    @ApiModelProperty(value = "user_email",required = true,example = "123@gmail.com")
+    
     private String userEmail;
-
-    @ApiModelProperty(value = "user_gender",required = true,example = "Male")
+    
     private String userGender;
-
-    @ApiModelProperty(value = "user_phone",required = true,example = "0451998888")
+    
     private String userPhone;
 
     private String userNationality;
@@ -38,6 +33,5 @@ public class User {
     /**
      * user description
      */
-    @ApiModelProperty(value = "user_desc",required = true,example = "this is married person")
     private String userDesc;
 }

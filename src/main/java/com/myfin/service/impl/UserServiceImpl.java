@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
     public UserChild getSpecificUserChildService(int userId, int userChildId) {
         List<UserChild> childList = this.getUserChildService(userId);
         for (UserChild child:childList){
-            if (userChildId == child.getUser_child_id()){
+            if (userChildId == child.getUserChildId()){
                 return child;
             }
         }
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 
         List<UserChild> childListObj = mapper.convertValue(childList,new TypeReference<List<UserChild>>(){ });
 
-        int user_id = childListObj.get(0).getUser_id();
+        int user_id = childListObj.get(0).getUserId();
 //      get one user's multiple child
         List<Integer> childIdList = this.getUserChildId(user_id);
 
@@ -91,8 +91,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public void updateUserChild(int childId, UserChild child){
-        userMapper.updateUserChildProfile(child.getUser_id(), childId,
-        child.getUser_child_age(), child.getUser_child_edu());
+        userMapper.updateUserChildProfile(child.getUserId(), childId,
+        child.getUserChildAge(), child.getUserChildEdu());
     }
 
     public List<Integer> getUserChildId(int userId){
