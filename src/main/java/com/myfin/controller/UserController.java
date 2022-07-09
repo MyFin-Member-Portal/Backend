@@ -23,8 +23,8 @@ public class UserController {
 
     @PostMapping("/getUserBasicProfile")
     public Result<Object> getUserBasicInfo(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
-        int user_id = userInfoUpdateRequest.getUserId();
-        Object currentUser = userService.findUserById(user_id);
+        int userId = userInfoUpdateRequest.getUserId();
+        Object currentUser = userService.findUserById(userId);
         if (currentUser == null){
             return Response.fail("no such user");
         }

@@ -27,7 +27,7 @@ public class UserFamilyController {
     public Result<Object> getUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
         try {
             int userId = userFamilyInfoUpdateRequest.getUserId();
-            String resultJson= userFamilyService.getUserFamilyInfoService(userId);
+            String resultJson = userFamilyService.getUserFamilyInfoService(userId);
             return Response.success(resultJson);
         }catch (Exception e){
             e.printStackTrace();

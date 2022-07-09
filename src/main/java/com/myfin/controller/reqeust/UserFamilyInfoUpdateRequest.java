@@ -2,7 +2,7 @@ package com.myfin.controller.reqeust;
 
 import lombok.Data;
 /**
- * @author Zihang Gao, yuzhuo ma
+ * @author  Yuzhuo ma
  */
 
 @Data

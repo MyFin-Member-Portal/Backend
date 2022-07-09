@@ -1,6 +1,5 @@
 package com.myfin.service;
 
-import com.myfin.entity.UserFamily;
 
 public interface UserFamilyService {
 
@@ -11,7 +10,23 @@ public interface UserFamilyService {
      */
     String getUserFamilyInfoService(int userId);
 
+
+    /**
+     * update the user family information
+     * @param userId
+     * @param maritalStatus
+     * @param depNum
+     * @param petsNum
+     * @param supNonDepNum
+     * @param exceptMedBill
+     */
     void updateUserFamilyInfoService(int userId, String maritalStatus, String depNum, String petsNum, String supNonDepNum, String exceptMedBill);
 
+
+    /**
+     * create a user famoily information
+     * @param userId
+     * @return
+     */
     int createUserFamilyInfoService(int userId);
 }
