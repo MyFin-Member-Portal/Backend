@@ -15,7 +15,7 @@ public class UserInfoUpdateRequest {
 
     private String userEmail;
 
-    private String userPhoneNumber;
+    private String userPhone;
 
     private String userAddress;
 

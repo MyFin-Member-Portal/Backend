@@ -36,7 +36,7 @@ public class UserController {
     @PutMapping("/updateUserBasicProfile")
     public Result<Object> updateUserBasicInfo(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
 
-        String currentPhoneNumber = userInfoUpdateRequest.getUserPhoneNumber();
+        String currentPhoneNumber = userInfoUpdateRequest.getUserPhone();
         String currentAddress = userInfoUpdateRequest.getUserAddress();
         String currentGender = userInfoUpdateRequest.getUserGender();
         String currentNationality = userInfoUpdateRequest.getUserNationality();
