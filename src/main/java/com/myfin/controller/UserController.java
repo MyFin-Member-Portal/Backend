@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping("/myfin")
+@RequestMapping("/myfin/user/profile")
 public class UserController {
     @Resource
     private UserService userService;

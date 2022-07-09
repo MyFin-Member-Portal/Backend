@@ -23,7 +23,7 @@ public class UserFamilyController {
     @Resource
     private UserFamilyService userFamilyService;
 
-    @PostMapping("/getUserFamilyInfo")
+    @PostMapping("/getInfo")
     public Result<Object> getUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
         try {
             int userId = userFamilyInfoUpdateRequest.getUserId();
@@ -35,7 +35,7 @@ public class UserFamilyController {
         }
     }
 
-    @PostMapping("/updateUserFamilyInfo")
+    @PostMapping("/updateInfo")
     public Result<Object> updateUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
         try{
             userFamilyService.updateUserFamilyInfoService(
@@ -53,7 +53,7 @@ public class UserFamilyController {
         }
     }
 
-    @PostMapping("/createUserFamilyInfo")
+    @PostMapping("/createInfo")
     public Result<Object> createUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
         try{
             int resultUserId = userFamilyService.createUserFamilyInfoService(userFamilyInfoUpdateRequest.getUserId());
