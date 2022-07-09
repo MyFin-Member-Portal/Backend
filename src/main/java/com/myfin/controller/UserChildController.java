@@ -1,7 +1,6 @@
 package com.myfin.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.myfin.base.Response;
 import com.myfin.base.Result;
 import com.myfin.controller.reqeust.UserChildInfoRequest;
@@ -37,10 +36,10 @@ public class UserChildController {
 
     @PostMapping("/getProfile")
     public Result<Object> getUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
-        Object currentUserChildList =  userChildService.getUserChildService(userChildInfoRequest.getUserId());
-        String jsonUserChildInfo = JSON.toJSONString(currentUserChildList);
+        String jsonUserChildInfo =  userChildService.getUserChildService(userChildInfoRequest.getUserId());
         return Response.success(jsonUserChildInfo);
     }
+
     //  for future
     public Object getSpecificUserChild(int userId, int userChildId){
         return userChildService.getSpecificUserChildService(userId, userChildId);

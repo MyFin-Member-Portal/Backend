@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
+/**
+ * @author  Yuhzhuo Ma
+ */
 @Slf4j
 @RestController
 @RequestMapping("/myfin/user/profile/family")
@@ -25,8 +27,8 @@ public class UserFamilyController {
     public Result<Object> getUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
         try {
             int userId = userFamilyInfoUpdateRequest.getUserId();
-            userFamilyService.getUserFamilyInfoService(userId);
-            return Response.success(userId);
+            String resultJson= userFamilyService.getUserFamilyInfoService(userId);
+            return Response.success(resultJson);
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("Get Fail");

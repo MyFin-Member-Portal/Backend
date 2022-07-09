@@ -9,7 +9,7 @@ public interface UserFamilyService {
      * @param userId the user id
      * @return an entity of userFamily entity
      */
-    UserFamily getUserFamilyInfoService(int userId);
+    String getUserFamilyInfoService(int userId);
 
     void updateUserFamilyInfoService(int userId, String maritalStatus, String depNum, String petsNum, String supNonDepNum, String exceptMedBill);
 

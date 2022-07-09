@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import javax.annotation.Resource;
 import java.util.List;
-
 /**
  * @author  Yuhzhuo Ma
  */
@@ -38,7 +37,7 @@ public class UserChildServiceImpl implements UserChildService {
 
     @Override
     public UserChild getSpecificUserChildService(int userId, int userChildId) {
-        List<UserChild> childList = this.getUserChildService(userId);
+        List<UserChild> childList = this.getUserChildServiceList(userId);
         for (UserChild child:childList){
             if (userChildId == child.getUserChildId()){
 
@@ -48,10 +47,14 @@ public class UserChildServiceImpl implements UserChildService {
         return null;
     }
 
+
+
     @Override
-    public List<UserChild> getUserChildService(int userId) {
-        return userChildMapper.getUserChild(userId);
+    public String getUserChildService(int userId) {
+        return JSON.toJSONString(this.getUserChildServiceList(userId));
     }
+
+
 
     @Override
     public int updateTotalUserChildService(Object childList) {
@@ -84,5 +87,9 @@ public class UserChildServiceImpl implements UserChildService {
         log.info("---------"+userChildMapper.getUserChildId(userId));
 
         return userChildMapper.getUserChildId(userId);
+    }
+    public List<UserChild> getUserChildServiceList(int userId) {
+
+        return userChildMapper.getUserChild(userId);
     }
 }

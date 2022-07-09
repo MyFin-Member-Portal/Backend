@@ -1,7 +1,6 @@
 package com.myfin.service;
 
 import com.myfin.entity.UserChild;
-import java.util.List;
 public interface UserChildService {
 
     //    not use curently
@@ -11,7 +10,7 @@ public interface UserChildService {
 
     UserChild getSpecificUserChildService(int userId, int userChildId);
 
-    List<UserChild> getUserChildService(int userId);
+    String getUserChildService(int userId);
 
     int updateTotalUserChildService(Object childList);
 

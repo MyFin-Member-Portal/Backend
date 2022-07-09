@@ -1,6 +1,6 @@
 package com.myfin.service.impl;
 
-import com.myfin.entity.UserFamily;
+import com.alibaba.fastjson.JSON;
 import com.myfin.mapper.UserFamilyMapper;
 import com.myfin.service.UserFamilyService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +18,9 @@ public class UserFamilyServiceImpl implements UserFamilyService {
     private UserFamilyMapper userFamilyMapper;
 
     @Override
-    public UserFamily getUserFamilyInfoService(int userId) {
+    public String getUserFamilyInfoService(int userId) {
 
-        return userFamilyMapper.getUserFamilyInfo(userId);
+        return JSON.toJSONString(userFamilyMapper.getUserFamilyInfo(userId));
     }
 
     @Override
