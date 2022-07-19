@@ -1,4 +1,4 @@
-package com.myfin.controller;
+package com.myfin.controller.userProfileController;
 
 
 import com.myfin.base.Response;
