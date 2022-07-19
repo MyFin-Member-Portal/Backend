@@ -5,10 +5,7 @@ import com.myfin.base.Result;
 import com.myfin.controller.reqeust.UserFinancialRequest;
 import com.myfin.service.UserFinancialService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -25,14 +22,60 @@ public class UserFinancialInfoController {
 
     @PostMapping("/getInfo")
     public Result<Object> getUserFinicialInfo(@RequestBody UserFinancialRequest userFinancialRequest){
+        String resultJson;
         try{
             int userId = userFinancialRequest.getUserId();
-            String resultJson = userFinancialService.getUserFinicialInfoService(userId);
-            return Response.success(resultJson);
+            resultJson = userFinancialService.getUserFinicialInfoService(userId);
+
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("Get Fail");
         }
+        return Response.success(resultJson);
+    }
+
+
+    @PostMapping("/createInfo")
+    public Result<Object> createUserFinancialInfo(@RequestBody UserFinancialRequest userFinancialRequest){
+
+        try{
+            userFinancialService.createUserFinancialInfoService(userFinancialRequest.getUserId());
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("Create Fail");
+        }
+        return Response.success("create user financial table success");
+    }
+
+
+    @PostMapping("/updateInfo")
+    public Result<Object> updateUserFinicialInfo(@RequestBody UserFinancialRequest userFinancialRequest){
+        int userId;
+        try {
+            userId = userFinancialRequest.getUserId();
+            userFinancialService.updateUserFinicialInfoService(
+                    userId,
+                    userFinancialRequest.getCurFinBeh(),
+                    userFinancialRequest.getFinPos(),
+                    userFinancialRequest.getEmpStatus(),
+                    userFinancialRequest.getBudgetInfo(),
+                    userFinancialRequest.getIncBracket(),
+                    userFinancialRequest.getCarNum(),
+                    userFinancialRequest.getPensioner(),
+                    userFinancialRequest.getConcessionCardHold(),
+                    userFinancialRequest.getGovBenRecipient(),
+                    userFinancialRequest.getPayChiSup(),
+                    userFinancialRequest.getInLegalProceeding(),
+                    userFinancialRequest.getFuneralPrepaid(),
+                    userFinancialRequest.getAdequateInsCov(),
+                    userFinancialRequest.getExpectInheri()
+            );
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("Update Fail");
+        }
+        return Response.success(userId);
     }
 
 }

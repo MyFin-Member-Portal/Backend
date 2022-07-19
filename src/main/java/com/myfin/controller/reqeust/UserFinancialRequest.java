@@ -21,6 +21,4 @@ public class UserFinancialRequest {
     private String funeralPrepaid;
     private String adequateInsCov;
     private String expectInheri;
-
-
 }

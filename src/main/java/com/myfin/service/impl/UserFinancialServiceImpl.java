@@ -22,4 +22,27 @@ public class UserFinancialServiceImpl implements UserFinancialService {
     public String getUserFinicialInfoService(int userId) {
         return JSON.toJSONString(userFinancialMapper.getUserFinancialInfo(userId));
     }
+
+    @Override
+    public void updateUserFinicialInfoService(int userId, String curFinBeh, String finPos, String empStatus, String budgetInfo, String incBracket, int carNum, String pensioner, String concessionCardHold, String govBenRecipient, String payChiSup, String inLegalProceeding, String funeralPrepaid, String adequateInsCov, String expectInheri) {
+        userFinancialMapper.updateUserFinancialInfo(userId, curFinBeh,
+                                                    finPos,
+                                                    empStatus,
+                                                    budgetInfo,
+                                                    incBracket,
+                                                    carNum,
+                                                    pensioner,
+                                                    concessionCardHold,
+                                                    govBenRecipient,
+                                                    payChiSup,
+                                                    inLegalProceeding,
+                                                    funeralPrepaid,
+                                                    adequateInsCov,
+                                                    expectInheri );
+    }
+
+    @Override
+    public void createUserFinancialInfoService(int userId) {
+        userFinancialMapper.createUserFinancialInfo(userId);
+    }
 }
