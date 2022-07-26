@@ -41,9 +41,15 @@ public class MemberController {
         return Response.success("");
     }
 
-    @PostMapping("updateMemberLevel")
-    public Result<Object> updateMemberLevel(@RequestBody MemberRequest memberRequest){
+    @PostMapping("upgrade")
+    public Result<Object> upgrade(@RequestBody MemberRequest memberRequest){
         memberService.updateMemberLevel(memberRequest.getUserId(), memberRequest.getMemberLevelId());
+        return Response.success("");
+    }
+
+    @PostMapping("renewal")
+    public Result<Object> renewal(@RequestBody MemberRequest memberRequest){
+        memberService.updateEndTime(memberRequest.getUserId(), memberRequest.getEndTime());
         return Response.success("");
     }
 }

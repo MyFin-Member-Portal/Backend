@@ -31,5 +31,13 @@ public interface MemberService {
      * @param mlId member level id
      */
     void updateMemberLevel(int userId, int mlId);
-    
+
+
+    /**
+     * update the user to another member level
+     *
+     * @param userId user id
+     * @param endTime the end time 
+     */
+    void updateEndTime(int userId, long endTime);
 }

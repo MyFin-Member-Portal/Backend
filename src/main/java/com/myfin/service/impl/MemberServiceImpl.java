@@ -38,4 +38,10 @@ public class MemberServiceImpl implements MemberService {
     public void updateMemberLevel(int userId, int mlId) {
         membershipMapper.updateMember(userId, mlId);
     }
+
+    @Override
+    public void updateEndTime(int userId, long endTime) {
+        Date endTimeFormat = new Date(endTime);
+        membershipMapper.updateEndTime(userId, endTimeFormat);
+    }
 }
