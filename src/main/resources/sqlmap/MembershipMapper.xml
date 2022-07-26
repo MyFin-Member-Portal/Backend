@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.MembershipMapper">
+
+    <!--  add a new membership -->
+    <insert id="addMember" >
+        INSERT INTO Membership(user_id, ml_id, member_st_time, member_end_time) VALUES (#{userId}, #{mlId}, #{startTime}, #{endTime})
+    </insert>
+    
+    <!--  Delete the user from membership  -->
+    <delete id="removeMember" >
+        DELETE FROM Membership WHERE user_id = #{userId}
+    </delete>
+    
+    <!--  update the member level for a user  -->
+    <update id="updateMember" >
+        UPDATE Membership SET ml_id = #{mlId} WHERE user_id = #{user_id}
+    </update>
+
+    <!--  update the end time for a user  -->
+    <update id="updateEndTime" >
+        UPDATE Membership SET member_end_time = #{endTime} WHERE user_id = #{user_id}
+    </update>
+    
+    <!--  count the number of the user  -->
+    <select id="countUserId">
+        SELECT count(user_id) WHERE user_id = #{userId}
+    </select>
+</mapper>
