@@ -36,8 +36,14 @@ public class MemberController {
     }
 
     @PostMapping("remove")
-    public Result<Object> removeNewMember(@RequestBody MemberRequest memberRequest){
+    public Result<Object> removeMember(@RequestBody MemberRequest memberRequest){
         memberService.removeMembership(memberRequest.getUserId());
+        return Response.success("");
+    }
+
+    @PostMapping("updateMemberLevel")
+    public Result<Object> updateMemberLevel(@RequestBody MemberRequest memberRequest){
+        memberService.updateMemberLevel(memberRequest.getUserId(), memberRequest.getMemberLevelId());
         return Response.success("");
     }
 }

@@ -16,12 +16,12 @@
     
     <!--  update the member level for a user  -->
     <update id="updateMember" >
-        UPDATE Membership SET ml_id = #{mlId} WHERE user_id = #{user_id}
+        UPDATE Membership SET ml_id = #{mlId} WHERE user_id = #{userId}
     </update>
 
     <!--  update the end time for a user  -->
     <update id="updateEndTime" >
-        UPDATE Membership SET member_end_time = #{endTime} WHERE user_id = #{user_id}
+        UPDATE Membership SET member_end_time = #{endTime} WHERE user_id = #{userId}
     </update>
     
     <!--  count the number of the user  -->

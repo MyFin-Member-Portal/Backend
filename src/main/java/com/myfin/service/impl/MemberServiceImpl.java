@@ -33,4 +33,9 @@ public class MemberServiceImpl implements MemberService {
     public void removeMembership(int userId) {
         membershipMapper.removeMember(userId);
     }
+
+    @Override
+    public void updateMemberLevel(int userId, int mlId) {
+        membershipMapper.updateMember(userId, mlId);
+    }
 }

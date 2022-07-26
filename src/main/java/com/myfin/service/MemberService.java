@@ -23,5 +23,13 @@ public interface MemberService {
      * @param userId the user id
      */
     void removeMembership(int userId);
+
+    /**
+     * update the user to another member level
+     * 
+     * @param userId user id
+     * @param mlId member level id
+     */
+    void updateMemberLevel(int userId, int mlId);
     
 }
