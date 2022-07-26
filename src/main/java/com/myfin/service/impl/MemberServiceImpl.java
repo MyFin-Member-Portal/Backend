@@ -28,4 +28,9 @@ public class MemberServiceImpl implements MemberService {
         Date endTimeDate = new Date(endTime);
         membershipMapper.addMember(userId, mlId, startTimeDate, endTimeDate);
     }
+
+    @Override
+    public void removeMembership(int userId) {
+        membershipMapper.removeMember(userId);
+    }
 }

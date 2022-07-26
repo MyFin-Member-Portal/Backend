@@ -34,4 +34,10 @@ public class MemberController {
         
         return Response.success("");
     }
+
+    @PostMapping("remove")
+    public Result<Object> removeNewMember(@RequestBody MemberRequest memberRequest){
+        memberService.removeMembership(memberRequest.getUserId());
+        return Response.success("");
+    }
 }
