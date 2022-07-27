@@ -2,6 +2,7 @@ package com.myfin.service;
 
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Zihang Gao
@@ -40,4 +41,12 @@ public interface MemberService {
      * @param endTime the end time 
      */
     void updateEndTime(int userId, long endTime);
+
+    /**
+     * justify if is member
+     * 
+     * @param userId the user id
+     * @return a true or false
+     */
+    Boolean isMember(int userId);
 }

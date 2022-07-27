@@ -3,7 +3,10 @@ package com.myfin.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Zihang Gao
@@ -51,4 +54,11 @@ public interface MembershipMapper {
      * @return the amount of the user, 1 will be exist and 0 will be not.
      */
     int countUserId(int userId);
+
+    /**
+     * find all time 
+     * @param userId the user id
+     * @return the time list
+     */
+    HashMap<String, LocalDateTime> findAllTime(int userId);
 }

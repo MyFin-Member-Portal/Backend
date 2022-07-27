@@ -28,7 +28,7 @@ public class MemberController {
     public Result<Object> addNewMember(@RequestBody MemberRequest memberRequest){
         memberService.addMembership(
                 memberRequest.getUserId(), 
-                memberRequest.getUserId(), 
+                memberRequest.getMemberLevelId(), 
                 memberRequest.getStartTime(), 
                 memberRequest.getEndTime());
         
@@ -51,5 +51,10 @@ public class MemberController {
     public Result<Object> renewal(@RequestBody MemberRequest memberRequest){
         memberService.updateEndTime(memberRequest.getUserId(), memberRequest.getEndTime());
         return Response.success("");
+    }
+
+    @PostMapping("isMember")
+    public Result<Boolean> isMember(@RequestBody MemberRequest memberRequest){
+        return Response.success(memberService.isMember(memberRequest.getUserId()));
     }
 }

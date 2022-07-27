@@ -28,4 +28,9 @@
     <select id="countUserId">
         SELECT count(user_id) WHERE user_id = #{userId}
     </select>
+
+    <!--  find all time from user  -->
+    <select id="findAllTime" resultType="map">
+        SELECT member_st_time, member_end_time FROM Membership WHERE user_id = #{userId}
+    </select>
 </mapper>

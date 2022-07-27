@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Zihang Gao
@@ -43,5 +46,16 @@ public class MemberServiceImpl implements MemberService {
     public void updateEndTime(int userId, long endTime) {
         Date endTimeFormat = new Date(endTime);
         membershipMapper.updateEndTime(userId, endTimeFormat);
+    }
+
+    @Override
+    public Boolean isMember(int userId) {
+        HashMap<String, LocalDateTime> timeList = membershipMapper.findAllTime(userId);
+        if(timeList == null){
+            return false;
+        }
+        LocalDateTime startTime = timeList.get("member_st_time");
+        LocalDateTime endTime = timeList.get("member_end_time");
+        return startTime.isBefore(endTime);
     }
 }
