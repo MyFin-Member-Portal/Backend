@@ -34,6 +34,8 @@
         <mapper resource="sqlmap/UserChildMapper.xml"/>
         <mapper resource="sqlmap/UserFamilyMapper.xml"/>
         <mapper resource="sqlmap/UserFinancialMapper.xml"/>
+        <mapper resource="sqlmap/UserAssetsMapper.xml"/>
+
 
     </mappers>
 

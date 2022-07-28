@@ -6,7 +6,7 @@ public interface UserFamilyService {
     /**
      * get the user family info by user id
      * @param userId the user id
-     * @return an entity of userFamily entity
+     * @return string of info in json format
      */
     String getUserFamilyInfoService(int userId);
 
