@@ -42,63 +42,6 @@ public class UserServiceImpl implements UserService {
         return userId;
     }
 
-    @Override
-    public int getCurrentChildId(int userId){
-        try {
-            userMapper.findMaxUserChildId(userId);
-        }catch (BindingException be){
-            return 0;
-        }
-        return userMapper.findMaxUserChildId(userId);
-    }
-
-    @Override
-    public int addUserChildService(int userId, int userChildAge, String userChildEdu) {
-        userMapper.addUserChild(userId, userChildAge, userChildEdu );
-        return userId;
-    }
-
-    @Override
-    public UserChild getSpecificUserChildService(int userId, int userChildId) {
-        List<UserChild> childList = this.getUserChildService(userId);
-        for (UserChild child:childList){
-            if (userChildId == child.getUserChildId()){
-                return child;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public List<UserChild> getUserChildService(int userId) {
-        return userMapper.getUserChild(userId);
-    }
-
-    @Override
-    public int updateTotalUserChildService(Object childList) {
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<UserChild> childListObj = mapper.convertValue(childList,new TypeReference<List<UserChild>>(){ });
-
-        int user_id = childListObj.get(0).getUserId();
-//      get one user's multiple child
-        List<Integer> childIdList = this.getUserChildId(user_id);
-
-        for (int i = 0; i<childIdList.size(); i++){
-            this.updateUserChild(childIdList.get(i),childListObj.get(i));
-        }
-        return user_id;
-    }
-
-    public void updateUserChild(int childId, UserChild child){
-        userMapper.updateUserChildProfile(child.getUserId(), childId,
-        child.getUserChildAge(), child.getUserChildEdu());
-    }
-
-    public List<Integer> getUserChildId(int userId){
-        return userMapper.getUserChildId(userId);
-
-    }
 
 
 
