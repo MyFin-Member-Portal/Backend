@@ -14,11 +14,9 @@ public class UserAssetsRequest {
     private List<String> investment;
     private String netAssets;
 
-    private Map<Integer, String> assetList;
-    private Map<Integer, String> tarAssets;
-
     private String cashSaving;
     private String tarCashBalance;
+    private String tarFinBeh;
 
     private String tarIncBracket;
 
@@ -27,4 +25,9 @@ public class UserAssetsRequest {
     private String liabilitiesBalOwn;
 
     private String tarLifeStyle;
+
+    private List<Map<String, Object>> assetList;
+
+    private List<Map<String, Object>> tarAssetList;
+
 }
