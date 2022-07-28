@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.UserFinancialMapper">
+    <!--  find user financial information by user ID  -->
+    <select id="getUserFinancialInfo" parameterType="Integer" resultType="com.myfin.entity.UserFinancial">
+        select * from UserFinancialInfo where user_id = #{userId}
+    </select>
+
+    <!--  update user financial information by user ID  -->
+    <update id="updateUserFinancialInfo">
+        UPDATE UserFinancialInfo
+        SET  cur_fin_beh = #{curFinBeh},
+             fin_pos = #{finPos},
+             emp_status = #{empStatus},
+             budget_info = #{budgetInfo},
+             inc_bracket = #{incBracket},
+             car_num = #{carNum},
+             pensioner = #{pensioner},
+             concession_card_hold = #{concessionCardHold},
+             gov_ben_recipient = #{govBenRecipient},
+             pay_chi_sup = #{payChiSup},
+             in_legal_proceeding = #{inLegalProceeding},
+             funeral_prepaid = #{funeralPrepaid},
+             adequate_ins_cov = #{adequateInsCov},
+             expect_inheri = #{expectInheri}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--  create user financial information by user ID  -->
+    <insert id="createUserFinancialInfo" >
+        insert into UserFinancialInfo(
+            user_id)
+        values(#{userId})
+    </insert>
+
+
+
+
+</mapper>

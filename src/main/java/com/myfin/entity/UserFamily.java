@@ -1,17 +1,22 @@
-package com.myfin.controller.reqeust;
+package com.myfin.entity;
 
 import lombok.Data;
+
 /**
- * @author  Yuzhuo ma
+ * @author Yuzhuo Ma
  */
-
 @Data
-public class UserFamilyInfoUpdateRequest {
-    private int userId;
-    private String maritalStatus;
-    private String depNum;
-    private String petsNum;
-    private String supNonDepNum;
-    private String exceptMedBill;
+public class UserFamily {
 
+    private int userId;
+
+    private String maritalStatus;
+
+    private String depNum;
+
+    private String petsNum;
+
+    private String supNonDepNum;
+
+    private String exceptMedBill;
 }

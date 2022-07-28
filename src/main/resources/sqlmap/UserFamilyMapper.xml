@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.UserFamilyMapper">
+    <!--  find user family information by user ID  -->
+    <select id="getUserFamilyInfo" parameterType="Integer" resultType="com.myfin.entity.UserFamily">
+        select * from UserFamily where user_id = #{userId}
+    </select>
+
+    <!--  update user family information by user ID  -->
+    <update id="updateUserFamilyInfo" >
+        update UserFamily
+        set martial_status = #{maritalStatus},
+            dep_num = #{depNum},
+            pets_num = #{petsNum},
+            sup_non_dep_num = #{supNonDepNum},
+            expect_med_bill = #{exceptMedBill}
+        where user_id = #{userId}
+    </update>
+
+    <!--  create user family information for specific user ID, with all null value  -->
+    <insert id="createUserFamilyInfo" >
+        insert into UserFamily(
+                user_id)
+        values(#{userId})
+    </insert>
+
+
+</mapper>

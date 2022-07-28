@@ -37,12 +37,10 @@ public class LoginController {
         }
 
         // get password from frontend page, make password to md5 password
-        log.info(loginRequest.getPassword());
         String md5Password = loginService.getMd5Password(loginRequest.getPassword());
 
         // query password from database account
-        Account account = loginService.findAccountByUserId(userId) ;
-        String userPassword = account.getAccountPassword();
+        String userPassword = loginService.getAccountPassword(userId);
 
         // if not match password
         if (!userPassword.equals(md5Password)){
@@ -54,8 +52,6 @@ public class LoginController {
     
     @PostMapping("/register")
     public Result<Object> register(@RequestBody LoginRequest loginRequest){
-        log.info(loginRequest.toString());
-        
         // assign a value to handle error 
         int userId = -1;
         try {
