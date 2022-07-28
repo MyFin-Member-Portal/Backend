@@ -26,7 +26,7 @@
     
     <!--  count the number of the user  -->
     <select id="countUserId">
-        SELECT count(user_id) WHERE user_id = #{userId}
+        SELECT count(user_id) FROM Membership WHERE user_id = #{userId}
     </select>
 
     <!--  find all time from user  -->
