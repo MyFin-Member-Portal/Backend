@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.UserAssetsMapper">
+    <!--  find user Assets information by user ID  -->
+    <select id="getUserAssets" parameterType="Integer" resultType="com.myfin.entity.UserAssets">
+        select * from UserAsset where user_id = #{userId}
+    </select>
+
+
+    <!--  create user assets information for specific user ID, with all null value  -->
+    <insert id="createUserAsset" >
+        insert into UserAsset(
+            user_id)
+        values(#{userId})
+    </insert>
+
+
+
+</mapper>

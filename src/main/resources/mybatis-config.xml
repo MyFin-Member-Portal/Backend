@@ -33,6 +33,12 @@
         <mapper resource="sqlmap/UserBusinessMapper.xml"/>
         <mapper resource="sqlmap/MemberLevelMapper.xml"/>
         <mapper resource="sqlmap/MembershipMapper.xml"/>
+        <mapper resource="sqlmap/UserChildMapper.xml"/>
+        <mapper resource="sqlmap/UserFamilyMapper.xml"/>
+        <mapper resource="sqlmap/UserFinancialMapper.xml"/>
+        <mapper resource="sqlmap/UserAssetsMapper.xml"/>
+
+
     </mappers>
 
 </configuration>

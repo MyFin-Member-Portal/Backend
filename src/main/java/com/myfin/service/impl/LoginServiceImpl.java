@@ -37,8 +37,9 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Account findAccountByUserId(int userId) {
-        return accountMapper.findAccountByUserId(userId);
+    public String getAccountPassword(int userId) {
+        Account account = accountMapper.findAccountByUserId(userId);
+        return account.getAccountPassword();
     }
 
     @Override
