@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 
 /**
@@ -25,13 +27,14 @@ public class MemberController {
     MemberService memberService;
     
     @PostMapping("/add")
-    public Result<Object> addNewMember(@RequestBody MemberRequest memberRequest){
+    public Result<Object> addNewMember(@RequestBody MemberRequest memberRequest) {
+
         memberService.addMembership(
-                memberRequest.getUserId(), 
-                memberRequest.getMemberLevelId(), 
-                memberRequest.getStartTime(), 
+                memberRequest.getUserId(),
+                memberRequest.getMemberLevelId(),
+                memberRequest.getStartTime() ,
                 memberRequest.getEndTime());
-        
+
         return Response.success("");
     }
 

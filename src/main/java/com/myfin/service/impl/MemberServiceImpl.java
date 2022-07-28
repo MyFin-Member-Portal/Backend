@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,8 +28,13 @@ public class MemberServiceImpl implements MemberService {
     
     @Override
     public void addMembership(int userId, int mlId, long startTime, long endTime) {
-        Date startTimeDate = new Date(startTime);
-        Date endTimeDate = new Date(endTime);
+        
+        // add 000 and the end of time to make it support the formatting change
+        long newStartTime = new Long(startTime + "000");
+        long newEndTime = new Long(endTime + "000");
+        
+        Date startTimeDate = new Date(newStartTime);
+        Date endTimeDate = new Date(newEndTime);
         membershipMapper.addMember(userId, mlId, startTimeDate, endTimeDate);
     }
 
