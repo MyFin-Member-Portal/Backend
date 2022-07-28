@@ -3,6 +3,7 @@ package com.myfin.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public interface MembershipMapper {
      * @param startTime the membership start time
      * @param endTime the membership end time      
      */
-    void addMember(int userId, int mlId, Date startTime, Date endTime);
+    void addMember(int userId, int mlId, Date startTime, Date endTime) throws SQLIntegrityConstraintViolationException;
 
     /**
      * remove a user from membership

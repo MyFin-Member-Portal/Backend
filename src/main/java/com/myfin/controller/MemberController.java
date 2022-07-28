@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.SQLNonTransientException;
 
 
 /**
@@ -29,11 +30,16 @@ public class MemberController {
     @PostMapping("/add")
     public Result<Object> addNewMember(@RequestBody MemberRequest memberRequest) {
 
-        memberService.addMembership(
-                memberRequest.getUserId(),
-                memberRequest.getMemberLevelId(),
-                memberRequest.getStartTime() ,
-                memberRequest.getEndTime());
+        try {
+            memberService.addMembership(
+                    memberRequest.getUserId(),
+                    memberRequest.getMemberLevelId(),
+                    memberRequest.getStartTime() ,
+                    memberRequest.getEndTime());
+        } catch (Exception e) {
+            // if there are duplicate member
+            return Response.fail("Member already exist");
+        }
 
         return Response.success("");
     }

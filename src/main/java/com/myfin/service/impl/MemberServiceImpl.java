@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
     MemberLevelMapper memberLevelMapper;
     
     @Override
-    public void addMembership(int userId, int mlId, long startTime, long endTime) {
+    public void addMembership(int userId, int mlId, long startTime, long endTime) throws SQLIntegrityConstraintViolationException{
         
         // add 000 and the end of time to make it support the formatting change
         long newStartTime = new Long(startTime + "000");

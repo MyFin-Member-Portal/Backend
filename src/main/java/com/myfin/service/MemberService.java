@@ -2,6 +2,7 @@ package com.myfin.service;
 
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * @author Zihang Gao
@@ -15,7 +16,7 @@ public interface MemberService {
      * @param startTime the start time of membership
      * @param endTime the end time of membership
      */
-    void addMembership(int userId, int mlId, long startTime, long endTime);
+    void addMembership(int userId, int mlId, long startTime, long endTime) throws SQLIntegrityConstraintViolationException;
 
     /**
      * delete the member from the membership
