@@ -45,5 +45,29 @@ public class UserAssetsController {
         }
     }
 
+//    @PostMapping("/updateAssets")
+//    public Result<Object> updateUserFamilyInfo(@RequestBody UserAssetsRequest userAssetsRequest) {
+//        try {
+//            userAssetsService.updateUserAssetsService(
+//                    userAssetsRequest.getUserId(),
+//                    userAssetsRequest.getTarFinBeh(),
+//                    userAssetsRequest.getInvestment(),
+//                    userAssetsRequest.getNetAssets(),
+//                    userAssetsRequest.getAssetList(),
+////                    userAssetsRequest.getTarAssets(),
+//                    userAssetsRequest.getCashSaving(),
+//                    userAssetsRequest.getTarCashBalance(),
+//                    userAssetsRequest.getTarIncBracket(),
+//                    userAssetsRequest.getHomeOwner(),
+//                    userAssetsRequest.getLiabilities(),
+//                    userAssetsRequest.getLiabilitiesBalOwn(),
+//                    userAssetsRequest.getTarLifeStyle()
+//            );
+//            return Response.success("update success");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return Response.fail("update assets fail");
+//        }
+//    }
 
 }

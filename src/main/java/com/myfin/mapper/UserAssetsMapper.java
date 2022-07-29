@@ -1,6 +1,6 @@
 package com.myfin.mapper;
 
-import com.myfin.entity.UserAssets;
+import com.myfin.entity.Asset;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ public interface UserAssetsMapper {
      * @param userId
      * @return the UserAssets object
      */
-    UserAssets getUserAssets(@Param("userId") int userId);
+    Asset getUserAssets(@Param("userId") int userId);
 
 
     /**
@@ -27,4 +27,18 @@ public interface UserAssetsMapper {
      * @return
      */
     int createUserAsset(@Param("userId") int userId);
+
+    void updateUserAssets(@Param("userId") int userId,
+                          @Param("tarFinBeh") String tarFinBeh,
+                          @Param("investment") String investment,
+                          @Param("netAssets") String netAssets,
+                          @Param("assetList") String assetList,
+                          @Param("tarAssets") String tarAssets,
+                          @Param("cashSaving") String cashSaving,
+                          @Param("tarCashBalance") String tarCashBalance,
+                          @Param("tarIncBracket") String tarIncBracket,
+                          @Param("homeOwner") String homeOwner,
+                          @Param("liabilities") String liabilities,
+                          @Param("liabilitiesBalOwn") String liabilitiesBalOwn,
+                          @Param("tarLifeStyle") String tarLifeStyle);
 }

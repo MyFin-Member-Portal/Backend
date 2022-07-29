@@ -19,7 +19,7 @@ public class UserFamilyServiceImpl implements UserFamilyService {
 
     @Override
     public String getUserFamilyInfoService(int userId) {
-
+        log.info("***********************"+userFamilyMapper.getUserFamilyInfo(userId));
         return JSON.toJSONString(userFamilyMapper.getUserFamilyInfo(userId));
     }
 
