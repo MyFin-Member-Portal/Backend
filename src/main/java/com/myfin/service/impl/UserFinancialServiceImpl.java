@@ -1,6 +1,7 @@
 package com.myfin.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.myfin.entity.UserFinancial;
 import com.myfin.mapper.UserFinancialMapper;
 import com.myfin.service.UserFinancialService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ public class UserFinancialServiceImpl implements UserFinancialService {
     private UserFinancialMapper userFinancialMapper;
 
     @Override
-    public String getUserFinicialInfoService(int userId) {
-        return JSON.toJSONString(userFinancialMapper.getUserFinancialInfo(userId));
+    public UserFinancial getUserFinicialInfoService(int userId) {
+        return userFinancialMapper.getUserFinancialInfo(userId);
     }
 
     @Override

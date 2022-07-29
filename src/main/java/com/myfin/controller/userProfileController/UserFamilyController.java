@@ -25,10 +25,11 @@ public class UserFamilyController {
 
     @PostMapping("/getInfo")
     public Result<Object> getUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
+        Object userFamily;
         try {
             int userId = userFamilyInfoUpdateRequest.getUserId();
-            String resultJson = userFamilyService.getUserFamilyInfoService(userId);
-            return Response.success(resultJson);
+            userFamily = userFamilyService.getUserFamilyInfoService(userId);
+            return Response.success(userFamily);
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("Get Fail");
@@ -56,8 +57,9 @@ public class UserFamilyController {
     @PostMapping("/createInfo")
     public Result<Object> createUserFamilyInfo(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
         try{
-            int resultUserId = userFamilyService.createUserFamilyInfoService(userFamilyInfoUpdateRequest.getUserId());
-            return Response.success(resultUserId);
+            int userId = userFamilyInfoUpdateRequest.getUserId();
+            userFamilyService.createUserFamilyInfoService(userId);
+            return Response.success(userId);
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("create Fail");

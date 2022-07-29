@@ -39,4 +39,5 @@
         where user_id = #{userId} and user_child_id = #{userChildId}
     </delete>
 
+
 </mapper>

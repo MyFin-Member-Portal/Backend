@@ -1,5 +1,7 @@
 package com.myfin.service;
 
+import com.myfin.entity.UserFinancial;
+
 public interface UserFinancialService {
 
     /**
@@ -7,7 +9,7 @@ public interface UserFinancialService {
      * @param userId
      * @return
      */
-    String getUserFinicialInfoService(int userId);
+    UserFinancial getUserFinicialInfoService(int userId);
 
     /**
      * update the financial information for the user

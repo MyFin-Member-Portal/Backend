@@ -1,6 +1,8 @@
 package com.myfin.service;
 
 
+import com.myfin.entity.UserFamily;
+
 public interface UserFamilyService {
 
     /**
@@ -8,7 +10,7 @@ public interface UserFamilyService {
      * @param userId the user id
      * @return string of info in json format
      */
-    String getUserFamilyInfoService(int userId);
+    UserFamily getUserFamilyInfoService(int userId);
 
 
     /**
@@ -28,5 +30,5 @@ public interface UserFamilyService {
      * @param userId
      * @return
      */
-    int createUserFamilyInfoService(int userId);
+    void createUserFamilyInfoService(int userId);
 }

@@ -57,4 +57,5 @@ public interface UserChildMapper {
      * @param userChildId       user child id
      */
     void deleteSpecificUserChild(@Param("userId") int userId, @Param("userChildId") int userChildId);
+
 }

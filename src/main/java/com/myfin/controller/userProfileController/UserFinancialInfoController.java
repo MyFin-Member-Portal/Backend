@@ -22,16 +22,16 @@ public class UserFinancialInfoController {
 
     @PostMapping("/getInfo")
     public Result<Object> getUserFinicialInfo(@RequestBody UserFinancialRequest userFinancialRequest){
-        String resultJson;
+        Object UserFinicial;
         try{
             int userId = userFinancialRequest.getUserId();
-            resultJson = userFinancialService.getUserFinicialInfoService(userId);
+            UserFinicial = userFinancialService.getUserFinicialInfoService(userId);
 
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("Get Fail");
         }
-        return Response.success(resultJson);
+        return Response.success(UserFinicial);
     }
 
 

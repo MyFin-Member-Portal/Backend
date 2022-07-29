@@ -40,7 +40,6 @@ public class UserChildServiceImpl implements UserChildService {
         List<UserChild> childList = this.getUserChildServiceList(userId);
         for (UserChild child:childList){
             if (userChildId == child.getUserChildId()){
-
                 return child;
             }
         }
@@ -50,8 +49,8 @@ public class UserChildServiceImpl implements UserChildService {
 
 
     @Override
-    public String getUserChildService(int userId) {
-        return JSON.toJSONString(this.getUserChildServiceList(userId));
+    public List<UserChild> getUserChildService(int userId) {
+        return userChildMapper.getUserChild(userId);
     }
 
 
@@ -77,6 +76,7 @@ public class UserChildServiceImpl implements UserChildService {
         userChildMapper.deleteSpecificUserChild(userId, userChildId);
         return userChildId;
     }
+
 
     public void updateUserChild(int childId, UserChild child){
         userChildMapper.updateUserChildProfile(child.getUserId(), childId,

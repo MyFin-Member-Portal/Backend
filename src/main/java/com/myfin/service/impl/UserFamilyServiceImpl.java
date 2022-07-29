@@ -1,6 +1,7 @@
 package com.myfin.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.myfin.entity.UserFamily;
 import com.myfin.mapper.UserFamilyMapper;
 import com.myfin.service.UserFamilyService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +19,8 @@ public class UserFamilyServiceImpl implements UserFamilyService {
     private UserFamilyMapper userFamilyMapper;
 
     @Override
-    public String getUserFamilyInfoService(int userId) {
-        log.info("***********************"+userFamilyMapper.getUserFamilyInfo(userId));
-        return JSON.toJSONString(userFamilyMapper.getUserFamilyInfo(userId));
+    public UserFamily getUserFamilyInfoService(int userId) {
+        return userFamilyMapper.getUserFamilyInfo(userId);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class UserFamilyServiceImpl implements UserFamilyService {
     }
 
     @Override
-    public int createUserFamilyInfoService(int userId) {
+    public void createUserFamilyInfoService(int userId) {
 
-        return userFamilyMapper.createUserFamilyInfo(userId);
+        userFamilyMapper.createUserFamilyInfo(userId);
     }
 }

@@ -36,8 +36,10 @@ public class UserChildController {
 
     @PostMapping("/getProfile")
     public Result<Object> getUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
-        String jsonUserChildInfo =  userChildService.getUserChildService(userChildInfoRequest.getUserId());
-        return Response.success(jsonUserChildInfo);
+        Object userChild;
+
+        userChild =  userChildService.getUserChildService(userChildInfoRequest.getUserId());
+        return Response.success(userChild);
     }
 
     //  for future
