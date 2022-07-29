@@ -10,9 +10,6 @@
         
         <!--   open under score to camel case  -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <!--   solve the problem that null value do not return normal data structure  -->
-        <setting name="cacheEnabled" value="true"/>
-        <setting name="callSettersOnNulls" value="true"/>
     </settings>
 
     <!-- 和spring整合后 environments配置将废除 -->

@@ -11,11 +11,11 @@
     <!--  update user family information by user ID  -->
     <update id="updateUserFamilyInfo" >
         update UserFamily
-        set martial_status = #{maritalStatus},
+        set martial_status = #{martialStatus},
             dep_num = #{depNum},
             pets_num = #{petsNum},
             sup_non_dep_num = #{supNonDepNum},
-            expect_med_bill = #{exceptMedBill}
+            expect_med_bill = #{expectMedBill}
         where user_id = #{userId}
     </update>
 
