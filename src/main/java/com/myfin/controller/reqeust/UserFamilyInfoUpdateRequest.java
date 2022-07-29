@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class UserFamilyInfoUpdateRequest {
     private int userId;
-    private String maritalStatus;
+    private String martialStatus;
     private String depNum;
     private String petsNum;
     private String supNonDepNum;
-    private String exceptMedBill;
+    private String expectMedBill;
 
 }
