@@ -1,6 +1,6 @@
 package com.myfin.service.impl;
 
-import com.alibaba.fastjson.JSON;
+import com.myfin.entity.UserAsset;
 import com.myfin.mapper.UserAssetsMapper;
 import com.myfin.service.UserAssetsService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,33 +22,42 @@ public class UserAssetsServiceImpl implements UserAssetsService {
     private UserAssetsMapper userAssetsMapper;
 
     @Override
-    public String getUserAssetService(int userId) {
-        return JSON.toJSONString(userAssetsMapper.getUserAssets(userId));
+    public UserAsset getUserAssetService(int userId) {
+        String result = userAssetsMapper.getUserAssets(userId);
+        log.info(result+"******************");
+
+        return null;
     }
 
     @Override
-    public int createUserAssetService(int userId) {
-        return userAssetsMapper.createUserAsset(userId);
+    public void createUserAssetService(int userId) {
+        userAssetsMapper.createUserAsset(userId);
     }
 
     @Override
-    public void updateUserAssetsService(int userId, String tarFinBeh, List<String> investment, String netAssets, List<Map<String, String>> assetList, List<Map<String, String>> tarAssets, String cashSaving, String tarCashBalance, String tarIncBracket, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarLifeStyle) {
+    public void updateUserAssetsService(int userId, List<String> investment, String netAssets, List<Map<String, String>> assetList, String cashSaving, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarIncBracket, List<Map<String, String>> tarAssetList, String tarCashBalance, String tarFinBeh, String tarLifeStyle) {
+        String investmentString = investment.toString();
+        String assetListString = assetList.toString();
+        String tarAssetListString = tarAssetList.toString();
         userAssetsMapper.updateUserAssets(
                 userId,
-                tarFinBeh,
-                investment.toString(),
+                investmentString,
                 netAssets,
-                assetList.toString(),
-                tarAssets.toString(),
+                assetListString,
                 cashSaving,
-                tarCashBalance,
-                tarIncBracket,
                 homeOwner,
                 liabilities,
                 liabilitiesBalOwn,
+                tarIncBracket,
+                tarAssetListString,
+                tarCashBalance,
+                tarFinBeh,
                 tarLifeStyle
         );
+
     }
+
+//    private String merge
 
 
 }

@@ -1,15 +1,15 @@
-package com.myfin.controller.reqeust;
+package com.myfin.entity;
+
 import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Yuzhuo ma
+ * @author Yuzhuo Ma
  */
-
 @Data
-public class UserAssetsRequest {
+public class UserAsset {
     private int userId;
 
     private List<String> investment;
