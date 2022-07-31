@@ -1,9 +1,4 @@
 package com.myfin.service.impl;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.myfin.entity.Asset;
 import com.myfin.entity.UserAsset;
 import com.myfin.mapper.UserAssetsMapper;
 import com.myfin.service.UserAssetsService;
@@ -59,12 +54,18 @@ public class UserAssetsServiceImpl implements UserAssetsService {
 
     }
 
-    private UserAsset fillUpUserAssetObj(UserAsset userAssetObj, int userId){
-        userAssetObj.setAssetList(userAssetsMapper.getUserAssetsAssetList(userId));
-        userAssetObj.setTarAssetList(userAssetsMapper.getUserAssetsTarAssetList(userId));
+    private void fillUpUserAssetObj(UserAsset userAssetObj, int userId){
+
         userAssetObj.setInvestment(Collections.singletonList(userAssetsMapper.getUserAssetsInvestment(userId)));
 
 
+
+        String AssetListString = (String) userAssetsMapper.getUserAssetsAssetList(userId).get(0).get("assetList");
+        String TarAssetListString = (String) userAssetsMapper.getUserAssetsTarAssetList(userId).get(0).get("tarAssetList");
+
+
+        userAssetObj.setAssetList(Collections.singletonList(AssetListString));
+        userAssetObj.setTarAssetList(Collections.singletonList(TarAssetListString));
 
 //        String JsonAssetListString = userAssetsMapper.getUserAssetsAssetList(userId).get(0).get("assetList").replaceAll("=",":");
 //
@@ -82,8 +83,6 @@ public class UserAssetsServiceImpl implements UserAssetsService {
 ////            log.info("************"+result);
 //        }
 
-
-        return null;
     }
 
 
