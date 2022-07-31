@@ -16,13 +16,13 @@
     </select>
 
 
-    <select id="getUserAssetsAssetList" parameterType="Integer" resultType="java.lang.String">
-        select asset_list
+    <select id="getUserAssetsAssetList" parameterType="Integer" resultType="map">
+        select asset_list as assetList
         from UserAssetInfo where user_id = #{userId}
     </select>
 
-    <select id="getUserAssetsTarAssetList" parameterType="Integer" resultType="java.lang.String">
-        select tar_asset_list
+    <select id="getUserAssetsTarAssetList" parameterType="Integer" resultType="map">
+        select tar_asset_list as tarAssetList
         from UserAssetInfo where user_id = #{userId}
     </select>
 

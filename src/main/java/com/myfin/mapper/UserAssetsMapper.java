@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Yuzhuo Ma
  */
@@ -18,8 +21,14 @@ public interface UserAssetsMapper {
      * @param userId
      * @return the UserAssets object
      */
-    String getUserAssets(@Param("userId") int userId);
+    UserAsset getUserAssets(@Param("userId") int userId);
 
+
+    String getUserAssetsInvestment(@Param("userId") int userId);
+
+    List<Map<String, Object>> getUserAssetsAssetList(@Param("userId") int userId);
+
+    List<Map<String, Object>> getUserAssetsTarAssetList(@Param("userId") int userId);
 
     /**
      * create user asset info

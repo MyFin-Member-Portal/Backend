@@ -1,5 +1,9 @@
 package com.myfin.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.myfin.entity.Asset;
 import com.myfin.entity.UserAsset;
 import com.myfin.mapper.UserAssetsMapper;
 import com.myfin.service.UserAssetsService;
@@ -7,8 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author  Yuhzhuo Ma
@@ -23,10 +26,9 @@ public class UserAssetsServiceImpl implements UserAssetsService {
 
     @Override
     public UserAsset getUserAssetService(int userId) {
-        String result = userAssetsMapper.getUserAssets(userId);
-        log.info(result+"******************");
-
-        return null;
+        UserAsset result = userAssetsMapper.getUserAssets(userId);
+        this.fillUpUserAssetObj(result, userId);
+        return result;
     }
 
     @Override
@@ -57,7 +59,32 @@ public class UserAssetsServiceImpl implements UserAssetsService {
 
     }
 
-//    private String merge
+    private UserAsset fillUpUserAssetObj(UserAsset userAssetObj, int userId){
+        userAssetObj.setAssetList(userAssetsMapper.getUserAssetsAssetList(userId));
+        userAssetObj.setTarAssetList(userAssetsMapper.getUserAssetsTarAssetList(userId));
+        userAssetObj.setInvestment(Collections.singletonList(userAssetsMapper.getUserAssetsInvestment(userId)));
+
+
+
+//        String JsonAssetListString = userAssetsMapper.getUserAssetsAssetList(userId).get(0).get("assetList").replaceAll("=",":");
+//
+//        log.info("************"+JsonAssetListString);
+////        JsonAssetListString = JsonAssetListString.replace("{","[");
+////        JsonAssetListString = JsonAssetListString.replace("}","]");
+//
+//
+//        userAssetObj.setAssetList(userAssetsMapper.getUserAssetsAssetList(userId));
+
+
+//        for (String s : JsonAssetList) {
+//            log.info("************"+s);
+////            Asset result = JSON.parseObject(s, Asset.class);
+////            log.info("************"+result);
+//        }
+
+
+        return null;
+    }
 
 
 }
