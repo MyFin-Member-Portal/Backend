@@ -24,50 +24,52 @@ public class UserAssetsController {
 
     @PostMapping("/getAssets")
     public Result<Object> getUserAssetInfo(@RequestBody UserAssetsRequest userAssetsRequest){
+        Object UserAsset;
         try{
             int userId = userAssetsRequest.getUserId();
-            String resultJson = userAssetsService.getUserAssetService(userId);
-            return Response.success(resultJson);
+            UserAsset = userAssetsService.getUserAssetService(userId);
+            return Response.success(UserAsset);
         }catch (Exception e){
             e.printStackTrace();
-            return Response.fail("Get assets Fail");
+            return Response.fail("Get user assets Fail");
         }
+
     }
 
     @PostMapping("/createAssets")
     public Result<Object> createUserAssetInfo(@RequestBody UserAssetsRequest userAssetsRequest){
         try {
-            int resultUserId = userAssetsService.createUserAssetService(userAssetsRequest.getUserId());
-            return Response.success(resultUserId);
+            userAssetsService.createUserAssetService(userAssetsRequest.getUserId());
+            return Response.success("create success");
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("create assets fail");
         }
     }
 
-//    @PostMapping("/updateAssets")
-//    public Result<Object> updateUserFamilyInfo(@RequestBody UserAssetsRequest userAssetsRequest) {
-//        try {
-//            userAssetsService.updateUserAssetsService(
-//                    userAssetsRequest.getUserId(),
-//                    userAssetsRequest.getTarFinBeh(),
-//                    userAssetsRequest.getInvestment(),
-//                    userAssetsRequest.getNetAssets(),
-//                    userAssetsRequest.getAssetList(),
-////                    userAssetsRequest.getTarAssets(),
-//                    userAssetsRequest.getCashSaving(),
-//                    userAssetsRequest.getTarCashBalance(),
-//                    userAssetsRequest.getTarIncBracket(),
-//                    userAssetsRequest.getHomeOwner(),
-//                    userAssetsRequest.getLiabilities(),
-//                    userAssetsRequest.getLiabilitiesBalOwn(),
-//                    userAssetsRequest.getTarLifeStyle()
-//            );
-//            return Response.success("update success");
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return Response.fail("update assets fail");
-//        }
-//    }
+    @PostMapping("/updateAssets")
+    public Result<Object> updateUserFamilyInfo(@RequestBody UserAssetsRequest userAssetsRequest) {
+        try {
+            userAssetsService.updateUserAssetsService(
+                    userAssetsRequest.getUserId(),
+                    userAssetsRequest.getInvestment(),
+                    userAssetsRequest.getNetAssets(),
+                    userAssetsRequest.getAssetList(),
+                    userAssetsRequest.getCashSaving(),
+                    userAssetsRequest.getHomeOwner(),
+                    userAssetsRequest.getLiabilities(),
+                    userAssetsRequest.getLiabilitiesBalOwn(),
+                    userAssetsRequest.getTarIncBracket(),
+                    userAssetsRequest.getTarAssetList(),
+                    userAssetsRequest.getTarCashBalance(),
+                    userAssetsRequest.getTarFinBeh(),
+                    userAssetsRequest.getTarLifeStyle()
+            );
+            return Response.success("update success");
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("update assets fail");
+        }
+    }
 
 }

@@ -1,9 +1,12 @@
 package com.myfin.mapper;
 
-import com.myfin.entity.Asset;
+import com.myfin.entity.UserAsset;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Yuzhuo Ma
@@ -18,27 +21,46 @@ public interface UserAssetsMapper {
      * @param userId
      * @return the UserAssets object
      */
-    Asset getUserAssets(@Param("userId") int userId);
+    UserAsset getUserAssets(@Param("userId") int userId);
 
+
+    String getUserAssetsInvestment(@Param("userId") int userId);
+
+    List<Map<String, Object>> getUserAssetsAssetList(@Param("userId") int userId);
+
+    List<Map<String, Object>> getUserAssetsTarAssetList(@Param("userId") int userId);
 
     /**
      * create user asset info
-     * @param userId
-     * @return
+     * @param userId user id
+     * @return null
      */
-    int createUserAsset(@Param("userId") int userId);
+    void createUserAsset(@Param("userId") int userId);
 
     void updateUserAssets(@Param("userId") int userId,
-                          @Param("tarFinBeh") String tarFinBeh,
-                          @Param("investment") String investment,
+
+                          @Param("investmentString") String investmentString,
+
                           @Param("netAssets") String netAssets,
-                          @Param("assetList") String assetList,
-                          @Param("tarAssets") String tarAssets,
+
+                          @Param("assetListString") String assetListString,
+
                           @Param("cashSaving") String cashSaving,
-                          @Param("tarCashBalance") String tarCashBalance,
-                          @Param("tarIncBracket") String tarIncBracket,
+
                           @Param("homeOwner") String homeOwner,
+
                           @Param("liabilities") String liabilities,
+
                           @Param("liabilitiesBalOwn") String liabilitiesBalOwn,
-                          @Param("tarLifeStyle") String tarLifeStyle);
+
+                          @Param("tarIncBracket") String tarIncBracket,
+
+                          @Param("tarAssetListString") String tarAssetListString,
+
+                          @Param("tarCashBalance") String tarCashBalance,
+
+                          @Param("tarFinBeh") String tarFinBeh,
+
+                          @Param("tarLifeStyle") String tarLifeStyle
+    );
 }

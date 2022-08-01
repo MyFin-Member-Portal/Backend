@@ -17,11 +17,11 @@ public interface UserFamilyMapper {
 
     void updateUserFamilyInfo(
             @Param("userId") int userId,
-            @Param("maritalStatus") String maritalStatus,
+            @Param("martialStatus") String martialStatus,
             @Param("depNum") String depNum,
             @Param("petsNum") String petsNum,
             @Param("supNonDepNum") String supNonDepNum,
-            @Param("exceptMedBill") String exceptMedBill
+            @Param("expectMedBill") String expectMedBill
     );
 
     int createUserFamilyInfo(@Param("userId") int userId);

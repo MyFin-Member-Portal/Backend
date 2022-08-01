@@ -41,11 +41,11 @@ public class UserFamilyController {
         try{
             userFamilyService.updateUserFamilyInfoService(
                     userFamilyInfoUpdateRequest.getUserId(),
-                    userFamilyInfoUpdateRequest.getMaritalStatus(),
+                    userFamilyInfoUpdateRequest.getMartialStatus(),
                     userFamilyInfoUpdateRequest.getDepNum(),
                     userFamilyInfoUpdateRequest.getPetsNum(),
                     userFamilyInfoUpdateRequest.getSupNonDepNum(),
-                    userFamilyInfoUpdateRequest.getExceptMedBill()
+                    userFamilyInfoUpdateRequest.getExpectMedBill()
             );
             return Response.success("Update success");
         }catch (Exception e){

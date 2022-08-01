@@ -3,30 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myfin.mapper.UserAssetsMapper">
+    
     <!--  find user Assets information by user ID  -->
-    <select id="getUserAssets" parameterType="Integer" resultType="com.myfin.entity.Asset">
-        select * from UserAssetInfo where user_id = #{userId}
+    <select id="getUserAssets" parameterType="Integer" resultType="com.myfin.entity.UserAsset">
+        select *
+        from UserAssetInfo where user_id = #{userId}
+    </select>
+
+    <select id="getUserAssetsInvestment" parameterType="Integer" resultType="java.lang.String">
+        select investment
+        from UserAssetInfo where user_id = #{userId}
+    </select>
+
+
+    <select id="getUserAssetsAssetList" parameterType="Integer" resultType="map">
+        select asset_list as assetList
+        from UserAssetInfo where user_id = #{userId}
+    </select>
+
+    <select id="getUserAssetsTarAssetList" parameterType="Integer" resultType="map">
+        select tar_asset_list as tarAssetList
+        from UserAssetInfo where user_id = #{userId}
     </select>
 
 
     <!--  create user assets information for specific user ID, with all null value  -->
-    <insert id="createUserAsset" >
+    <insert id="createUserAsset">
         insert into UserAssetInfo(
             user_id)
         values(#{userId})
     </insert>
+
+
     <!--  update user asset info by user ID  -->
     <update id="updateUserAssets">
         update UserAssetInfo
-        set investment = #{investment},
+        set investment = #{investmentString},
             net_assets = #{netAssets},
-            asset_list = #{assetList},
+            asset_list = #{assetListString},
             cash_saving = #{cashSaving},
             home_owner = #{homeOwner},
             liabilities = #{liabilities},
             liabilities_bal_own = #{liabilitiesBalOwn},
             tar_inc_bracket = #{tarIncBracket},
-            tar_assets = #{tarAssets},
+            tar_asset_list = #{tarAssetListString},
             tar_cash_balance = #{tarCashBalance},
             tar_fin_beh = #{tarFinBeh},
             tar_life_style = #{tarLifeStyle}

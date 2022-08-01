@@ -1,7 +1,10 @@
 package com.myfin.service;
 
+import com.myfin.entity.UserAsset;
+
 import java.util.List;
 import java.util.Map;
+
 
 public interface UserAssetsService {
     /**
@@ -9,7 +12,7 @@ public interface UserAssetsService {
      * @param userId
      * @return
      */
-    String getUserAssetService(int userId);
+    UserAsset getUserAssetService(int userId);
 
 
     /**
@@ -17,8 +20,8 @@ public interface UserAssetsService {
      * @param userId
      * @return
      */
-    int createUserAssetService(int userId);
+    void createUserAssetService(int userId);
 
 
-    void updateUserAssetsService(int userId, String tarFinBeh, List<String> investment, String netAssets, List<Map<String, String>> assetList, List<Map<String, String>> tarAssets, String cashSaving, String tarCashBalance, String tarIncBracket, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarLifeStyle);
+    void updateUserAssetsService(int userId, List<String> investment, String netAssets, List<Map<String, String>> assetList, String cashSaving, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarIncBracket, List<Map<String, String>> tarAssetList, String tarCashBalance, String tarFinBeh, String tarLifeStyle);
 }
