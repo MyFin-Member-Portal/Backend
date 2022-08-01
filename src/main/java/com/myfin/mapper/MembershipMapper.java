@@ -62,4 +62,12 @@ public interface MembershipMapper {
      * @return the time list
      */
     HashMap<String, LocalDateTime> findAllTime(int userId);
+
+    /**
+     * find all member information 
+     * 
+     * @param userId the user id
+     * @return all information of member
+     */
+    HashMap<String, Object> findAll(int userId);
 }

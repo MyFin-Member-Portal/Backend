@@ -3,6 +3,7 @@ package com.myfin.service;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.HashMap;
 
 /**
  * @author Zihang Gao
@@ -49,4 +50,11 @@ public interface MemberService {
      * @return a true or false
      */
     Boolean isMember(int userId);
+
+    /**
+     * 
+     * @param userId
+     * @return
+     */
+    HashMap<String, Object> findAll(int userId);
 }

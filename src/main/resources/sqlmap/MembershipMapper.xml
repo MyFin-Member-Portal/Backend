@@ -33,4 +33,9 @@
     <select id="findAllTime" resultType="map">
         SELECT member_st_time, member_end_time FROM Membership WHERE user_id = #{userId}
     </select>
+
+    <!--  find all member information-->
+    <select id="findAll" resultType="map">
+        SELECT user_id, ml_id, member_st_time, member_end_time FROM Membership WHERE user_id = #{userId}
+    </select>
 </mapper>

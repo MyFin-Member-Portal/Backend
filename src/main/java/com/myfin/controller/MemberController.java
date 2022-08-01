@@ -66,4 +66,9 @@ public class MemberController {
     public Result<Boolean> isMember(@RequestBody MemberRequest memberRequest){
         return Response.success(memberService.isMember(memberRequest.getUserId()));
     }
+
+    @PostMapping("all")
+    public Result<Object> findAll(@RequestBody MemberRequest memberRequest){
+        return Response.success(memberService.findAll(memberRequest.getUserId()));
+    }
 }

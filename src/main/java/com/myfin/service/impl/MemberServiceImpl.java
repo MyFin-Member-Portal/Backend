@@ -65,4 +65,9 @@ public class MemberServiceImpl implements MemberService {
         LocalDateTime endTime = timeList.get("member_end_time");
         return startTime.isBefore(endTime);
     }
+
+    @Override
+    public HashMap<String, Object> findAll(int userId) {
+        return membershipMapper.findAll(userId);
+    }
 }
