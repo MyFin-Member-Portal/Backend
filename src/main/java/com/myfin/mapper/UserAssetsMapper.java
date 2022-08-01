@@ -24,11 +24,9 @@ public interface UserAssetsMapper {
     UserAsset getUserAssets(@Param("userId") int userId);
 
 
-    String getUserAssetsInvestment(@Param("userId") int userId);
 
-    List<Map<String, Object>> getUserAssetsAssetList(@Param("userId") int userId);
+    Map<String, Object> getUserAssetListInfo(@Param("userId") int userId);
 
-    List<Map<String, Object>> getUserAssetsTarAssetList(@Param("userId") int userId);
 
     /**
      * create user asset info
@@ -43,7 +41,9 @@ public interface UserAssetsMapper {
 
                           @Param("netAssets") String netAssets,
 
-                          @Param("assetListString") String assetListString,
+                          @Param("assetNameString") String assetNameString,
+
+                          @Param("assetValueString") String assetValueString,
 
                           @Param("cashSaving") String cashSaving,
 
@@ -55,7 +55,9 @@ public interface UserAssetsMapper {
 
                           @Param("tarIncBracket") String tarIncBracket,
 
-                          @Param("tarAssetListString") String tarAssetListString,
+                          @Param("tarAssetNameString") String tarAssetNameString,
+
+                          @Param("tarAssetValueString") String tarAssetValueString,
 
                           @Param("tarCashBalance") String tarCashBalance,
 
@@ -63,4 +65,5 @@ public interface UserAssetsMapper {
 
                           @Param("tarLifeStyle") String tarLifeStyle
     );
+
 }

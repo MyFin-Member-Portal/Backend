@@ -10,21 +10,14 @@
         from UserAssetInfo where user_id = #{userId}
     </select>
 
-    <select id="getUserAssetsInvestment" parameterType="Integer" resultType="java.lang.String">
-        select investment
+
+
+    <select id="getUserAssetListInfo" parameterType="Integer" resultType="map">
+        select asset_value as assetValue, asset_name as assetName,
+               tar_asset_name as tarAssetName, tar_asset_value as tarAssetValue, investment
         from UserAssetInfo where user_id = #{userId}
     </select>
 
-
-    <select id="getUserAssetsAssetList" parameterType="Integer" resultType="map">
-        select asset_list as assetList
-        from UserAssetInfo where user_id = #{userId}
-    </select>
-
-    <select id="getUserAssetsTarAssetList" parameterType="Integer" resultType="map">
-        select tar_asset_list as tarAssetList
-        from UserAssetInfo where user_id = #{userId}
-    </select>
 
 
     <!--  create user assets information for specific user ID, with all null value  -->
@@ -40,13 +33,17 @@
         update UserAssetInfo
         set investment = #{investmentString},
             net_assets = #{netAssets},
-            asset_list = #{assetListString},
+            asset_name = #{assetNameString},
+            asset_value = #{assetValueString},
+
             cash_saving = #{cashSaving},
             home_owner = #{homeOwner},
             liabilities = #{liabilities},
             liabilities_bal_own = #{liabilitiesBalOwn},
             tar_inc_bracket = #{tarIncBracket},
-            tar_asset_list = #{tarAssetListString},
+            tar_asset_name = #{tarAssetNameString},
+            tar_asset_value = #{tarAssetValueString},
+
             tar_cash_balance = #{tarCashBalance},
             tar_fin_beh = #{tarFinBeh},
             tar_life_style = #{tarLifeStyle}
