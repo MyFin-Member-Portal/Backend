@@ -32,56 +32,49 @@ public class UserAssetsServiceImpl implements UserAssetsService {
     }
 
     @Override
-    public void updateUserAssetsService(int userId, List<String> investment, String netAssets, List<Map<String, String>> assetList, String cashSaving, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarIncBracket, List<Map<String, String>> tarAssetList, String tarCashBalance, String tarFinBeh, String tarLifeStyle) {
+    public void updateUserAssetsService(int userId, List<String> investment, String netAssets, List<String> assetName, List<String> assetValue, String cashSaving, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarIncBracket, List<String> tarAssetName, List<String> tarAssetValue, String tarCashBalance, String tarFinBeh, String tarLifeStyle) {
         String investmentString = investment.toString();
-        String assetListString = assetList.toString();
-        String tarAssetListString = tarAssetList.toString();
+        String assetNameString = assetName.toString();
+        String assetValueString = assetValue.toString();
+
+        String tarAssetNameString = tarAssetName.toString();
+        String tarAssetValueString = tarAssetValue.toString();
         userAssetsMapper.updateUserAssets(
                 userId,
                 investmentString,
                 netAssets,
-                assetListString,
+                assetNameString,
+                assetValueString,
                 cashSaving,
                 homeOwner,
                 liabilities,
                 liabilitiesBalOwn,
                 tarIncBracket,
-                tarAssetListString,
+                tarAssetNameString,
+                tarAssetValueString,
                 tarCashBalance,
                 tarFinBeh,
                 tarLifeStyle
         );
-
     }
+
+
 
     private void fillUpUserAssetObj(UserAsset userAssetObj, int userId){
 
-        userAssetObj.setInvestment(Collections.singletonList(userAssetsMapper.getUserAssetsInvestment(userId)));
+//        userAssetObj.setAssetName();
+
+        Map<String, Object> returnValue = userAssetsMapper.getUserAssetListInfo(userId);
+        userAssetObj.setInvestment(Collections.singletonList((String) returnValue.get("investment")));
+
+        userAssetObj.setAssetName(Collections.singletonList((String) returnValue.get("assetName")));
+        userAssetObj.setAssetValue(Collections.singletonList((String) returnValue.get("assetValue")));
+
+        userAssetObj.setTarAssetName(Collections.singletonList((String) returnValue.get("tarAssetName")));
+
+        userAssetObj.setTarAssetValue(Collections.singletonList((String) returnValue.get("tarAssetValue")));
 
 
-
-        String AssetListString = (String) userAssetsMapper.getUserAssetsAssetList(userId).get(0).get("assetList");
-        String TarAssetListString = (String) userAssetsMapper.getUserAssetsTarAssetList(userId).get(0).get("tarAssetList");
-
-
-        userAssetObj.setAssetList(Collections.singletonList(AssetListString));
-        userAssetObj.setTarAssetList(Collections.singletonList(TarAssetListString));
-
-//        String JsonAssetListString = userAssetsMapper.getUserAssetsAssetList(userId).get(0).get("assetList").replaceAll("=",":");
-//
-//        log.info("************"+JsonAssetListString);
-////        JsonAssetListString = JsonAssetListString.replace("{","[");
-////        JsonAssetListString = JsonAssetListString.replace("}","]");
-//
-//
-//        userAssetObj.setAssetList(userAssetsMapper.getUserAssetsAssetList(userId));
-
-
-//        for (String s : JsonAssetList) {
-//            log.info("************"+s);
-////            Asset result = JSON.parseObject(s, Asset.class);
-////            log.info("************"+result);
-//        }
 
     }
 

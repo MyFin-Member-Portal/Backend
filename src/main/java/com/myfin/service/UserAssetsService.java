@@ -3,7 +3,6 @@ package com.myfin.service;
 import com.myfin.entity.UserAsset;
 
 import java.util.List;
-import java.util.Map;
 
 
 public interface UserAssetsService {
@@ -23,5 +22,6 @@ public interface UserAssetsService {
     void createUserAssetService(int userId);
 
 
-    void updateUserAssetsService(int userId, List<String> investment, String netAssets, List<Map<String, String>> assetList, String cashSaving, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarIncBracket, List<Map<String, String>> tarAssetList, String tarCashBalance, String tarFinBeh, String tarLifeStyle);
+
+    void updateUserAssetsService(int userId, List<String> investment, String netAssets, List<String> assetName, List<String> assetValue, String cashSaving, String homeOwner, String liabilities, String liabilitiesBalOwn, String tarIncBracket, List<String> tarAssetName, List<String> tarAssetValue, String tarCashBalance, String tarFinBeh, String tarLifeStyle);
 }

@@ -14,13 +14,17 @@ public class UserAssetsRequest {
 
     private List<String> investment;
     private String netAssets;
-    private List<Map<String, String>> assetList;
+    private List<String> assetName;
+    private List<String> assetValue;
     private String cashSaving;
     private String homeOwner;
     private String liabilities;
     private String liabilitiesBalOwn;
     private String tarIncBracket;
-    private List<Map<String, String>> tarAssetList;
+
+    private List<String> tarAssetName;
+    private List<String> tarAssetValue;
+
     private String tarCashBalance;
     private String tarFinBeh;
     private String tarLifeStyle;
