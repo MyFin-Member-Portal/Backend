@@ -5,6 +5,7 @@ import com.myfin.entity.UserBusiness;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Blob;
 import java.util.HashMap;
 import java.util.List;
 
@@ -61,4 +62,10 @@ public interface UserBusinessMapper {
      * @param businessList the list of businesses
      */
     void updateAllBusiness(int userId, List<HashMap<String, Object>> businessList);
+
+    /**
+     * upload the file
+     * @param file the file need to be uploaded
+     */
+    void addFile(Blob file, int userId, int businessId);
 }

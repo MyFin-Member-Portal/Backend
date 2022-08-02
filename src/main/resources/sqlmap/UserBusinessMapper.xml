@@ -25,5 +25,9 @@
                                 business_balance_sheet = #{businessBalanceSheet} 
         WHERE user_id = #{userId} AND business_id = #{businessId}
     </update>
+
+    <update id="addFile">
+        UPDATE UserBusiness SET business_balance_sheet = #{file} WHERE user_id = #{userId} AND business_id = #{businessId} 
+    </update>
     
 </mapper>

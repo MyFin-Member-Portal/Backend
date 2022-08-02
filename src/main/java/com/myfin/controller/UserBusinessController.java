@@ -5,12 +5,17 @@ import com.myfin.base.Result;
 import com.myfin.controller.reqeust.UserBusinessRequest;
 import com.myfin.controller.response.UserBusinessResponse;
 import com.myfin.service.UserBusinessService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -29,7 +34,7 @@ public class UserBusinessController {
             userBusinessService.addBusiness(request.getUserId(),
                     request.getBusinessName(),
                     request.getBusinessProfitLoss(),
-                    request.getBusinessBalanceSheet());  
+                    null);  
         } catch (Exception e){
             e.printStackTrace();
             return Response.fail(e.getMessage());
@@ -56,7 +61,7 @@ public class UserBusinessController {
                     request.getBusinessId(),
                     request.getBusinessName(),
                     request.getBusinessProfitLoss(),
-                    request.getBusinessBalanceSheet());
+                    null);
         } catch (Exception e){
             e.printStackTrace();
             return Response.fail(e.getMessage());
@@ -79,6 +84,17 @@ public class UserBusinessController {
     public Result<Object> updateAllBusiness(@RequestBody UserBusinessRequest request){
         try {
             userBusinessService.updateAllBusiness(request.getUserId(), request.getBusinessList());
+        } catch (Exception e){
+            e.printStackTrace();
+            return Response.fail(e.getMessage());
+        }
+        return Response.success(null);
+    }
+
+    @PostMapping(value = "upload/{userId}/{businessId}")
+    public Result<Object> upload(@RequestParam("file")MultipartFile file, @PathVariable int userId, @PathVariable int businessId) throws IOException {
+        try {
+            userBusinessService.uploadFile(file, userId, businessId);
         } catch (Exception e){
             e.printStackTrace();
             return Response.fail(e.getMessage());

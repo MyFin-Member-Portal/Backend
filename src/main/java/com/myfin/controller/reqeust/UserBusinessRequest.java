@@ -1,6 +1,7 @@
 package com.myfin.controller.reqeust;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class UserBusinessRequest {
 
     private String businessProfitLoss;
 
-    private String businessBalanceSheet;
+    private MultipartFile businessBalanceSheet;
 
     private List<Map<String, Object>> businessList;
 }

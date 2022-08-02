@@ -1,6 +1,7 @@
 package com.myfin.service;
 
 import com.myfin.entity.UserBusiness;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,4 +52,10 @@ public interface UserBusinessService {
      * @param businessList the list of businesses
      */
     void updateAllBusiness(int userId, List<Map<String, Object>> businessList);
+
+    /**
+     * upload the file 
+     * @param file file need to be uploaded
+     */
+    void uploadFile(MultipartFile file, int userId, int businessId);
 }

@@ -5,8 +5,14 @@ import com.myfin.mapper.UserBusinessMapper;
 import com.myfin.service.UserBusinessService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +54,18 @@ public class UserBusinessServiceImpl implements UserBusinessService {
                     (String) business.get("businessName"),
                     (String) business.get("businessProfitLoss"),
                     (String) business.get("businessBalanceSheet"));
+        }
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file, int userId, int businessId) {
+        Blob blob = null;
+        try {
+            blob = new SerialBlob(file.getBytes());
+            userBusinessMapper.addFile(blob, userId, businessId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            
         }
     }
 }
