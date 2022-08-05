@@ -48,7 +48,7 @@ public class UserChildController {
     }
 
 
-    @PutMapping("/updateProfile")
+    @PostMapping("/updateProfile")
     public Result<Object> updateUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
         try {
             int userId = userChildService.updateTotalUserChildService(userChildInfoRequest.getUserChildList());
