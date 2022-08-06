@@ -15,7 +15,7 @@ public interface UserChildService {
 
     List<UserChild> getUserChildService(int userId);
 
-    int updateTotalUserChildService(Object childList);
+    int updateTotalUserChildService(int userId, Object childList);
 
     int deleteSpecificUserChildService(int userId, int userChildId);
 }
