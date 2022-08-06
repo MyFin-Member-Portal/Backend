@@ -63,10 +63,9 @@ public class UserChildServiceImpl implements UserChildService {
 
         int user_id = childListObj.get(0).getUserId();
 //      get one user's multiple child
-        List<Integer> childIdList = this.getUserChildId(user_id);
 
-        for (int i = 0; i<childIdList.size(); i++){
-            this.updateUserChild(childIdList.get(i),childListObj.get(i));
+        for (UserChild userChild : childListObj) {
+            this.updateUserChild(user_id, userChild);
         }
         return user_id;
     }
@@ -78,8 +77,8 @@ public class UserChildServiceImpl implements UserChildService {
     }
 
 
-    public void updateUserChild(int childId, UserChild child){
-        userChildMapper.updateUserChildProfile(child.getUserId(), childId,
+    public void updateUserChild(int userId, UserChild child){
+        userChildMapper.updateUserChildProfile(userId, child.getUserChildId(),
                 child.getUserChildAge(), child.getUserChildEdu());
     }
 
