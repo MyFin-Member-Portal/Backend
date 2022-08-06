@@ -32,8 +32,9 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     }
 
     @Override
-    public void addBusiness(int userId, String businessName, String businessProfitLoss, String businessBalanceSheet) {
+    public int addBusiness(int userId, String businessName, String businessProfitLoss, String businessBalanceSheet) {
         userBusinessMapper.addBusiness(userId, businessName, businessProfitLoss, businessBalanceSheet);
+        return userBusinessMapper.findMaxId();
     }
 
     @Override

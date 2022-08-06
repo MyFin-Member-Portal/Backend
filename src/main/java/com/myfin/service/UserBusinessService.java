@@ -24,7 +24,7 @@ public interface UserBusinessService {
      * add a business for a user
      * @param userId the user id
      */
-    void addBusiness(int userId, String businessName, String businessProfitLoss, String businessBalanceSheet);
+    int addBusiness(int userId, String businessName, String businessProfitLoss, String businessBalanceSheet);
 
     /**
      * update the business for a user

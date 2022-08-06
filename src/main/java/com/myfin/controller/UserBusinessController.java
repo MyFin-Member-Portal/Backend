@@ -30,8 +30,9 @@ public class UserBusinessController {
     
     @PostMapping("/add")
     public Result<Object> addBusiness(@RequestBody UserBusinessRequest request){
+        int businessId = -1;
         try {
-            userBusinessService.addBusiness(request.getUserId(),
+            businessId = userBusinessService.addBusiness(request.getUserId(),
                     request.getBusinessName(),
                     request.getBusinessProfitLoss(),
                     null);  
@@ -39,7 +40,7 @@ public class UserBusinessController {
             e.printStackTrace();
             return Response.fail(e.getMessage());
         }
-        return Response.success(null);
+        return Response.success(businessId);
     }
 
     @PostMapping("/findAll")
