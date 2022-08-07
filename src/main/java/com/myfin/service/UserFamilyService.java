@@ -31,4 +31,6 @@ public interface UserFamilyService {
      * @return
      */
     void createUserFamilyInfoService(int userId);
+
+    int updateTotalUserChildService(int userId, Object childList);
 }

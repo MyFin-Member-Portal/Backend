@@ -54,32 +54,12 @@ public class UserChildServiceImpl implements UserChildService {
     }
 
 
-
-    @Override
-    public int updateTotalUserChildService(int userId, Object childList) {
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<UserChild> childListObj = mapper.convertValue(childList,new TypeReference<List<UserChild>>(){ });
-
-//      get one user's multiple child
-
-        for (UserChild userChild : childListObj) {
-            this.updateUserChild(userId, userChild);
-        }
-        return userId;
-    }
-
     @Override
     public int deleteSpecificUserChildService(int userId, int userChildId) {
         userChildMapper.deleteSpecificUserChild(userId, userChildId);
         return userChildId;
     }
 
-
-    public void updateUserChild(int userId, UserChild child){
-        userChildMapper.updateUserChildProfile(userId, child.getUserChildId(),
-                child.getUserChildAge(), child.getUserChildEdu());
-    }
 
     public List<Integer> getUserChildId(int userId){
         log.info("---------"+userChildMapper.getUserChildId(userId));

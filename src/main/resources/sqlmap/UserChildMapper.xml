@@ -25,13 +25,6 @@
         select user_child_id from UserChild where user_id = #{userId}
     </select>
 
-    <!-- update user child information-->
-    <update id="updateUserChildProfile" >
-        update UserChild
-        set user_child_age = #{userChildAge},
-            user_child_edu = #{userChildEdu}
-        where user_id = #{userId} and user_child_id = #{userChildId}
-    </update>
 
     <!-- delete user child information-->
     <delete id = "deleteSpecificUserChild">

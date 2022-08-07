@@ -13,5 +13,5 @@ public class UserFamilyInfoUpdateRequest {
     private String petsNum;
     private String supNonDepNum;
     private String expectMedBill;
-
+    private Object userChildList;
 }

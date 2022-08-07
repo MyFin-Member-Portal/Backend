@@ -25,4 +25,14 @@ public interface UserFamilyMapper {
     );
 
     int createUserFamilyInfo(@Param("userId") int userId);
+
+    /**
+     * update the user's specific child information
+     * @param userId            user's id
+     * @param userChildId       user child id
+     * @param userChildAge      new user child age
+     * @param userChildEdu      new user child education background
+     */
+    void updateUserChildProfile(@Param("userId") int userId, @Param("userChildId") int userChildId, @Param("userChildAge") int userChildAge, @Param("userChildEdu") String userChildEdu);
+
 }
