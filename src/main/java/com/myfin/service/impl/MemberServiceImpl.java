@@ -51,7 +51,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void updateEndTime(int userId, long endTime) {
-        Date endTimeFormat = new Date(endTime);
+        long newEndTime = new Long(endTime + "000");
+        
+        Date endTimeFormat = new Date(newEndTime);
         membershipMapper.updateEndTime(userId, endTimeFormat);
     }
 
