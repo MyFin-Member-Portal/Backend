@@ -3,6 +3,7 @@ package com.myfin.service;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.text.ParseException;
 import java.util.HashMap;
 
 /**
@@ -56,5 +57,5 @@ public interface MemberService {
      * @param userId
      * @return
      */
-    HashMap<String, Object> findAll(int userId);
+    HashMap<String, Object> findAll(int userId) throws ParseException;
 }
