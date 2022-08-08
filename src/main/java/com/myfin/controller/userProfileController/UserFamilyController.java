@@ -66,5 +66,29 @@ public class UserFamilyController {
         }
     }
 
+    @PostMapping("/updateFamilyAndChild")
+    public Result<Object> updateFamilyAndChild(@RequestBody UserFamilyInfoUpdateRequest userFamilyInfoUpdateRequest){
+        try{
+            int userId = userFamilyInfoUpdateRequest.getUserId();
+            userFamilyService.updateUserFamilyInfoService(
+                    userId,
+                    userFamilyInfoUpdateRequest.getMartialStatus(),
+                    userFamilyInfoUpdateRequest.getDepNum(),
+                    userFamilyInfoUpdateRequest.getPetsNum(),
+                    userFamilyInfoUpdateRequest.getSupNonDepNum(),
+                    userFamilyInfoUpdateRequest.getExpectMedBill()
+            );
+            log.info("Update user family info done");
+            int returnUserId = userFamilyService.updateTotalUserChildService(userId,
+                    userFamilyInfoUpdateRequest.getUserChildList());
+            log.info("Update user child info done");
+
+            return Response.success(returnUserId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("Update Fail");
+        }
+    }
+
 
 }

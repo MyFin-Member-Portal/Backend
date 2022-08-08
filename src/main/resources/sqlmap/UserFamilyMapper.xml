@@ -26,5 +26,13 @@
         values(#{userId})
     </insert>
 
+    <!-- update user child information-->
+    <update id="updateUserChildProfile" >
+        update UserChild
+        set user_child_age = #{userChildAge},
+            user_child_edu = #{userChildEdu}
+        where user_id = #{userId} and user_child_id = #{userChildId}
+    </update>
+
 
 </mapper>

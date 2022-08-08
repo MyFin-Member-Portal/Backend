@@ -32,7 +32,7 @@ public class UserChildServiceImpl implements UserChildService {
     @Override
     public int addUserChildService(int userId, int userChildAge, String userChildEdu) {
         userChildMapper.addUserChild(userId, userChildAge, userChildEdu );
-        return userId;
+        return userChildMapper.findMaxUserChildId(userId);
     }
 
     @Override
@@ -54,33 +54,12 @@ public class UserChildServiceImpl implements UserChildService {
     }
 
 
-
-    @Override
-    public int updateTotalUserChildService(Object childList) {
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<UserChild> childListObj = mapper.convertValue(childList,new TypeReference<List<UserChild>>(){ });
-
-        int user_id = childListObj.get(0).getUserId();
-//      get one user's multiple child
-
-        for (UserChild userChild : childListObj) {
-            this.updateUserChild(user_id, userChild);
-        }
-        return user_id;
-    }
-
     @Override
     public int deleteSpecificUserChildService(int userId, int userChildId) {
         userChildMapper.deleteSpecificUserChild(userId, userChildId);
         return userChildId;
     }
 
-
-    public void updateUserChild(int userId, UserChild child){
-        userChildMapper.updateUserChildProfile(userId, child.getUserChildId(),
-                child.getUserChildAge(), child.getUserChildEdu());
-    }
 
     public List<Integer> getUserChildId(int userId){
         log.info("---------"+userChildMapper.getUserChildId(userId));

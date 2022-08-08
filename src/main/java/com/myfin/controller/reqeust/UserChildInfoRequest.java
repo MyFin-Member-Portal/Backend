@@ -10,5 +10,4 @@ public class UserChildInfoRequest {
     private int userChildId;
     private int userChildAge;
     private String userChildEdu;
-    private Object userChildList;
 }
