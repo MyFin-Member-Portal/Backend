@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLNonTransientException;
+import java.text.ParseException;
 
 
 /**
@@ -68,7 +69,7 @@ public class MemberController {
     }
 
     @PostMapping("all")
-    public Result<Object> findAll(@RequestBody MemberRequest memberRequest){
+    public Result<Object> findAll(@RequestBody MemberRequest memberRequest) throws ParseException {
         return Response.success(memberService.findAll(memberRequest.getUserId()));
     }
 }
