@@ -20,4 +20,6 @@ public class Course {
     private Blob courseImg;
 
     private String courseType;
+    
+    private String courseImgUrl;
 }
