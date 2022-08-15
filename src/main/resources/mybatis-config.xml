@@ -37,7 +37,7 @@
         <mapper resource="sqlmap/UserFamilyMapper.xml"/>
         <mapper resource="sqlmap/UserFinancialMapper.xml"/>
         <mapper resource="sqlmap/UserAssetsMapper.xml"/>
-
+        <mapper resource="sqlmap/CourseMapper.xml"/>
 
     </mappers>
 
