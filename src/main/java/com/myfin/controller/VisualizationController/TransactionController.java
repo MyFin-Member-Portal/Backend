@@ -26,7 +26,7 @@ public class TransactionController {
         return Response.success("");
     }
 
-    @PostMapping("transaction/delete")
+    @PostMapping("transaction/add")
     public Result<Object> addTransaction(@RequestBody TranscationRequest transcationRequest) {
         int transactionId;
         try{
