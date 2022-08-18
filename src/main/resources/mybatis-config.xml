@@ -38,6 +38,7 @@
         <mapper resource="sqlmap/UserFinancialMapper.xml"/>
         <mapper resource="sqlmap/UserAssetsMapper.xml"/>
         <mapper resource="sqlmap/CourseMapper.xml"/>
+        <mapper resource="sqlmap/TransactionMapper.xml"/>
 
     </mappers>
 
