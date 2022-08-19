@@ -11,4 +11,6 @@ public class TranscationRequest {
     private String transactionCost;
     private String transactionType;
     private long transactionDatetime;
+
+    private int pageNum;
 }

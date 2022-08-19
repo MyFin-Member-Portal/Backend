@@ -2,7 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.myfin.mapper.TranscationMapper">
+<mapper namespace="com.myfin.mapper.TransactionMapper">
+
+    <!--  get transaction with page limitation -->
+    <select id="findAllTransactionPage" resultType="com.myfin.entity.Transaction">
+        SELECT * from Transaction where user_id = #{userId}
+         LIMIT #{pageNum}, #{size}
+    </select>
 
 
     <!--  add a new transaction -->
@@ -12,7 +18,7 @@
                                 transaction_cost,
                                 transaction_type,
                                 transaction_datetime)
-        values(#{userId}, #{transactionDesc}, #{transactionCost}
+        values(#{userId}, #{transactionDesc}, #{transactionCost},
         #{transactionType}, #{transactionDatetime})
     </insert>
 
@@ -22,7 +28,7 @@
     </select>
 
     <!-- delete transcation information-->
-    <delete id = "deleteSpecificTranscation">
+    <delete id = "deleteSpecificTransaction">
         delete from Transaction
         where user_id = #{userId} and transaction_id = #{transactionId}
     </delete>

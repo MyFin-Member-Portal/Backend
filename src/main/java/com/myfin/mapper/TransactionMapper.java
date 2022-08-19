@@ -1,17 +1,25 @@
 package com.myfin.mapper;
 
+import com.myfin.entity.Transaction;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Yuzhuo Ma
  */
 @Mapper
 @Repository
-public interface TranscationMapper {
+public interface TransactionMapper {
+
+
+    List<Transaction> findAllTransactionPage(@Param("userId") int userId,
+                                             @Param("pageNum") int pageNum,
+                                             @Param("size") int size);
+
 
     /**
      * add a transcation for the user
@@ -26,7 +34,7 @@ public interface TranscationMapper {
             @Param("transactionDesc") String transactionDesc,
             @Param("transactionCost") String transactionCost,
             @Param("transactionType") String transactionType,
-            @Param("transactionDatetime") Date transactionDatetime
+            @Param("transactionDatetime") long transactionDatetime
     );
 
     /**

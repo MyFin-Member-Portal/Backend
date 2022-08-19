@@ -20,10 +20,17 @@ public class TransactionController {
     TransactionService transactionService;
 
 
-    @PostMapping("transaction/get/page")
-    public Result<Object> coursePage(@RequestBody TranscationRequest transcationRequest){
+    @PostMapping("transaction/get/all/page")
+    public Result<Object> getAllTransaction(@RequestBody TranscationRequest transcationRequest){
+        try{
+            Object Transaction = transactionService.findAllTransactionPageService(transcationRequest.getUserId(),
+                    transcationRequest.getPageNum());
+            return Response.success(Transaction);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("fail to get transaction");
+        }
 
-        return Response.success("");
     }
 
     @PostMapping("transaction/add")
@@ -45,7 +52,7 @@ public class TransactionController {
     }
 
 
-        @PostMapping("transcation/delete")
+        @PostMapping("transaction/delete")
     public Result<Object> deleteSpecificTransaction(@RequestBody TranscationRequest transcationRequest){
         try {
             transactionService.deleteSpecificTransactionService(transcationRequest.getUserId(),

@@ -1,10 +1,23 @@
 package com.myfin.service;
 
 
+import com.myfin.entity.Transaction;
+
+import java.util.List;
+
 /**
  * @author Yuzhuo Ma
  */
 public interface TransactionService {
+
+    /**
+     * adjust page size here
+     * @param userId
+     * @param pageNum
+     * @return
+     */
+    List<Transaction> findAllTransactionPageService(int userId, int pageNum);
+
     /**
      * delete specific transcation with userid and transcation id
      * @param userId
