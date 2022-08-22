@@ -23,4 +23,6 @@ public class UserBusinessRequest {
     private MultipartFile businessBalanceSheet;
 
     private List<Map<String, Object>> businessList;
+    
+    private String filePath;
 }

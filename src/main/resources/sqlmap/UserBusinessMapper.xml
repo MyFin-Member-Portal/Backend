@@ -14,8 +14,8 @@
     </select>
 
     <insert id="addBusiness">
-        INSERT INTO UserBusiness(user_id, business_name, business_profit_loss, business_balance_sheet) 
-        VALUES(#{userId}, #{businessName}, #{businessProfitLoss}, #{businessBalanceSheet})
+        INSERT INTO UserBusiness(user_id, business_name, business_profit_loss) 
+        VALUES(#{userId}, #{businessName}, #{businessProfitLoss})
     </insert>
     
     <!--  delete user business by user id and business  -->
@@ -26,12 +26,16 @@
     <!--  update user business by user id and business -->
     <update id="updateBusiness">
         UPDATE UserBusiness SET business_name = #{businessName}, business_profit_loss = #{businessProfitLoss},
-                                business_balance_sheet = #{businessBalanceSheet} 
+                                business_balance_sheet = #{businessBalanceSheet}
         WHERE user_id = #{userId} AND business_id = #{businessId}
     </update>
 
     <update id="addFile">
         UPDATE UserBusiness SET business_balance_sheet = #{file} WHERE user_id = #{userId} AND business_id = #{businessId} 
     </update>
+    
+    <select id="findFile" resultType="String">
+        SELECT business_balance_sheet FROM UserBusiness WHERE user_id = #{userId} AND business_id = #{businessId}
+    </select>
     
 </mapper>

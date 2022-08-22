@@ -3,20 +3,18 @@ package com.myfin.controller;
 import com.myfin.base.Response;
 import com.myfin.base.Result;
 import com.myfin.controller.reqeust.UserBusinessRequest;
-import com.myfin.controller.response.UserBusinessResponse;
 import com.myfin.service.UserBusinessService;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
+import java.io.*;
+import java.nio.file.Files;
+import java.sql.SQLException;
 
 
 /**
@@ -92,15 +90,48 @@ public class UserBusinessController {
         return Response.success(null);
     }
 
-    @PostMapping(value = "upload/{userId}/{businessId}")
-    public Result<Object> upload(@RequestParam("file")MultipartFile file, @PathVariable int userId, @PathVariable int businessId) throws IOException {
+    @PostMapping(value = "upload")
+    public Result<Object> upload(@RequestParam("file")MultipartFile file, @RequestParam("userId") int userId, @RequestParam("businessId") int businessId) throws IOException {
+        String fileName = file.getOriginalFilename();
+        File dest = new File(new File("./files/business-sheet").getAbsolutePath()+ "/" + userId  + "/" + fileName);
+        
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
         try {
-            userBusinessService.uploadFile(file, userId, businessId);
+            file.transferTo(dest);
+            userBusinessService.uploadFile(dest.getPath(), userId, businessId);
+            return Response.success(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.fail(null);
+        }
+    }
+    
+    @PostMapping(value = "download", produces = "text/csv")
+    public ResponseEntity<InputStreamResource> downloadFile(@RequestBody UserBusinessRequest request) throws IOException, SQLException {
+        String filePath = userBusinessService.downloadFile(request.getUserId(), request.getBusinessId());
+        FileSystemResource file = new FileSystemResource(filePath);
+        
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header("Content-disposition", "attachment; filename=1.csv")
+                .body(new InputStreamResource(file.getInputStream()));
+    }
+
+    @PostMapping(value = "deleteFile")
+    public Result<String> deleteFile(@RequestBody UserBusinessRequest request) throws SQLException {
+        String filePath = userBusinessService.downloadFile(request.getUserId(), request.getBusinessId());
+        File file =new File(filePath);
+        try {
+            file.delete();
+            userBusinessService.uploadFile(null, request.getUserId(), request.getBusinessId());
+            return Response.success("Detele success"); 
         } catch (Exception e){
             e.printStackTrace();
-            return Response.fail(e.getMessage());
+            return Response.fail("Delete fail");
         }
-        return Response.success(null);
+        
     }
     
 }

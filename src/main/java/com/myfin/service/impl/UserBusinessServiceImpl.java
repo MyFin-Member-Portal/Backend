@@ -13,6 +13,7 @@ import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,15 +60,18 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     }
 
     @Override
-    public void uploadFile(MultipartFile file, int userId, int businessId) {
-        Blob blob = null;
+    public void uploadFile(String filePath, int userId, int businessId) {
         try {
-            blob = new SerialBlob(file.getBytes());
-            userBusinessMapper.addFile(blob, userId, businessId);
+            userBusinessMapper.addFile(filePath, userId, businessId);
         } catch (Exception e) {
             e.printStackTrace();
             
         }
+    }
+
+    @Override
+    public String downloadFile(int userId, int businessId) throws SQLException {
+        return userBusinessMapper.findFile(userId, businessId);
     }
 }
 

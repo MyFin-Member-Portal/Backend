@@ -3,6 +3,8 @@ package com.myfin.service;
 import com.myfin.entity.UserBusiness;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +57,16 @@ public interface UserBusinessService {
 
     /**
      * upload the file 
-     * @param file file need to be uploaded
+     * @param String file need to be uploaded
      */
-    void uploadFile(MultipartFile file, int userId, int businessId);
+    void uploadFile(String filePath, int userId, int businessId);
+
+    /**
+     * download the business balance file
+     * 
+     * @param userId the user id
+     * @param businessId the business id 
+     * @return the balance sheet file
+     */
+    String downloadFile(int userId, int businessId) throws SQLException;
 }
