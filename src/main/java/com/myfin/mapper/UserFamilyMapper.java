@@ -33,6 +33,6 @@ public interface UserFamilyMapper {
      * @param userChildAge      new user child age
      * @param userChildEdu      new user child education background
      */
-    void updateUserChildProfile(@Param("userId") int userId, @Param("userChildId") int userChildId, @Param("userChildAge") int userChildAge, @Param("userChildEdu") String userChildEdu);
+    void updateUserChildProfile(@Param("userId") int userId, @Param("userChildId") int userChildId, @Param("userChildAge") String userChildAge, @Param("userChildEdu") String userChildEdu);
 
 }

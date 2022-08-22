@@ -30,7 +30,7 @@ public class UserChildServiceImpl implements UserChildService {
     }
 
     @Override
-    public int addUserChildService(int userId, int userChildAge, String userChildEdu) {
+    public int addUserChildService(int userId, String userChildAge, String userChildEdu) {
         userChildMapper.addUserChild(userId, userChildAge, userChildEdu );
         return userChildMapper.findMaxUserChildId(userId);
     }

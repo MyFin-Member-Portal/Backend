@@ -48,18 +48,6 @@ public class UserChildController {
     }
 
 
-//    @PostMapping("/updateProfile")
-//    public Result<Object> updateUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest){
-//        try {
-//            int userId = userChildService.updateTotalUserChildService(userChildInfoRequest.getUserId(),
-//                    userChildInfoRequest.getUserChildList());
-//
-//            return Response.success(userId);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return Response.fail("Update fail");
-//        }
-//    }
 
     @PostMapping("/deleteProfile")
     public Result<Object> deleteUserChild(@RequestBody UserChildInfoRequest userChildInfoRequest) {

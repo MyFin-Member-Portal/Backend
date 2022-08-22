@@ -19,7 +19,7 @@ public interface UserChildMapper {
      * @param userChildAge      user child age
      * @param userChildEdu      user child education background
      */
-    void addUserChild(@Param("userId") int userId, @Param("userChildAge") int userChildAge, @Param("userChildEdu") String userChildEdu);
+    void addUserChild(@Param("userId") int userId, @Param("userChildAge") String userChildAge, @Param("userChildEdu") String userChildEdu);
 
     /**
      * find the newest child id for the current user

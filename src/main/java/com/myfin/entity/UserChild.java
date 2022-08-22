@@ -7,6 +7,6 @@ import lombok.Data;
 public class UserChild {
     private Integer userId;
     private Integer userChildId;
-    private Integer userChildAge;
+    private String userChildAge;
     private String userChildEdu;
 }
