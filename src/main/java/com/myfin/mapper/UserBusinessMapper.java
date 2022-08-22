@@ -67,7 +67,9 @@ public interface UserBusinessMapper {
      * upload the file
      * @param file the file need to be uploaded
      */
-    void addFile(Blob file, int userId, int businessId);
+    void addFile(String file, int userId, int businessId);
     
     int findMaxId();
+
+    String findFile(int userId, int businessId);
 }
