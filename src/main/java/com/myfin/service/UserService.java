@@ -15,5 +15,6 @@ public interface UserService {
                           String Nationality, String Heritage, String Language,
                           String Name, String Email, int userId);
 
+    Boolean isAdmin(int userId);
 
 }

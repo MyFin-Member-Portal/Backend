@@ -6,29 +6,29 @@
     
     <!--  find user information by user ID  -->
     <select id="findUserById" parameterType="Integer" resultType="com.myfin.entity.User">
-        select * from user where user_id = #{v}
+        select * from User where user_id = #{v}
     </select>
 
     <!--  add a new user -->
     <insert id="addUser" parameterType="String">
-        INSERT INTO user(user_name, user_email) values(#{userName}, #{email})
+        INSERT INTO User(user_name, user_email) values(#{userName}, #{email})
     </insert>
 
     <!--  find the newest user id  -->
     <select id="findMaxId" parameterType="Integer" resultType="Integer">
-        SELECT max(user_id) from user
+        SELECT max(user_id) from User
     </select>
 
     <!--  find the user by email address  -->
     <select id="findUserIdByEmail" parameterType="String" resultType="Integer">
         select ifnull(MAX(user_id),0) AS role_id
-        from  user
+        from  User
         where  user_email = #{v,jdbcType=VARCHAR}
     </select>
 
     <!-- update user information-->
     <update id="updateUserProfile" >
-        update user
+        update User
         set user_name = #{Name},
             user_email = #{Email},
             user_gender = #{Gender},
@@ -40,5 +40,10 @@
             user_address = #{Address}
         where user_id = #{userId}
     </update>
+
+    <!--  find user is admin status -->
+    <select id="findIsAdmin" parameterType="Integer" resultType="Integer">
+        select user_is_admin from User where user_id = #{v}
+    </select>
 
 </mapper>

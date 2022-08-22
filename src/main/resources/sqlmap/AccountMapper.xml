@@ -6,13 +6,13 @@
 
     <!--  add password on users account -->
     <insert id="addPassword">
-        INSERT INTO account(user_id,account_password) values(#{userId}, #{password})
+        INSERT INTO Account(user_id,account_password) values(#{userId}, #{password})
     </insert>
 
 
     <!--  find user account by user ID  -->
     <select id="findAccountByUserId" parameterType="Integer" resultType="com.myfin.entity.Account">
-        SELECT * from account where user_id = #{v}
+        SELECT * from Account where user_id = #{v}
     </select>
 
 

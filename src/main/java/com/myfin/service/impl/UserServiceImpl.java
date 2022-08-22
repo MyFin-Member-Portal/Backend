@@ -42,8 +42,10 @@ public class UserServiceImpl implements UserService {
         return userId;
     }
 
-
-
+    @Override
+    public Boolean isAdmin(int userId) {
+        return userMapper.findIsAdmin(userId) != 0;
+    }
 
 
 }

@@ -34,4 +34,6 @@ public class User {
      * user description
      */
     private String userDesc;
+    
+    private int userIsAdmin;
 }

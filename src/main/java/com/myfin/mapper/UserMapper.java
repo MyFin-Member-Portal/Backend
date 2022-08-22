@@ -66,7 +66,11 @@ public interface UserMapper{
      */
     int findMaxId();
 
-
-
+    /**
+     * find is admin status
+     * @param userId the user id
+     * @return the status of admin
+     */
+    int findIsAdmin(int userId);
 
 }

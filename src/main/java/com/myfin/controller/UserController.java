@@ -59,7 +59,18 @@ public class UserController {
 
         return Response.success(resultUserId);
     }
-
+    
+    @PostMapping("/isAdmin")
+    Result<Boolean> isAdmin(@RequestBody UserInfoUpdateRequest request){
+        Boolean result = null;
+        try {
+            result = userService.isAdmin(request.getUserId());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        return Response.success(result);
+    }
 }
 
 
