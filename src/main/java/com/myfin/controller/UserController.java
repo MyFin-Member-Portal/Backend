@@ -16,12 +16,12 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping("/myfin/user/profile")
+@RequestMapping("/myfin/user")
 public class UserController {
     @Resource
     private UserService userService;
 
-    @PostMapping("/getUserBasicProfile")
+    @PostMapping("/profile/getUserBasicProfile")
     public Result<Object> getUserBasicInfo(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
         int userId = userInfoUpdateRequest.getUserId();
         Object currentUser = userService.findUserById(userId);
@@ -33,7 +33,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/updateUserBasicProfile")
+    @PutMapping("/profile/updateUserBasicProfile")
     public Result<Object> updateUserBasicInfo(@RequestBody UserInfoUpdateRequest userInfoUpdateRequest){
 
         String currentPhoneNumber = userInfoUpdateRequest.getUserPhone();
