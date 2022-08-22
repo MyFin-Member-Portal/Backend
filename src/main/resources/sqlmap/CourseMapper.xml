@@ -8,6 +8,21 @@
     <select id="findCoursePageByType" resultType="com.myfin.entity.Course">
         SELECT * from Course where course_type = #{courseType} LIMIT #{pageNum}, 4
     </select>
+    
+    <!--  add a course  -->
+    <insert id="addCourse">
+        INSERT INTO Course(course_name, course_type, course_desc, course_is_charge, course_url, course_img, course_img_url) 
+        VALUES(#{courseName}, #{courseType}, #{courseDesc}, #{courseIsCharge}, #{courseUrl}, #{courseImg}, #{courseImgUrl})
+    </insert>
+    
+    <!--  remove a course  -->
+    <delete id="removeCourse">
+        DELETE FROM Course WHERE course_id = #{courseId}
+    </delete>
 
-
+    <!--  find maximum course id  -->
+    <select id="findMaxId" resultType="Integer">
+        SELECT MAX(course_id) from Course
+    </select>
+    
 </mapper>
