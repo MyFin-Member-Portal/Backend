@@ -23,7 +23,6 @@ public class CourseController {
     
     @GetMapping("/page")
     public Result<Object> coursePage(@RequestParam("pageNum") int pageNum, @RequestParam("courseType") String courseType){
-        
         return Response.success(courseService.findCoursePageByType(courseType, pageNum));
     }
 

@@ -46,7 +46,20 @@ class UserControllerTest {
     }
 
     @Test
-    void getUserBasicInfo() {
+    void getUserBasicInfo() throws Exception {
+        // build request body
+        this.request.setUserId(1);
+
+        // send the request
+        MvcResult mvcResult=mockMvc.perform(MockMvcRequestBuilders.post("/myfin/user/profile/getUserBasicProfile")
+                        .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(this.request))).
+                andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+        // Expect data of user 1 is false
+        assertEquals("200", JSONObject.parseObject(mvcResult.getResponse().getContentAsString()).get("code"));
+
+        log.info("Response status: {}",mvcResult.getResponse().getStatus());
+        log.info("Response body{}",mvcResult.getResponse().getContentAsString());
     }
 
     @Test
@@ -55,7 +68,6 @@ class UserControllerTest {
 
     @Test
     void isAdmin() throws Exception {
-        
         // build request body
         this.request.setUserId(1);
         
