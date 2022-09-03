@@ -2,7 +2,8 @@ package com.myfin.controller.VisualizationController;
 
 import com.myfin.base.Response;
 import com.myfin.base.Result;
-import com.myfin.controller.reqeust.VisualizationRelatedRequest.TranscationRequest;
+import com.myfin.controller.reqeust.VisualizationRelatedRequest.TransactionIncomeRequest;
+import com.myfin.controller.reqeust.VisualizationRelatedRequest.TransactionOutcomeRequest;
 import com.myfin.service.TransactionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -20,49 +21,96 @@ public class TransactionController {
     TransactionService transactionService;
 
 
-    @PostMapping("transaction/get/all/page")
-    public Result<Object> getAllTransaction(@RequestBody TranscationRequest transcationRequest){
+    @PostMapping("transaction/get/all/inc")
+    public Result<Object> getAllIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
         try{
-            Object Transaction = transactionService.findAllTransactionPageService(transcationRequest.getUserId(),
+            Object Transaction = transactionService.findAllIncTransPageService(transcationRequest.getUserId(),
                     transcationRequest.getPageNum());
             return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("fail to get transaction");
         }
-
     }
 
-    @PostMapping("transaction/add")
-    public Result<Object> addTransaction(@RequestBody TranscationRequest transcationRequest) {
-        int transactionId;
+    @PostMapping("transaction/get/all/out")
+    public Result<Object> getAllOutTransaction(@RequestBody TransactionOutcomeRequest transcationRequest){
         try{
-            transactionId = transactionService.addTransactionService(
-                    transcationRequest.getUserId(),
-                    transcationRequest.getTransactionDesc(),
-                    transcationRequest.getTransactionCost(),
-                    transcationRequest.getTransactionType(),
-                    transcationRequest.getTransactionDatetime()
-            );
-            return Response.success(transactionId);
+            Object Transaction = transactionService.findAllOutTransPageService(transcationRequest.getUserId(),
+                    transcationRequest.getPageNum());
+            return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();
-            return Response.fail("add transaction fail");
+            return Response.fail("fail to get transaction");
+        }
+    }
+
+//    @PostMapping("transaction/get/type/page")
+//    public Result<Object> getSpecificTypeTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
+//        try{
+//            Object Transaction = transactionService.findSpecificTypeTransactionService(transcationRequest.getUserId(),
+//                    transcationRequest.getTransactionType(),
+//                    transcationRequest.getPageNum());
+//            return Response.success(Transaction);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return Response.fail("fail to get transaction");
+//        }
+//    }
+
+
+    @PostMapping("transaction/add/inc")
+    public Result<Object> addIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest) {
+        int transactionId;
+        try{
+            transactionId = transactionService.addIncTransactionIncomeService(
+                    transcationRequest.getUserId(),
+                    transcationRequest.getTranIncDesc(),
+                    transcationRequest.getTranIncCost(),
+                    transcationRequest.getTranIncType(),
+                    transcationRequest.getTranIncDatetime(),
+                    transcationRequest.getTranIncPin(),
+                    transcationRequest.getTranIncFreq()
+            );
+            return Response.success(transactionId);
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+            return Response.fail("wrong input string either Transaction Freq, Pin, type");
         }
     }
 
 
-        @PostMapping("transaction/delete")
-    public Result<Object> deleteSpecificTransaction(@RequestBody TranscationRequest transcationRequest){
+    @PostMapping("transaction/add/out")
+    public Result<Object> addIncTransaction(@RequestBody TransactionOutcomeRequest transcationRequest) {
+        int transactionId;
+        try{
+            transactionId = transactionService.addIncTransactionOutcomeService(
+                    transcationRequest.getUserId(),
+                    transcationRequest.getTranOutDesc(),
+                    transcationRequest.getTranOutCost(),
+                    transcationRequest.getTranOutType(),
+                    transcationRequest.getTranOutDatetime(),
+                    transcationRequest.getTranOutPin(),
+                    transcationRequest.getTranOutFreq()
+            );
+            return Response.success(transactionId);
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+            return Response.fail("wrong input string either Transaction Freq, Pin, type");
+        }
+    }
+
+
+    @PostMapping("transaction/delete/inc")
+    public Result<Object> deleteIncSpecificTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
         try {
-            transactionService.deleteSpecificTransactionService(transcationRequest.getUserId(),
-                    transcationRequest.getTransactionId());
+            transactionService.deleteIncSpecificTransactionService(transcationRequest.getUserId(),
+                    transcationRequest.getTranIncId());
             return Response.success("delete success");
         }catch (Exception e){
             e.printStackTrace();
             return Response.fail("Delete fail");
         }
-
     }
 
 

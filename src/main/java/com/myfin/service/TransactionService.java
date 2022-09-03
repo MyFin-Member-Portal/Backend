@@ -1,7 +1,8 @@
 package com.myfin.service;
 
 
-import com.myfin.entity.Transaction;
+import com.myfin.entity.TransactionIncome;
+import com.myfin.entity.TransactionOutcome;
 
 import java.util.List;
 
@@ -16,25 +17,43 @@ public interface TransactionService {
      * @param pageNum
      * @return
      */
-    List<Transaction> findAllTransactionPageService(int userId, int pageNum);
+    List<TransactionIncome> findAllIncTransPageService(int userId, int pageNum);
+
+    List<TransactionOutcome> findAllOutTransPageService(int userId, int pageNum);
+
 
     /**
-     * delete specific transcation with userid and transcation id
+     * delete specific transcation with userid and transaction id
      * @param userId
      * @param transactionId
      */
-    void deleteSpecificTransactionService(int userId, int transactionId);
+    void deleteIncSpecificTransactionService(int userId, int transactionId);
+
+
+
 
     /**
      * add a transaction for the user
+     * add transaction default not pin, and one time thing
      * @param userId
      * @param transactionDesc
      * @param transactionCost
      * @param transactionType
      * @param transactionDatetime
      */
-    int addTransactionService(int userId, String transactionDesc,
-                                      String transactionCost,
-                              String transactionType,
-                                      long transactionDatetime);
+    int addIncTransactionIncomeService(int userId, String transactionDesc,
+                                       String transactionCost,
+                                       String transactionType,
+                                       long transactionDatetime,
+                                       String transactionPin,
+                                       String transactionFreq) throws IllegalArgumentException;
+
+    List<TransactionIncome> findSpecificTypeTransactionService(int userId, String transactionType, int pageNum);
+
+    int addIncTransactionOutcomeService(int userId, String tranOutDesc,
+                                        String tranOutCost,
+                                        String tranOutType,
+                                        long tranOutDatetime,
+                                        String tranOutPin,
+                                        String tranOutFreq)  throws IllegalArgumentException;
 }
