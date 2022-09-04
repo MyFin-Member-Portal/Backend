@@ -9,11 +9,10 @@ on:
   pull_request:
     branches: [ main ]
 
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 8
@@ -22,5 +21,12 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    - name: Start test
-      run: mvn test
+  
+  test:
+    needs: 
+      - build
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: start test
+        run: mvn test
