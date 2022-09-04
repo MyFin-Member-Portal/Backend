@@ -45,19 +45,6 @@ public class TransactionController {
         }
     }
 
-//    @PostMapping("transaction/get/type/page")
-//    public Result<Object> getSpecificTypeTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
-//        try{
-//            Object Transaction = transactionService.findSpecificTypeTransactionService(transcationRequest.getUserId(),
-//                    transcationRequest.getTransactionType(),
-//                    transcationRequest.getPageNum());
-//            return Response.success(Transaction);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return Response.fail("fail to get transaction");
-//        }
-//    }
-
 
     @PostMapping("transaction/add/inc")
     public Result<Object> addIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest) {
@@ -103,15 +90,43 @@ public class TransactionController {
 
     @PostMapping("transaction/delete/inc")
     public Result<Object> deleteIncSpecificTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
+        int tranId;
         try {
-            transactionService.deleteIncSpecificTransactionService(transcationRequest.getUserId(),
+            tranId = transactionService.deleteIncSpecificTransactionService(transcationRequest.getUserId(),
                     transcationRequest.getTranIncId());
-            return Response.success("delete success");
-        }catch (Exception e){
+            return Response.success(tranId);
+        }catch (NullPointerException e){
             e.printStackTrace();
-            return Response.fail("Delete fail");
+            return Response.fail("no such transaction id exist");
         }
     }
+
+    @PostMapping("transaction/delete/out")
+    public Result<Object> deleteOutSpecificTransaction(@RequestBody TransactionOutcomeRequest transcationRequest){
+        int tranId;
+        try {
+            tranId = transactionService.deleteOutSpecificTransactionService(transcationRequest.getUserId(),
+                    transcationRequest.getTranOutId());
+            return Response.success(tranId);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            return Response.fail("no such transaction id exist");
+        }
+    }
+
+
+//    @PostMapping("transaction/get/type/page")
+//    public Result<Object> getSpecificTypeTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
+//        try{
+//            Object Transaction = transactionService.findSpecificTypeTransactionService(transcationRequest.getUserId(),
+//                    transcationRequest.getTransactionType(),
+//                    transcationRequest.getPageNum());
+//            return Response.success(Transaction);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return Response.fail("fail to get transaction");
+//        }
+//    }
 
 
 }

@@ -27,7 +27,9 @@ public interface TransactionService {
      * @param userId
      * @param transactionId
      */
-    void deleteIncSpecificTransactionService(int userId, int transactionId);
+    int deleteIncSpecificTransactionService(int userId, int transactionId);
+
+    int deleteOutSpecificTransactionService(int userId, int tranOutId);
 
 
 
@@ -56,4 +58,5 @@ public interface TransactionService {
                                         long tranOutDatetime,
                                         String tranOutPin,
                                         String tranOutFreq)  throws IllegalArgumentException;
+
 }
