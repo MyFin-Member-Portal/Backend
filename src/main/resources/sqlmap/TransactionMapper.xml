@@ -4,33 +4,77 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myfin.mapper.TransactionMapper">
 
-    <!--  get transaction with page limitation -->
-    <select id="findAllTransactionPage" resultType="com.myfin.entity.Transaction">
-        SELECT * from Transaction where user_id = #{userId}
+    <!--  get all income transaction with page limitation -->
+    <select id="findAllIncTransactionPage" resultType="com.myfin.entity.TransactionIncome">
+        SELECT * from TransactionIncome where user_id = #{userId}
          LIMIT #{pageNum}, #{size}
     </select>
 
-
-    <!--  add a new transaction -->
-    <insert id="addTransaction" >
-        INSERT INTO Transaction(user_id,
-                                transaction_desc,
-                                transaction_cost,
-                                transaction_type,
-                                transaction_datetime)
-        values(#{userId}, #{transactionDesc}, #{transactionCost},
-        #{transactionType}, #{transactionDatetime})
-    </insert>
-
-    <!--  find the newest transaction id  -->
-    <select id="findMaxTransactionId" parameterType="Integer" resultType="Integer">
-        SELECT max(transaction_id) from Transaction where user_id = #{userId}
+    <!--  get all outcome transaction with page limitation -->
+    <select id="findAllOutTransactionPage" resultType="com.myfin.entity.TransactionOutcome">
+        SELECT * from TransactionOutcome where user_id = #{userId}
+            LIMIT #{pageNum}, #{size}
     </select>
 
+
+    <!--  get specific transaction type with page limitation -->
+    <select id="findSpecificTypeTransaction" resultType="com.myfin.entity.TransactionIncome">
+        SELECT * from Transaction where user_id = #{userId} and transaction_type = #{transactionType}
+            LIMIT #{pageNum}, #{size}
+    </select>
+
+
+    <!--  add a new income transaction -->
+    <insert id="addIncTransaction" >
+        INSERT INTO TransactionIncome(user_id,
+                                      tran_inc_desc,
+                                      tran_inc_cost,
+                                      tran_inc_type,
+                                      tran_inc_datetime,
+                                      tran_inc_pin,
+                                      tran_inc_freq)
+        values(#{userId}, #{transactionDesc}, #{transactionCost},
+        #{transactionType}, #{transactionDatetime},
+               #{transactionPin}, #{transactionFreq})
+    </insert>
+
+    <!--  add a new outcome transaction -->
+    <insert id="addOutTransaction" >
+        INSERT INTO TransactionOutcome(user_id,
+                                      tran_out_desc,
+                                      tran_out_cost,
+                                      tran_out_type,
+                                      tran_out_datetime,
+                                      tran_out_pin,
+                                      tran_out_freq)
+        values(#{userId}, #{tranOutDesc}, #{tranOutCost},
+               #{tranOutType}, #{tranOutDatetime},
+               #{tranOutPin}, #{tranOutFreq})
+    </insert>
+
+
+    <!--  find the newest income transaction id  -->
+    <select id="findMaxIncTransactionId" parameterType="Integer" resultType="Integer">
+        SELECT max(tran_inc_id) from TransactionIncome where user_id = #{userId}
+    </select>
+
+    <!--  find the newest outcome transaction id  -->
+    <select id="findMaxOutTransactionId" parameterType="Integer" resultType="Integer">
+        SELECT max(tran_out_id) from TransactionOutcome where user_id = #{userId}
+    </select>
+
+
+    <!-- delete inc transcation information-->
+    <delete id = "deleteIncSpecificTransaction">
+        delete from TransactionIncome
+        where user_id = #{userId} and tran_inc_id = #{transactionId}
+    </delete>
+
+
     <!-- delete transcation information-->
-    <delete id = "deleteSpecificTransaction">
-        delete from Transaction
-        where user_id = #{userId} and transaction_id = #{transactionId}
+    <delete id = "deleteOutSpecificTransaction">
+        delete from TransactionOutcome
+        where user_id = #{userId} and tran_out_id = #{transactionId}
     </delete>
 
 
