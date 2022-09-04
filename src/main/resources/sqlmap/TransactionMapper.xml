@@ -23,6 +23,13 @@
             LIMIT #{pageNum}, #{size}
     </select>
 
+    <select id="findSpeciIncTransactionPage" resultType="com.myfin.entity.TransactionIncome">
+        SELECT * from TransactionIncome where user_id = #{userId} and tran_inc_id = #{tranIncId}
+    </select>
+
+    <select id="findSpeciOutTransactionPage" resultType="com.myfin.entity.TransactionOutcome">
+        SELECT * from TransactionOutcome where user_id = #{userId} and tran_out_id = #{tranOutId}
+    </select>
 
     <!--  add a new income transaction -->
     <insert id="addIncTransaction" >
@@ -76,6 +83,8 @@
         delete from TransactionOutcome
         where user_id = #{userId} and tran_out_id = #{transactionId}
     </delete>
+
+
 
 
 

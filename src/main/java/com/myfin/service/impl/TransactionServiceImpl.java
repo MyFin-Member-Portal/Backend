@@ -42,9 +42,23 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void deleteIncSpecificTransactionService(int userId, int transactionId) {
+    public int deleteIncSpecificTransactionService(int userId, int transactionId) throws NullPointerException{
+        if (transactionMapper.findSpeciIncTransactionPage(userId, transactionId).size() == 0) {
+            throw new NullPointerException();
+        }
         transactionMapper.deleteIncSpecificTransaction(userId, transactionId);
+        return transactionId;
     }
+
+    @Override
+    public int deleteOutSpecificTransactionService(int userId, int tranOutId) throws NullPointerException{
+        if (transactionMapper.findSpeciOutTransactionPage(userId, tranOutId).size() == 0) {
+            throw new NullPointerException();
+        }
+        transactionMapper.deleteOutSpecificTransaction(userId, tranOutId);
+        return tranOutId;
+    }
+
 
     @Override
     public int addIncTransactionIncomeService(int userId, String transactionDesc, String transactionCost, String transactionType,

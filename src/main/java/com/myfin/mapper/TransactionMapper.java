@@ -25,6 +25,12 @@ public interface TransactionMapper {
                                                        @Param("size") int size);
 
 
+    List<TransactionIncome> findSpeciIncTransactionPage(@Param("userId") int userId,
+                                                       @Param("tranIncId") int tranIncId);
+
+    List<TransactionIncome> findSpeciOutTransactionPage(@Param("userId") int userId,
+                                                        @Param("tranOutId") int tranOutId);
+
 
 
     /**
@@ -79,6 +85,9 @@ public interface TransactionMapper {
      * @param transactionId
      */
     void deleteIncSpecificTransaction(@Param("userId") int userId, @Param("transactionId")int transactionId);
+
+    void deleteOutSpecificTransaction(@Param("userId") int userId, @Param("transactionId")int transactionId);
+
 
     List<TransactionIncome> findSpecificTypeTransaction(@Param("userId") int userId,
                                                         @Param("transactionType") String transactionType,
