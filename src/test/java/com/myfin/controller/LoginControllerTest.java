@@ -3,6 +3,7 @@ package com.myfin.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.myfin.MyFinApplication;
 import com.myfin.controller.reqeust.LoginRequest;
+import com.myfin.controller.reqeust.UserInfoUpdateRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,7 @@ class LoginControllerTest {
     
     @BeforeEach
     void setUp() {
+        request = new LoginRequest();
     }
 
     @AfterEach
@@ -42,16 +44,27 @@ class LoginControllerTest {
     @Test
     void login() throws Exception {
         // build request body
-        this.request.setEmail("");
-        this.request.setPassword("");
+        this.request.setEmail("test123123@gmail.com");
+        this.request.setPassword("test");
 
         // send the request
-        MvcResult mvcResult=mockMvc.perform(MockMvcRequestBuilders.post("/myfin/user/profile/getUserBasicProfile")
+        MvcResult mvcResult=mockMvc.perform(MockMvcRequestBuilders.post("/myfin//login")
                         .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(this.request))).
                 andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
     }
 
     @Test
-    void register() {
+    void register() throws Exception {
+        // build request body
+        this.request.setEmail("123456@gamil.com");
+        this.request.setPassword("123456");
+        this.request.setUserName("123456");
+
+        // send the request
+        MvcResult mvcResult=mockMvc.perform(MockMvcRequestBuilders.post("/myfin/register")
+                        .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(this.request))).andReturn();
+        
+        // Expect data of user 1 is false
+        assertEquals("A101", JSONObject.parseObject(mvcResult.getResponse().getContentAsString()).get("code"));
     }
 }
