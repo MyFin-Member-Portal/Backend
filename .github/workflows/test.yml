@@ -28,5 +28,7 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
+      - name: CD into project
+        run: cd MyFin
       - name: start test
-        run: mvn test
+          run: mvn test
