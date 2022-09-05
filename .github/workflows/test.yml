@@ -21,14 +21,14 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-  
+    - name: Build with Maven
+      run: mvn --batch-mode --update-snapshots package
+      
   test:
     needs: 
       - build
     name: test
     runs-on: ubuntu-latest
     steps:
-      - name: CD into project
-        run: cd MyFin
       - name: start test
-        run: mvn test
+        run: mvn --batch-mode --update-snapshots verify
