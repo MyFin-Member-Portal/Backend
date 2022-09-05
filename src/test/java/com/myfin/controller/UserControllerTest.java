@@ -4,32 +4,28 @@ import com.alibaba.fastjson.JSONObject;
 import com.myfin.MyFinApplication;
 import com.myfin.controller.reqeust.UserInfoUpdateRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.json.JsonbTester;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.io.UnsupportedEncodingException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {MyFinApplication.class})
 @AutoConfigureMockMvc
-class UserControllerTest {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -37,16 +33,18 @@ class UserControllerTest {
     private UserInfoUpdateRequest request;
     
     @BeforeEach
-    void setUp() {
+    public void setUp() {
        this.request = new UserInfoUpdateRequest();
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
     }
 
     @Test
-    void getUserBasicInfo() throws Exception {
+    public void getUserBasicInfo() throws Exception {
+        this.request = new UserInfoUpdateRequest();
+        
         // build request body
         this.request.setUserId(1);
 
@@ -63,11 +61,13 @@ class UserControllerTest {
     }
 
     @Test
-    void updateUserBasicInfo() {
+    public void updateUserBasicInfo() {
     }
 
     @Test
-    void isAdmin() throws Exception {
+    public void isAdmin() throws Exception {
+        this.request = new UserInfoUpdateRequest();
+        
         // build request body
         this.request.setUserId(1);
         

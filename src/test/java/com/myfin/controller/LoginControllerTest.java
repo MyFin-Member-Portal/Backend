@@ -7,13 +7,13 @@ import com.myfin.controller.reqeust.UserInfoUpdateRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -22,10 +22,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {MyFinApplication.class})
 @AutoConfigureMockMvc
-class LoginControllerTest {
+public class LoginControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,16 +33,18 @@ class LoginControllerTest {
     private LoginRequest request;
     
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         request = new LoginRequest();
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
     }
 
     @Test
-    void login() throws Exception {
+    public void login() throws Exception {
+        this.request = new LoginRequest();
+        
         // build request body
         this.request.setEmail("test123123@gmail.com");
         this.request.setPassword("test");
@@ -54,7 +56,9 @@ class LoginControllerTest {
     }
 
     @Test
-    void register() throws Exception {
+    public void register() throws Exception {
+        this.request = new LoginRequest();
+        
         // build request body
         this.request.setEmail("123456@gamil.com");
         this.request.setPassword("123456");
