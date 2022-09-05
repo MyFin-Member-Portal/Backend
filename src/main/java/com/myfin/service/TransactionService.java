@@ -14,12 +14,11 @@ public interface TransactionService {
     /**
      * adjust page size here
      * @param userId
-     * @param pageNum
      * @return
      */
-    List<TransactionIncome> findAllIncTransPageService(int userId, int pageNum);
+    List<TransactionIncome> findIncTransactionPageWithMonthService(int userId);
 
-    List<TransactionOutcome> findAllOutTransPageService(int userId, int pageNum);
+    List<TransactionOutcome> findOutTransactionPageWithMonthService(int userId);
 
 
     /**
@@ -50,7 +49,10 @@ public interface TransactionService {
                                        String transactionPin,
                                        String transactionFreq) throws IllegalArgumentException;
 
-    List<TransactionIncome> findSpecificTypeTransactionService(int userId, String transactionType, int pageNum);
+    List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, int pageNum);
+
+    List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, int pageNum);
+
 
     int addIncTransactionOutcomeService(int userId, String tranOutDesc,
                                         String tranOutCost,

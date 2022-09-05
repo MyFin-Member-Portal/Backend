@@ -24,8 +24,8 @@ public class TransactionController {
     @PostMapping("transaction/get/all/inc")
     public Result<Object> getAllIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
         try{
-            Object Transaction = transactionService.findAllIncTransPageService(transcationRequest.getUserId(),
-                    transcationRequest.getPageNum());
+            Object Transaction = transactionService.findIncTransactionPageWithMonthService(transcationRequest.getUserId()
+                    );
             return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();
@@ -36,8 +36,7 @@ public class TransactionController {
     @PostMapping("transaction/get/all/out")
     public Result<Object> getAllOutTransaction(@RequestBody TransactionOutcomeRequest transcationRequest){
         try{
-            Object Transaction = transactionService.findAllOutTransPageService(transcationRequest.getUserId(),
-                    transcationRequest.getPageNum());
+            Object Transaction = transactionService.findOutTransactionPageWithMonthService(transcationRequest.getUserId());
             return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();
@@ -62,7 +61,7 @@ public class TransactionController {
             return Response.success(transactionId);
         }catch (IllegalArgumentException e){
             e.printStackTrace();
-            return Response.fail("wrong input string either Transaction Freq, Pin, type");
+            return Response.fail("wrong input string either Transaction Freq, Pin, type, or no datatime input");
         }
     }
 
@@ -83,7 +82,7 @@ public class TransactionController {
             return Response.success(transactionId);
         }catch (IllegalArgumentException e){
             e.printStackTrace();
-            return Response.fail("wrong input string either Transaction Freq, Pin, type");
+            return Response.fail("wrong input string either Transaction Freq, Pin, type, or no datatime input");
         }
     }
 
@@ -115,18 +114,31 @@ public class TransactionController {
     }
 
 
-//    @PostMapping("transaction/get/type/page")
-//    public Result<Object> getSpecificTypeTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
-//        try{
-//            Object Transaction = transactionService.findSpecificTypeTransactionService(transcationRequest.getUserId(),
-//                    transcationRequest.getTransactionType(),
-//                    transcationRequest.getPageNum());
-//            return Response.success(Transaction);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return Response.fail("fail to get transaction");
-//        }
-//    }
+    @PostMapping("transaction/get/type/inc")
+    public Result<Object> getIncSpecificTypeTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
+        try{
+            Object Transaction = transactionService.findIncSpecificTypeTransactionService(transcationRequest.getUserId(),
+                    transcationRequest.getTranIncType(),
+                    transcationRequest.getPageNum());
+            return Response.success(Transaction);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("fail to get transaction");
+        }
+    }
+
+    @PostMapping("transaction/get/type/out")
+    public Result<Object> getOutSpecificTypeTransaction(@RequestBody TransactionOutcomeRequest transcationRequest){
+        try{
+            Object Transaction = transactionService.findOutSpecificTypeTransactionService(transcationRequest.getUserId(),
+                    transcationRequest.getTranOutType(),
+                    transcationRequest.getPageNum());
+            return Response.success(Transaction);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("fail to get transaction");
+        }
+    }
 
 
 }

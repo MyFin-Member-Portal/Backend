@@ -16,13 +16,9 @@ import java.util.List;
 public interface TransactionMapper {
 
 
-    List<TransactionIncome> findAllIncTransactionPage(@Param("userId") int userId,
-                                                      @Param("pageNum") int pageNum,
-                                                      @Param("size") int size);
+    List<TransactionIncome> findIncTransactionPageWithMonth(@Param("userId") int userId);
 
-    List<TransactionOutcome> findAllOutTransactionPage(@Param("userId") int userId,
-                                                       @Param("pageNum") int pageNum,
-                                                       @Param("size") int size);
+    List<TransactionOutcome> findOutTransactionPageWithMonth(@Param("userId") int userId);
 
 
     List<TransactionIncome> findSpeciIncTransactionPage(@Param("userId") int userId,
@@ -40,6 +36,7 @@ public interface TransactionMapper {
      * @param transactionCost
      * @param transactionType
      * @param transactionDatetime
+     * @param formattedTime
      */
     void addIncTransaction(
             @Param("userId") int userId,
@@ -48,8 +45,8 @@ public interface TransactionMapper {
             @Param("transactionType") String transactionType,
             @Param("transactionDatetime") long transactionDatetime,
             @Param("transactionPin") String transactionPin,
-            @Param("transactionFreq") String transactionFreq
-    );
+            @Param("transactionFreq") String transactionFreq,
+            @Param("formattedTime") String formattedTime);
 
     /**
      * add outcome transaction for the user
@@ -60,6 +57,7 @@ public interface TransactionMapper {
      * @param tranOutDatetime
      * @param tranOutPin
      * @param tranOutFreq
+     * @param formattedTime
      */
     void addOutTransaction(@Param("userId") int userId,
                            @Param("tranOutDesc") String tranOutDesc,
@@ -67,7 +65,8 @@ public interface TransactionMapper {
                            @Param("tranOutType") String tranOutType,
                            @Param("tranOutDatetime") long tranOutDatetime,
                            @Param("tranOutPin") String tranOutPin,
-                           @Param("tranOutFreq") String tranOutFreq);
+                           @Param("tranOutFreq") String tranOutFreq,
+                           @Param("formattedTime") String formattedTime);
 
 
     /**
@@ -89,11 +88,17 @@ public interface TransactionMapper {
     void deleteOutSpecificTransaction(@Param("userId") int userId, @Param("transactionId")int transactionId);
 
 
-    List<TransactionIncome> findSpecificTypeTransaction(@Param("userId") int userId,
-                                                        @Param("transactionType") String transactionType,
-                                                        @Param("pageNum") int pageNum,
-                                                        @Param("size") int size);
 
+    List<TransactionIncome> findSpecificIncTypeTransaction(@Param("userId") int userId,
+                                                           @Param("transactionType") String transactionType,
+                                                           @Param("pageNum") int pageNum,
+                                                           @Param("size") int size);
+
+
+    List<TransactionOutcome> findSpecificOutTypeTransaction(@Param("userId") int userId,
+                                                           @Param("transactionType") String transactionType,
+                                                           @Param("pageNum") int pageNum,
+                                                           @Param("size") int size);
 
 
 }

@@ -22,4 +22,6 @@ public class TransactionIncome {
     private String tranIncPin;
 
     private String tranIncFreq;
+
+    private int totalPageNum;
 }

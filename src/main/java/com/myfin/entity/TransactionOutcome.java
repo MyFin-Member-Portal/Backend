@@ -21,4 +21,7 @@ public class TransactionOutcome {
     private String tranOutPin;
 
     private String tranOutFreq;
+
+    private int totalPageNum;
+
 }

@@ -7,6 +7,9 @@ import com.myfin.service.TransactionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 
@@ -20,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Resource
     private TransactionMapper transactionMapper;
 
-    private final int pageSize = 4;
+    private final int pageSize = 6;
     private final String[] transactionFreqList = new String[]{"Once", "Weekly", "Monthly", "Yearly"};
     private final String[] transactionPinList = new String[]{"True", "False"};
 
@@ -29,16 +32,22 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 
+
     @Override
-    public List<TransactionIncome> findAllIncTransPageService(int userId, int pageNum) {
-        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        return transactionMapper.findAllIncTransactionPage(userId, pageOffsiteNum, pageSize);
+    public List<TransactionIncome> findIncTransactionPageWithMonthService(int userId) {
+        Calendar calendar = Calendar.getInstance();
+//        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
+        int currentMonth = calendar.get(Calendar.MONTH) + 1;
+        log.info(""+currentMonth);
+
+
+        return transactionMapper.findIncTransactionPageWithMonth(userId);
     }
 
     @Override
-    public List<TransactionOutcome> findAllOutTransPageService(int userId, int pageNum) {
-        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        return transactionMapper.findAllOutTransactionPage(userId, pageOffsiteNum, pageSize);
+    public List<TransactionOutcome> findOutTransactionPageWithMonthService(int userId) {
+//        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
+        return transactionMapper.findOutTransactionPageWithMonth(userId);
     }
 
     @Override
@@ -78,9 +87,15 @@ public class TransactionServiceImpl implements TransactionService {
         if (inPinListSwitch == 0 || inFreqListSwitch == 0 || inTypeListSwitch == 0){
             throw new IllegalArgumentException("input not acceptable");
         }
+        if(transactionDatetime == 0){
+            throw new IllegalArgumentException("no time input");
+        }
+        String formattedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(transactionDatetime));
+
 
         transactionMapper.addIncTransaction(
                 userId, transactionDesc, transactionCost, transactionType, transactionDatetime, transactionPin,transactionFreq
+                ,formattedTime
         );
 
 
@@ -88,9 +103,16 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionIncome> findSpecificTypeTransactionService(int userId, String transactionType, int pageNum) {
+    public List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, int pageNum) {
         int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        return transactionMapper.findSpecificTypeTransaction(userId, transactionType, pageOffsiteNum, pageSize);
+        return transactionMapper.findSpecificIncTypeTransaction(userId, transactionType, pageOffsiteNum, pageSize);
+    }
+
+
+    @Override
+    public List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, int pageNum) {
+        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
+        return transactionMapper.findSpecificOutTypeTransaction(userId, transactionType, pageOffsiteNum, pageSize);
     }
 
     @Override
@@ -110,9 +132,14 @@ public class TransactionServiceImpl implements TransactionService {
         if (inPinListSwitch == 0 || inFreqListSwitch == 0 || inTypeListSwitch == 0){
             throw new IllegalArgumentException("input not acceptable");
         }
+        if(tranOutDatetime == 0){
+            throw new IllegalArgumentException("no time input");
+        }
+
+        String formattedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(tranOutDatetime));
         transactionMapper.addOutTransaction(
                 userId, tranOutDesc, tranOutCost, tranOutType,
-                tranOutDatetime, tranOutPin, tranOutFreq);
+                tranOutDatetime, tranOutPin, tranOutFreq, formattedTime);
 
         return transactionMapper.findMaxOutTransactionId(userId);
     }

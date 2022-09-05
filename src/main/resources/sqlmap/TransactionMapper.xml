@@ -5,21 +5,28 @@
 <mapper namespace="com.myfin.mapper.TransactionMapper">
 
     <!--  get all income transaction with page limitation -->
-    <select id="findAllIncTransactionPage" resultType="com.myfin.entity.TransactionIncome">
+    <select id="findIncTransactionPageWithMonth" resultType="com.myfin.entity.TransactionIncome">
         SELECT * from TransactionIncome where user_id = #{userId}
-         LIMIT #{pageNum}, #{size}
     </select>
 
     <!--  get all outcome transaction with page limitation -->
-    <select id="findAllOutTransactionPage" resultType="com.myfin.entity.TransactionOutcome">
+    <select id="findOutTransactionPageWithMonth" resultType="com.myfin.entity.TransactionOutcome">
         SELECT * from TransactionOutcome where user_id = #{userId}
-            LIMIT #{pageNum}, #{size}
     </select>
 
 
-    <!--  get specific transaction type with page limitation -->
-    <select id="findSpecificTypeTransaction" resultType="com.myfin.entity.TransactionIncome">
-        SELECT * from Transaction where user_id = #{userId} and transaction_type = #{transactionType}
+
+
+
+    <!--  get specific inc transaction type with page limitation -->
+    <select id="findSpecificIncTypeTransaction" resultType="com.myfin.entity.TransactionIncome">
+        SELECT * from TransactionIncome where user_id = #{userId} and transaction_type = #{transactionType}
+            LIMIT #{pageNum}, #{size}
+    </select>
+
+    <!--  get specific out transaction type with page limitation -->
+    <select id="findSpecificOutTypeTransaction" resultType="com.myfin.entity.TransactionOutcome">
+        SELECT * from TransactionOutcome where user_id = #{userId} and transaction_type = #{transactionType}
             LIMIT #{pageNum}, #{size}
     </select>
 
@@ -39,10 +46,11 @@
                                       tran_inc_type,
                                       tran_inc_datetime,
                                       tran_inc_pin,
-                                      tran_inc_freq)
+                                      tran_inc_freq,
+                                      tran_inc_dateformat)
         values(#{userId}, #{transactionDesc}, #{transactionCost},
         #{transactionType}, #{transactionDatetime},
-               #{transactionPin}, #{transactionFreq})
+               #{transactionPin}, #{transactionFreq}, #{formattedTime})
     </insert>
 
     <!--  add a new outcome transaction -->
@@ -53,10 +61,11 @@
                                       tran_out_type,
                                       tran_out_datetime,
                                       tran_out_pin,
-                                      tran_out_freq)
+                                      tran_out_freq,
+                                      tran_out_dateformat)
         values(#{userId}, #{tranOutDesc}, #{tranOutCost},
                #{tranOutType}, #{tranOutDatetime},
-               #{tranOutPin}, #{tranOutFreq})
+               #{tranOutPin}, #{tranOutFreq},  #{formattedTime})
     </insert>
 
 
