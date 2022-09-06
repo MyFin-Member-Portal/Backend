@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.VisualizationMapper">
+    <select id="findIncome" resultType="map">
+        SELECT
+            SUM(tran_inc_cost) AS amount,
+            FROM_UNIXTIME(tran_inc_datetime,'%b') months
+        FROM
+            TransactionIncome
+        WHERE
+            tran_inc_datetime &gt;= #{startTime}
+          AND tran_inc_datetime &lt;= #{endTime}
+          AND user_id = #{userId}
+        GROUP BY
+            months;
+    </select>
+    
+    <select id="findOutcome" resultType="com.myfin.entity.TransactionOutcome">
+        SELECT
+            SUM(tran_inc_cost),
+            FROM_UNIXTIME(tran_inc_datetime,'%b') months
+        FROM
+            TransactionOutcome
+        WHERE
+            tran_inc_datetime &gt;= #{startTime}
+            AND tran_inc_datetime &lt;= #{endTime}
+            AND user_id = #{userId}
+        GROUP BY
+            #{interval};
+    </select>
+</mapper>
