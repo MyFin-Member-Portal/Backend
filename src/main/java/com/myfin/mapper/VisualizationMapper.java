@@ -19,5 +19,7 @@ public interface VisualizationMapper {
 
     List<HashMap<String, Object>> findOutcome(int userId, int startTime, int endTime, String interval, String type);
     
+    List<HashMap<String, Object>> findOutcomePieChartData(int userId, int startTime, int endTime);
+
     List<HashMap<String, Object>> findIncomePieChartData(int userId, int startTime, int endTime);
 }

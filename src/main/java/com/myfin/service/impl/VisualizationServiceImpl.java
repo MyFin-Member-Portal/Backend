@@ -42,6 +42,25 @@ public class VisualizationServiceImpl implements VisualizationService {
 
     @Override
     public HashMap<String, ArrayList<Object>> findOutPieChartData(int userId, int startTime, int endTime) {
+        List<HashMap<String, Object>> sqlResult = mapper.findOutcomePieChartData(userId, startTime, endTime);
+        HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
+
+        ArrayList<Object> typeList = new ArrayList<>();
+        ArrayList<Object> outcomeData = new ArrayList<>();
+
+        for (HashMap item: sqlResult) {
+            typeList.add(item.get("type"));
+            outcomeData.add(item.get("outcomeData"));
+        }
+
+        resultMap.put("type", typeList);
+        resultMap.put("outcomeData", outcomeData);
+        
+        return resultMap;
+    }
+
+    @Override
+    public HashMap<String, ArrayList<Object>> findInPieChartData(int userId, int startTime, int endTime) {
         List<HashMap<String, Object>> sqlResult = mapper.findIncomePieChartData(userId, startTime, endTime);
         HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
 
@@ -55,7 +74,7 @@ public class VisualizationServiceImpl implements VisualizationService {
 
         resultMap.put("type", typeList);
         resultMap.put("incomeData", outcomeData);
-        
+
         return resultMap;
     }
 }

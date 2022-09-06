@@ -44,4 +44,10 @@ public class VisualizationController {
         Object result = service.findOutPieChartData(request.getUserId(), request.getStartTime(), request.getEndTime());
         return result;
     }
+
+    @PostMapping("/pieChart/income")
+    public Object incomePieChart(@RequestBody VisualizationRequest request){
+        Object result = service.findInPieChartData(request.getUserId(), request.getStartTime(), request.getEndTime());
+        return result;
+    }
 }
