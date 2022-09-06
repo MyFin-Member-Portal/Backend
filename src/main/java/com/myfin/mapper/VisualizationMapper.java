@@ -17,5 +17,5 @@ import java.util.List;
 public interface VisualizationMapper {
     List<HashMap<String, Object>> findIncome(int userId, int startTime, int endTime, String interval, String type);
 
-    List<TransactionOutcome> findOutcome(int userId, int startTime, int endTime, String interval, String type);
+    List<HashMap<String, Object>> findOutcome(int userId, int startTime, int endTime, String interval, String type);
 }

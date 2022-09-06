@@ -13,6 +13,6 @@ import java.util.List;
 public interface VisualizationService<T> {
     HashMap<String, ArrayList<Object>> findIncome(int userId, int startTime, int endTime, String interval, String type);
 
-    HashMap<String, List<T>> findOutcome(int userId, int startTime, int endTime, String interval, String type);
+    HashMap<String, ArrayList<Object>> findOutcome(int userId, int startTime, int endTime, String interval, String type);
     
 }

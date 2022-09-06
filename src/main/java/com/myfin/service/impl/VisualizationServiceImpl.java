@@ -32,7 +32,8 @@ public class VisualizationServiceImpl implements VisualizationService {
 
         for (HashMap item:result) {
             categoryList.add(item.get("months"));
-            incomeData.add(item.get("amount"));
+            incomeData.add(item.get("incomeData"));
+            outcomeData.add(item.get("outcomeData"));
         }
         
         resultMap.put("categories", categoryList);

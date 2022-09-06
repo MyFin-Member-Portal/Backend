@@ -5,21 +5,22 @@
 <mapper namespace="com.myfin.mapper.VisualizationMapper">
     <select id="findIncome" resultType="map">
         SELECT
-            SUM(tran_inc_cost) AS amount,
-            FROM_UNIXTIME(tran_inc_datetime,'%b') months
+            SUM(tran_inc_cost) AS incomeData,
+            SUM(tran_out_cost) AS outcomeData,
+            FROM_UNIXTIME(tran_inc_datetime,'%b') as months
         FROM
-            TransactionIncome
+            TransactionIncome NATURAL JOIN TransactionOutcome
         WHERE
-            tran_inc_datetime &gt;= #{startTime}
-          AND tran_inc_datetime &lt;= #{endTime}
-          AND user_id = #{userId}
+            (tran_inc_datetime BETWEEN  1662125597 AND 1667395997)
+          AND (tran_out_datetime BETWEEN  1662125597 AND 1667395997)
+          AND user_id = 1
         GROUP BY
             months;
     </select>
     
     <select id="findOutcome" resultType="com.myfin.entity.TransactionOutcome">
         SELECT
-            SUM(tran_inc_cost),
+            SUM(tran_inc_cost) AS amount,
             FROM_UNIXTIME(tran_inc_datetime,'%b') months
         FROM
             TransactionOutcome
@@ -28,6 +29,6 @@
             AND tran_inc_datetime &lt;= #{endTime}
             AND user_id = #{userId}
         GROUP BY
-            #{interval};
+            months;
     </select>
 </mapper>
