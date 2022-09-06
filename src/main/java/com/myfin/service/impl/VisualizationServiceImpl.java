@@ -21,13 +21,11 @@ public class VisualizationServiceImpl implements VisualizationService {
     
     @Override
     public HashMap<String, ArrayList<Object>> findIncome(int userId, int startTime, int endTime, String interval, String type) {
-        List<HashMap<String, Object>> result = mapper.findIncome(userId, startTime, endTime, interval, type);
+        List<HashMap<String, Object>> result = mapper.findLineChartData(userId, startTime, endTime, interval, type);
         log.info(result.toString());
         HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
         ArrayList<Object> categoryList = new ArrayList<>();
         ArrayList<Object> incomeData = new ArrayList<>();
-        
-        //TODO: add outcome data
         ArrayList<Object> outcomeData = new ArrayList<>();
 
         for (HashMap item:result) {
@@ -43,7 +41,21 @@ public class VisualizationServiceImpl implements VisualizationService {
     }
 
     @Override
-    public HashMap<String, List> findOutcome(int userId, int startTime, int endTime, String interval, String type) {
-        return null;
+    public HashMap<String, ArrayList<Object>> findOutPieChartData(int userId, int startTime, int endTime) {
+        List<HashMap<String, Object>> sqlResult = mapper.findIncomePieChartData(userId, startTime, endTime);
+        HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
+
+        ArrayList<Object> typeList = new ArrayList<>();
+        ArrayList<Object> outcomeData = new ArrayList<>();
+
+        for (HashMap item: sqlResult) {
+            typeList.add(item.get("type"));
+            outcomeData.add(item.get("incomeData"));
+        }
+
+        resultMap.put("type", typeList);
+        resultMap.put("incomeData", outcomeData);
+        
+        return resultMap;
     }
 }

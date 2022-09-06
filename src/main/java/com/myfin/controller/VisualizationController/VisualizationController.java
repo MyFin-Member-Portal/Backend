@@ -39,9 +39,9 @@ public class VisualizationController {
         return result;
     }
     
-    @PostMapping("/pieChart")
-    public ResponseEntity pieChart(@RequestBody VisualizationRequest request){
-
-        return null;
+    @PostMapping("/pieChart/outcome")
+    public Object pieChart(@RequestBody VisualizationRequest request){
+        Object result = service.findOutPieChartData(request.getUserId(), request.getStartTime(), request.getEndTime());
+        return result;
     }
 }
