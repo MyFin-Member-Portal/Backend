@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myfin.mapper.VisualizationMapper">
+    <select id="findIncome" resultType="map">
+        SELECT
+            SUM(tran_inc_cost) AS incomeData,
+            SUM(tran_out_cost) AS outcomeData,
+            FROM_UNIXTIME(tran_inc_datetime,'%b') as months
+        FROM
+            TransactionIncome NATURAL JOIN TransactionOutcome
+        WHERE
+            (tran_inc_datetime BETWEEN  #{startTime} AND #{endTime})
+          AND (tran_out_datetime BETWEEN  #{startTime} AND #{endTime})
+          AND user_id = #{userId}
+        GROUP BY
+            months;
+    </select>
+
+    <select id="findOutcomePieChartData" resultType="map">
+        SELECT
+            SUM(tran_out_cost) AS outcomeData,
+            tran_out_type AS type
+        FROM
+            TransactionOutcome
+        WHERE
+            (tran_out_datetime BETWEEN  #{startTime} AND #{endTime})
+          AND user_id = #{userId}
+        GROUP BY
+            tran_out_type;
+    </select>
+
+    <select id="findIncomePieChartData" resultType="map">
+        SELECT
+            SUM(tran_inc_cost) AS incomeData,
+            tran_inc_type AS type
+        FROM
+            TransactionIncome
+        WHERE
+            (tran_inc_datetime BETWEEN  #{startTime} AND #{endTime})
+          AND user_id = #{userId}
+        GROUP BY
+            tran_inc_type;
+    </select>
+    
+</mapper>

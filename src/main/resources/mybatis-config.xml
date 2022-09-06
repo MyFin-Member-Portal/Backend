@@ -39,7 +39,7 @@
         <mapper resource="sqlmap/UserAssetsMapper.xml"/>
         <mapper resource="sqlmap/CourseMapper.xml"/>
         <mapper resource="sqlmap/TransactionMapper.xml"/>
-
+        <mapper resource="sqlmap/VisualizationMapper.xml"/>
     </mappers>
 
 </configuration>
