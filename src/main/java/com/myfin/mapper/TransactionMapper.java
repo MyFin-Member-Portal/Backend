@@ -16,9 +16,13 @@ import java.util.List;
 public interface TransactionMapper {
 
 
-    List<TransactionIncome> findIncTransactionPageWithMonth(@Param("userId") int userId);
+    List<TransactionIncome> findIncTransactionWithMonth(@Param("userId") int userId,
+                                                        @Param("year") int year,
+                                                        @Param("month") int month);
 
-    List<TransactionOutcome> findOutTransactionPageWithMonth(@Param("userId") int userId);
+    List<TransactionOutcome> findOutTransactionWithMonth(@Param("userId") int userId,
+                                                         @Param("year") int year,
+                                                         @Param("month") int month);
 
 
     List<TransactionIncome> findSpeciIncTransactionPage(@Param("userId") int userId,
@@ -26,6 +30,8 @@ public interface TransactionMapper {
 
     List<TransactionIncome> findSpeciOutTransactionPage(@Param("userId") int userId,
                                                         @Param("tranOutId") int tranOutId);
+
+
 
 
 
@@ -91,14 +97,14 @@ public interface TransactionMapper {
 
     List<TransactionIncome> findSpecificIncTypeTransaction(@Param("userId") int userId,
                                                            @Param("transactionType") String transactionType,
-                                                           @Param("pageNum") int pageNum,
-                                                           @Param("size") int size);
+                                                           @Param("year") int year,
+                                                           @Param("month") int month);
 
 
     List<TransactionOutcome> findSpecificOutTypeTransaction(@Param("userId") int userId,
                                                            @Param("transactionType") String transactionType,
-                                                           @Param("pageNum") int pageNum,
-                                                           @Param("size") int size);
+                                                            @Param("year") int year,
+                                                            @Param("month") int month);
 
 
 }

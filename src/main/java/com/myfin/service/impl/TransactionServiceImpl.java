@@ -34,20 +34,32 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public List<TransactionIncome> findIncTransactionPageWithMonthService(int userId) {
-        Calendar calendar = Calendar.getInstance();
+    public List<TransactionIncome> findIncTransactionPageWithMonthService(int userId, String year, String month) {
 //        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        int currentMonth = calendar.get(Calendar.MONTH) + 1;
-        log.info(""+currentMonth);
+        int monthInt;
+        int yearInt;
+        try {
+            monthInt = Integer.parseInt(month);
+            yearInt = Integer.parseInt(year);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("wrong month and year format");
+        }
 
-
-        return transactionMapper.findIncTransactionPageWithMonth(userId);
+        return transactionMapper.findIncTransactionWithMonth(userId, yearInt, monthInt);
     }
 
     @Override
-    public List<TransactionOutcome> findOutTransactionPageWithMonthService(int userId) {
-//        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        return transactionMapper.findOutTransactionPageWithMonth(userId);
+    public List<TransactionOutcome> findOutTransactionPageWithMonthService(int userId, String year, String month) {
+        int monthInt;
+        int yearInt;
+
+        try {
+            monthInt = Integer.parseInt(month);
+            yearInt = Integer.parseInt(year);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("wrong month and year format");
+        }
+        return transactionMapper.findOutTransactionWithMonth(userId, yearInt, monthInt);
     }
 
     @Override
@@ -95,24 +107,39 @@ public class TransactionServiceImpl implements TransactionService {
 
         transactionMapper.addIncTransaction(
                 userId, transactionDesc, transactionCost, transactionType, transactionDatetime, transactionPin,transactionFreq
-                ,formattedTime
-        );
+                ,formattedTime);
 
 
         return transactionMapper.findMaxIncTransactionId(userId);
     }
 
     @Override
-    public List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, int pageNum) {
-        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        return transactionMapper.findSpecificIncTypeTransaction(userId, transactionType, pageOffsiteNum, pageSize);
+    public List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, String year, String month) {
+        int monthInt;
+        int yearInt;
+
+        try {
+            monthInt = Integer.parseInt(month);
+            yearInt = Integer.parseInt(year);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("input not acceptable");
+        }
+        return transactionMapper.findSpecificIncTypeTransaction(userId, transactionType, yearInt, monthInt);
     }
 
 
     @Override
-    public List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, int pageNum) {
-        int pageOffsiteNum = this.pageOffsite(pageNum, pageSize);
-        return transactionMapper.findSpecificOutTypeTransaction(userId, transactionType, pageOffsiteNum, pageSize);
+    public List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, String year, String month) {
+        int monthInt;
+        int yearInt;
+
+        try {
+            monthInt = Integer.parseInt(month);
+            yearInt = Integer.parseInt(year);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("input not acceptable");
+        }
+        return transactionMapper.findSpecificOutTypeTransaction(userId, transactionType, yearInt, monthInt);
     }
 
     @Override
@@ -155,6 +182,11 @@ public class TransactionServiceImpl implements TransactionService {
             }
         }
         return 0;
+    }
+
+    public int getCurrentMonth(){
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.MONTH) + 1;
     }
 
 

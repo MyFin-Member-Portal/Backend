@@ -24,4 +24,9 @@ public class TransactionOutcomeRequest {
 
     private String tranOutFreq;
 
+    private String year;
+
+    private String month;
+
+
 }

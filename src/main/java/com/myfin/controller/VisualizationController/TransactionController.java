@@ -24,7 +24,9 @@ public class TransactionController {
     @PostMapping("transaction/get/all/inc")
     public Result<Object> getAllIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest){
         try{
-            Object Transaction = transactionService.findIncTransactionPageWithMonthService(transcationRequest.getUserId()
+            Object Transaction = transactionService.findIncTransactionPageWithMonthService(transcationRequest.getUserId(),
+                    transcationRequest.getYear(),
+                    transcationRequest.getMonth()
                     );
             return Response.success(Transaction);
         }catch (Exception e){
@@ -36,7 +38,10 @@ public class TransactionController {
     @PostMapping("transaction/get/all/out")
     public Result<Object> getAllOutTransaction(@RequestBody TransactionOutcomeRequest transcationRequest){
         try{
-            Object Transaction = transactionService.findOutTransactionPageWithMonthService(transcationRequest.getUserId());
+            Object Transaction = transactionService.findOutTransactionPageWithMonthService(transcationRequest.getUserId(),
+                    transcationRequest.getYear(),
+                    transcationRequest.getMonth()
+            );
             return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();
@@ -119,7 +124,9 @@ public class TransactionController {
         try{
             Object Transaction = transactionService.findIncSpecificTypeTransactionService(transcationRequest.getUserId(),
                     transcationRequest.getTranIncType(),
-                    transcationRequest.getPageNum());
+                    transcationRequest.getYear(),
+                    transcationRequest.getMonth()
+                   );
             return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();
@@ -132,7 +139,9 @@ public class TransactionController {
         try{
             Object Transaction = transactionService.findOutSpecificTypeTransactionService(transcationRequest.getUserId(),
                     transcationRequest.getTranOutType(),
-                    transcationRequest.getPageNum());
+                    transcationRequest.getYear(),
+                    transcationRequest.getMonth()
+            );
             return Response.success(Transaction);
         }catch (Exception e){
             e.printStackTrace();

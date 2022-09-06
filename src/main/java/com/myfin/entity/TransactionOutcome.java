@@ -2,6 +2,8 @@ package com.myfin.entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author Yuzhuo Ma
  */
@@ -23,5 +25,7 @@ public class TransactionOutcome {
     private String tranOutFreq;
 
     private int totalPageNum;
+
+    private Date tranOutDateformat;
 
 }

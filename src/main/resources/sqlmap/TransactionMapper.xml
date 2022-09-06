@@ -5,13 +5,20 @@
 <mapper namespace="com.myfin.mapper.TransactionMapper">
 
     <!--  get all income transaction with page limitation -->
-    <select id="findIncTransactionPageWithMonth" resultType="com.myfin.entity.TransactionIncome">
+    <select id="findIncTransactionWithMonth" resultType="com.myfin.entity.TransactionIncome">
         SELECT * from TransactionIncome where user_id = #{userId}
+                                        and year(tran_inc_dateformat)=#{year}
+                                        and month(tran_inc_dateformat)=#{month}
     </select>
 
+
+
     <!--  get all outcome transaction with page limitation -->
-    <select id="findOutTransactionPageWithMonth" resultType="com.myfin.entity.TransactionOutcome">
+    <select id="findOutTransactionWithMonth" resultType="com.myfin.entity.TransactionOutcome">
         SELECT * from TransactionOutcome where user_id = #{userId}
+                                        and year(tran_out_dateformat)=#{year}
+                                        and month(tran_out_dateformat)=#{month}
+
     </select>
 
 
@@ -20,14 +27,16 @@
 
     <!--  get specific inc transaction type with page limitation -->
     <select id="findSpecificIncTypeTransaction" resultType="com.myfin.entity.TransactionIncome">
-        SELECT * from TransactionIncome where user_id = #{userId} and transaction_type = #{transactionType}
-            LIMIT #{pageNum}, #{size}
+        SELECT * from TransactionIncome where user_id = #{userId} and tran_inc_type = #{transactionType}
+            and year(tran_inc_dateformat)=#{year}
+                                          and month(tran_inc_dateformat)=#{month}
     </select>
 
     <!--  get specific out transaction type with page limitation -->
     <select id="findSpecificOutTypeTransaction" resultType="com.myfin.entity.TransactionOutcome">
-        SELECT * from TransactionOutcome where user_id = #{userId} and transaction_type = #{transactionType}
-            LIMIT #{pageNum}, #{size}
+        SELECT * from TransactionOutcome where user_id = #{userId} and tran_out_type = #{transactionType}
+            and year(tran_out_dateformat)=#{year}
+                                           and month(tran_out_dateformat)=#{month}
     </select>
 
     <select id="findSpeciIncTransactionPage" resultType="com.myfin.entity.TransactionIncome">

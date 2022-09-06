@@ -16,9 +16,9 @@ public interface TransactionService {
      * @param userId
      * @return
      */
-    List<TransactionIncome> findIncTransactionPageWithMonthService(int userId);
+    List<TransactionIncome> findIncTransactionPageWithMonthService(int userId, String year, String month);
 
-    List<TransactionOutcome> findOutTransactionPageWithMonthService(int userId);
+    List<TransactionOutcome> findOutTransactionPageWithMonthService(int userId, String year, String month);
 
 
     /**
@@ -49,9 +49,9 @@ public interface TransactionService {
                                        String transactionPin,
                                        String transactionFreq) throws IllegalArgumentException;
 
-    List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, int pageNum);
+    List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, String year, String month);
 
-    List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, int pageNum);
+    List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, String year, String month);
 
 
     int addIncTransactionOutcomeService(int userId, String tranOutDesc,

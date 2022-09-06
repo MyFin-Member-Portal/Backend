@@ -3,6 +3,8 @@ package com.myfin.entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author Yuzhuo Ma
  */
@@ -24,4 +26,6 @@ public class TransactionIncome {
     private String tranIncFreq;
 
     private int totalPageNum;
+
+    private Date tranIncDateformat;
 }
