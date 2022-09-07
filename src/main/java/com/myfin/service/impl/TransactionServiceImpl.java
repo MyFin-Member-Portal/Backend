@@ -7,12 +7,10 @@ import com.myfin.service.TransactionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
 import javax.annotation.Resource;
-
+import com.myfin.util.dateTransform;
 
 /**
  * @author Yuzhuo Ma
@@ -23,7 +21,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Resource
     private TransactionMapper transactionMapper;
 
-    private final int pageSize = 6;
+    private final int datePeriod = 12;
+
     private final String[] transactionFreqList = new String[]{"Once", "Weekly", "Monthly", "Yearly"};
     private final String[] transactionPinList = new String[]{"True", "False"};
 
@@ -82,36 +81,116 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public int addIncTransactionIncomeService(int userId, String transactionDesc, String transactionCost, String transactionType,
-                                              long transactionDatetime, String transactionPin, String transactionFreq ) throws IllegalArgumentException {
+    public int addTransactionIncomeService(int userId, String transactionDesc, String transactionCost, String transactionType,
+                                           long transactionDatetime,
+//                                              String transactionPin,
+                                           String transactionFreq ) throws IllegalArgumentException, ParseException {
         int inFreqListSwitch;
         int inPinListSwitch;
         int inTypeListSwitch;
+
+        transactionDatetime = transactionDatetime*1000L;
 
 
 //        check transactionFreq input
         inFreqListSwitch = checkInput(transactionFreqList, transactionFreq);
 
-        inPinListSwitch = checkInput(transactionPinList, transactionPin);
+//        inPinListSwitch = checkInput(transactionPinList, transactionPin);
 
         inTypeListSwitch = checkInput(incomeTransactionTypeList, transactionType);
 
-        if (inPinListSwitch == 0 || inFreqListSwitch == 0 || inTypeListSwitch == 0){
+        if (inFreqListSwitch == 0 || inTypeListSwitch == 0){
             throw new IllegalArgumentException("input not acceptable");
         }
         if(transactionDatetime == 0){
             throw new IllegalArgumentException("no time input");
         }
-        String formattedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(transactionDatetime));
+        String formattedTime = dateTransform.timestampToDate(transactionDatetime);
 
-
-        transactionMapper.addIncTransaction(
-                userId, transactionDesc, transactionCost, transactionType, transactionDatetime, transactionPin,transactionFreq
-                ,formattedTime);
-
-
+        if (transactionFreq.equals("Monthly")){
+            List<String> monthFormatList = new ArrayList<>(Collections.emptyList());
+            for (int i = 0; i <= datePeriod; i++){
+                monthFormatList.add(formattedTime);
+                formattedTime = dateTransform.addMonth(formattedTime);
+            }
+            for (String transDate : monthFormatList) {
+                long monthlyTimeStamp = dateTransform.dateToTimestamp(transDate);
+                transactionMapper.addIncTransaction(
+                userId, transactionDesc, transactionCost, transactionType, monthlyTimeStamp,transactionFreq
+                ,transDate);
+            }
+        }
+        if(transactionFreq.equals("Once")){
+            transactionMapper.addIncTransaction(userId, transactionDesc, transactionCost, transactionType,
+                    transactionDatetime,transactionFreq,formattedTime);
+        }
         return transactionMapper.findMaxIncTransactionId(userId);
     }
+
+    @Override
+    public int addTransactionOutcomeService(int userId, String tranOutDesc, String tranOutCost,
+                                            String tranOutType, long tranOutDatetime,
+//                                               String tranOutPin,
+                                            String tranOutFreq) throws IllegalArgumentException, ParseException {
+
+        int inFreqListSwitch;
+        int inPinListSwitch;
+        int inTypeListSwitch;
+
+//        check transactionFreq input
+        inFreqListSwitch = checkInput(transactionFreqList, tranOutFreq);
+
+//        inPinListSwitch = checkInput(transactionPinList, tranOutPin);
+
+        inTypeListSwitch = checkInput(outcomeTransactionTypeList, tranOutType);
+
+        if (inFreqListSwitch == 0 || inTypeListSwitch == 0){
+            throw new IllegalArgumentException("input not acceptable");
+        }
+        if(tranOutDatetime == 0){
+            throw new IllegalArgumentException("no time input");
+        }
+
+        String formattedTime = dateTransform.timestampToDate(tranOutDatetime);
+        if (tranOutFreq.equals("Monthly")){
+            List<String> monthFormatList = new ArrayList<>(Collections.emptyList());
+            for (int i = 0; i <= datePeriod; i++){
+                monthFormatList.add(formattedTime);
+                formattedTime = dateTransform.addMonth(formattedTime);
+            }
+            for (String transDate : monthFormatList) {
+                long monthlyTimeStamp =dateTransform.dateToTimestamp(transDate);
+                transactionMapper.addOutTransaction(
+                        userId, tranOutDesc, tranOutCost, tranOutType, monthlyTimeStamp,tranOutFreq
+                        ,transDate);
+            }
+        }
+        if(tranOutFreq.equals("Once")){
+            transactionMapper.addOutTransaction(userId, tranOutDesc, tranOutCost, tranOutType,
+                    tranOutDatetime,tranOutFreq,formattedTime);
+
+        }
+        return transactionMapper.findMaxOutTransactionId(userId);
+    }
+
+    @Override
+    public void updateIncTransactionService(int userId, int tranIncId, long tranIncDatetime, String tranIncCost, String tranIncDesc) {
+
+        String formattedTime = dateTransform.timestampToDate(tranIncDatetime);
+
+        transactionMapper.updateIncTransaction(userId, tranIncId, tranIncDatetime, tranIncCost, formattedTime, tranIncDesc);
+
+
+    }
+
+    @Override
+    public void updateOutTransactionService(int userId, int transactionId, long tranOutDatetime, String tranOutCost, String tranOutDesc) {
+        String formattedTime = dateTransform.timestampToDate(tranOutDatetime);
+
+        transactionMapper.updateOutTransaction(userId, transactionId, tranOutDatetime, tranOutCost, formattedTime, tranOutDesc);
+
+    }
+
 
     @Override
     public List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, String year, String month) {
@@ -142,34 +221,6 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionMapper.findSpecificOutTypeTransaction(userId, transactionType, yearInt, monthInt);
     }
 
-    @Override
-    public int addIncTransactionOutcomeService(int userId, String tranOutDesc, String tranOutCost,
-                                               String tranOutType, long tranOutDatetime, String tranOutPin, String tranOutFreq) throws IllegalArgumentException {
-        int inFreqListSwitch;
-        int inPinListSwitch;
-        int inTypeListSwitch;
-
-//        check transactionFreq input
-        inFreqListSwitch = checkInput(transactionFreqList, tranOutFreq);
-
-        inPinListSwitch = checkInput(transactionPinList, tranOutPin);
-
-        inTypeListSwitch = checkInput(outcomeTransactionTypeList, tranOutType);
-
-        if (inPinListSwitch == 0 || inFreqListSwitch == 0 || inTypeListSwitch == 0){
-            throw new IllegalArgumentException("input not acceptable");
-        }
-        if(tranOutDatetime == 0){
-            throw new IllegalArgumentException("no time input");
-        }
-
-        String formattedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(tranOutDatetime));
-        transactionMapper.addOutTransaction(
-                userId, tranOutDesc, tranOutCost, tranOutType,
-                tranOutDatetime, tranOutPin, tranOutFreq, formattedTime);
-
-        return transactionMapper.findMaxOutTransactionId(userId);
-    }
 
     public int pageOffsite(int pageNum, int pageSize){
         return (pageNum - 1) * pageSize;
@@ -183,11 +234,5 @@ public class TransactionServiceImpl implements TransactionService {
         }
         return 0;
     }
-
-    public int getCurrentMonth(){
-        Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.MONTH) + 1;
-    }
-
 
 }
