@@ -4,6 +4,7 @@ package com.myfin.service;
 import com.myfin.entity.TransactionIncome;
 import com.myfin.entity.TransactionOutcome;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -42,23 +43,26 @@ public interface TransactionService {
      * @param transactionType
      * @param transactionDatetime
      */
-    int addIncTransactionIncomeService(int userId, String transactionDesc,
-                                       String transactionCost,
-                                       String transactionType,
-                                       long transactionDatetime,
-                                       String transactionPin,
-                                       String transactionFreq) throws IllegalArgumentException;
+    int addTransactionIncomeService(int userId, String transactionDesc,
+                                    String transactionCost,
+                                    String transactionType,
+                                    long transactionDatetime,
+//                                       String transactionPin,
+                                    String transactionFreq) throws IllegalArgumentException, ParseException;
 
     List<TransactionIncome> findIncSpecificTypeTransactionService(int userId, String transactionType, String year, String month);
 
     List<TransactionOutcome> findOutSpecificTypeTransactionService(int userId, String transactionType, String year, String month);
 
 
-    int addIncTransactionOutcomeService(int userId, String tranOutDesc,
-                                        String tranOutCost,
-                                        String tranOutType,
-                                        long tranOutDatetime,
-                                        String tranOutPin,
-                                        String tranOutFreq)  throws IllegalArgumentException;
+    int addTransactionOutcomeService(int userId, String tranOutDesc,
+                                     String tranOutCost,
+                                     String tranOutType,
+                                     long tranOutDatetime,
+//                                        String tranOutPin,
+                                     String tranOutFreq) throws IllegalArgumentException, ParseException;
 
+    void updateIncTransactionService(int userId, int tranIncId, long tranIncDatetime, String tranIncCost, String tranIncDesc);
+
+    void updateOutTransactionService(int userId, int transactionId, long tranOutDatetime, String tranOutCost, String tranOutDesc);
 }

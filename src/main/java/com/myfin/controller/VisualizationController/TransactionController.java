@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
 
 /**
  * @author Yuzhuo Ma
@@ -54,19 +55,22 @@ public class TransactionController {
     public Result<Object> addIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest) {
         int transactionId;
         try{
-            transactionId = transactionService.addIncTransactionIncomeService(
+            transactionId = transactionService.addTransactionIncomeService(
                     transcationRequest.getUserId(),
                     transcationRequest.getTranIncDesc(),
                     transcationRequest.getTranIncCost(),
                     transcationRequest.getTranIncType(),
                     transcationRequest.getTranIncDatetime(),
-                    transcationRequest.getTranIncPin(),
+//                    transcationRequest.getTranIncPin(),
                     transcationRequest.getTranIncFreq()
             );
             return Response.success(transactionId);
         }catch (IllegalArgumentException e){
             e.printStackTrace();
             return Response.fail("wrong input string either Transaction Freq, Pin, type, or no datatime input");
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return Response.fail("date format is wrong");
         }
     }
 
@@ -75,17 +79,17 @@ public class TransactionController {
     public Result<Object> addIncTransaction(@RequestBody TransactionOutcomeRequest transcationRequest) {
         int transactionId;
         try{
-            transactionId = transactionService.addIncTransactionOutcomeService(
+            transactionId = transactionService.addTransactionOutcomeService(
                     transcationRequest.getUserId(),
                     transcationRequest.getTranOutDesc(),
                     transcationRequest.getTranOutCost(),
                     transcationRequest.getTranOutType(),
                     transcationRequest.getTranOutDatetime(),
-                    transcationRequest.getTranOutPin(),
+//                    transcationRequest.getTranOutPin(),
                     transcationRequest.getTranOutFreq()
             );
             return Response.success(transactionId);
-        }catch (IllegalArgumentException e){
+        }catch (IllegalArgumentException | ParseException e){
             e.printStackTrace();
             return Response.fail("wrong input string either Transaction Freq, Pin, type, or no datatime input");
         }
@@ -149,5 +153,46 @@ public class TransactionController {
         }
     }
 
+    @PostMapping("transaction/update/inc")
+    public Result<Object> updateIncTransaction(@RequestBody TransactionIncomeRequest transcationRequest) {
+        int transactionId = -1;
+        try{
+            transactionId = transcationRequest.getTranIncId();
+            transactionService.updateIncTransactionService(
+                    transcationRequest.getUserId(),
+                    transactionId,
+                    transcationRequest.getTranIncDatetime(),
+                    transcationRequest.getTranIncCost(),
+                    transcationRequest.getTranIncDesc()
+            );
+            return Response.success("update success");
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("fail to update transaction"+transactionId);
+        }
+    }
 
-}
+    @PostMapping("transaction/update/out")
+    public Result<Object> updateIncTransaction(@RequestBody TransactionOutcomeRequest transcationRequest) {
+        int transactionId = -1;
+        try{
+                transactionId = transcationRequest.getTranOutId();
+                transactionService.updateOutTransactionService(
+                transcationRequest.getUserId(),
+                transactionId,
+                transcationRequest.getTranOutDatetime(),
+                transcationRequest.getTranOutCost(),
+                transcationRequest.getTranOutDesc()
+            );
+            return Response.success("update success");
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.fail("fail to update transaction"+transactionId);
+        }
+    }
+
+
+
+
+
+    }

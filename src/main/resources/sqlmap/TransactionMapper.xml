@@ -54,12 +54,11 @@
                                       tran_inc_cost,
                                       tran_inc_type,
                                       tran_inc_datetime,
-                                      tran_inc_pin,
                                       tran_inc_freq,
                                       tran_inc_dateformat)
         values(#{userId}, #{transactionDesc}, #{transactionCost},
         #{transactionType}, #{transactionDatetime},
-               #{transactionPin}, #{transactionFreq}, #{formattedTime})
+               #{transactionFreq}, #{formattedTime})
     </insert>
 
     <!--  add a new outcome transaction -->
@@ -69,12 +68,11 @@
                                       tran_out_cost,
                                       tran_out_type,
                                       tran_out_datetime,
-                                      tran_out_pin,
                                       tran_out_freq,
                                       tran_out_dateformat)
         values(#{userId}, #{tranOutDesc}, #{tranOutCost},
                #{tranOutType}, #{tranOutDatetime},
-               #{tranOutPin}, #{tranOutFreq},  #{formattedTime})
+               #{tranOutFreq},  #{formattedTime})
     </insert>
 
 
@@ -103,6 +101,24 @@
     </delete>
 
 
+    <!--  update income transaction  -->
+    <update id="updateIncTransaction">
+        UPDATE TransactionIncome SET    tran_inc_datetime = #{tranIncDatetime},
+                                        tran_inc_cost = #{tranIncCost},
+                                        tran_inc_dateformat = #{formattedTime},
+                                        tran_inc_desc = #{tranIncDesc}
+        WHERE user_id = #{userId} AND tran_inc_id = #{tranIncId}
+    </update>
+
+
+    <!--  update outcome transaction  -->
+    <update id="updateOutTransaction">
+        UPDATE TransactionOutcome SET tran_out_datetime = #{tranOutDatetime},
+                                        tran_out_cost = #{tranOutCost},
+                                        tran_out_dateformat = #{formattedTime},
+                                        tran_out_desc = #{tranOutDesc}
+        WHERE user_id = #{userId} AND tran_out_id = #{transactionId}
+    </update>
 
 
 

@@ -28,5 +28,4 @@ public class TransactionOutcomeRequest {
 
     private String month;
 
-
 }

@@ -50,7 +50,7 @@ public interface TransactionMapper {
             @Param("transactionCost") String transactionCost,
             @Param("transactionType") String transactionType,
             @Param("transactionDatetime") long transactionDatetime,
-            @Param("transactionPin") String transactionPin,
+//            @Param("transactionPin") String transactionPin,
             @Param("transactionFreq") String transactionFreq,
             @Param("formattedTime") String formattedTime);
 
@@ -70,7 +70,7 @@ public interface TransactionMapper {
                            @Param("tranOutCost") String tranOutCost,
                            @Param("tranOutType") String tranOutType,
                            @Param("tranOutDatetime") long tranOutDatetime,
-                           @Param("tranOutPin") String tranOutPin,
+//                           @Param("tranOutPin") String tranOutPin,
                            @Param("tranOutFreq") String tranOutFreq,
                            @Param("formattedTime") String formattedTime);
 
@@ -107,4 +107,17 @@ public interface TransactionMapper {
                                                             @Param("month") int month);
 
 
+    void updateIncTransaction(@Param("userId") int userId,
+                              @Param("tranIncId") int tranIncId,
+                              @Param("tranIncDatetime") long tranIncDatetime,
+                              @Param("tranIncCost") String tranIncCost,
+                              @Param("formattedTime") String formattedTime,
+                              @Param("tranIncDesc") String tranIncDesc);
+
+    void updateOutTransaction(@Param("userId") int userId,
+                              @Param("transactionId") int transactionId,
+                              @Param("tranOutDatetime") long tranOutDatetime,
+                              @Param("tranOutCost") String tranOutCost,
+                              @Param("formattedTime") String formattedTime,
+                              @Param("tranOutDesc") String tranOutDesc);
 }
