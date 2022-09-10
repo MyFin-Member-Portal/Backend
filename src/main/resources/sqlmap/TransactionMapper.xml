@@ -120,7 +120,4 @@
         WHERE user_id = #{userId} AND tran_out_id = #{transactionId}
     </update>
 
-
-
-
 </mapper>

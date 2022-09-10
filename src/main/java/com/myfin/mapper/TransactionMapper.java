@@ -61,7 +61,6 @@ public interface TransactionMapper {
      * @param tranOutCost
      * @param tranOutType
      * @param tranOutDatetime
-     * @param tranOutPin
      * @param tranOutFreq
      * @param formattedTime
      */
