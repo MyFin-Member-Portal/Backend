@@ -41,39 +41,25 @@ public class VisualizationServiceImpl implements VisualizationService {
     }
 
     @Override
-    public HashMap<String, ArrayList<Object>> findOutPieChartData(int userId, int startTime, int endTime) {
+    public HashMap<Object, Object> findOutPieChartData(int userId, int startTime, int endTime) {
         List<HashMap<String, Object>> sqlResult = mapper.findOutcomePieChartData(userId, startTime, endTime);
-        HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
-
-        ArrayList<Object> typeList = new ArrayList<>();
-        ArrayList<Object> outcomeData = new ArrayList<>();
+        HashMap<Object, Object> resultMap = new HashMap<>(3);
 
         for (HashMap item: sqlResult) {
-            typeList.add(item.get("type"));
-            outcomeData.add(item.get("outcomeData"));
+            resultMap.put(item.get("type"), item.get("outcomeData"));
         }
-
-        resultMap.put("type", typeList);
-        resultMap.put("outcomeData", outcomeData);
         
         return resultMap;
     }
 
     @Override
-    public HashMap<String, ArrayList<Object>> findInPieChartData(int userId, int startTime, int endTime) {
+    public  HashMap<Object, Object> findInPieChartData(int userId, int startTime, int endTime) {
         List<HashMap<String, Object>> sqlResult = mapper.findIncomePieChartData(userId, startTime, endTime);
-        HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
-
-        ArrayList<Object> typeList = new ArrayList<>();
-        ArrayList<Object> outcomeData = new ArrayList<>();
+        HashMap<Object, Object> resultMap = new HashMap<>(3);
 
         for (HashMap item: sqlResult) {
-            typeList.add(item.get("type"));
-            outcomeData.add(item.get("incomeData"));
+            resultMap.put(item.get("type"), item.get("incomeData"));
         }
-
-        resultMap.put("type", typeList);
-        resultMap.put("incomeData", outcomeData);
 
         return resultMap;
     }

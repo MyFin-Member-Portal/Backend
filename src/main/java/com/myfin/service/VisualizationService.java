@@ -13,7 +13,7 @@ import java.util.List;
 public interface VisualizationService<T> {
     HashMap<String, ArrayList<Object>> findIncome(int userId, int startTime, int endTime, String interval, String type);
 
-    HashMap<String, ArrayList<Object>> findOutPieChartData(int userId, int startTime, int endTime);
+    HashMap<Object, Object> findOutPieChartData(int userId, int startTime, int endTime);
 
-    HashMap<String, ArrayList<Object>> findInPieChartData(int userId, int startTime, int endTime);
+    HashMap<Object, Object> findInPieChartData(int userId, int startTime, int endTime);
 }
