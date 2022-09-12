@@ -1,11 +1,7 @@
 package com.myfin.service;
 
-import com.myfin.entity.TransactionIncome;
-import com.myfin.entity.TransactionOutcome;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author godfrey

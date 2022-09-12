@@ -7,7 +7,7 @@
         SELECT
             SUM(tran_inc_cost) AS incomeData,
             SUM(tran_out_cost) AS outcomeData,
-            FROM_UNIXTIME(tran_inc_datetime,'%b') as months
+            FROM_UNIXTIME(tran_inc_datetime, #{interval}) AS intervals
         FROM
             TransactionIncome NATURAL JOIN TransactionOutcome
         WHERE
@@ -15,7 +15,7 @@
           AND (tran_out_datetime BETWEEN  #{startTime} AND #{endTime})
           AND user_id = #{userId}
         GROUP BY
-            months;
+            intervals;
     </select>
 
     <select id="findOutcomePieChartData" resultType="map">

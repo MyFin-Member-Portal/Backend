@@ -21,7 +21,8 @@ public class VisualizationServiceImpl implements VisualizationService {
     
     @Override
     public HashMap<String, ArrayList<Object>> findIncome(int userId, int startTime, int endTime, String interval, String type) {
-        List<HashMap<String, Object>> result = mapper.findLineChartData(userId, startTime, endTime, interval, type);
+        String sqlInterval = parseInterval(interval);
+        List<HashMap<String, Object>> result = mapper.findLineChartData(userId, startTime, endTime, sqlInterval, type);
         log.info(result.toString());
         HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
         ArrayList<Object> categoryList = new ArrayList<>();
@@ -29,7 +30,7 @@ public class VisualizationServiceImpl implements VisualizationService {
         ArrayList<Object> outcomeData = new ArrayList<>();
 
         for (HashMap item:result) {
-            categoryList.add(item.get("months"));
+            categoryList.add(item.get("intervals"));
             incomeData.add(item.get("incomeData"));
             outcomeData.add(item.get("outcomeData"));
         }
@@ -62,5 +63,18 @@ public class VisualizationServiceImpl implements VisualizationService {
         }
 
         return resultMap;
+    }
+    
+    private String parseInterval(String interval){
+        switch (interval){
+            case "month":
+                return "%b";
+            case "year":
+                return "%Y";
+            case "week":
+                return "%w";
+            default:
+                return null;
+        }
     }
 }
