@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface CourseService {
 
-    List<Course> findCoursePageByType(String courseType, int pageNum);
+    HashMap<String, Object> findCoursePageByType(String courseType, int pageNum);
 
     int addCourse(String courseName, String courseType, String courseDesc,
                   int courseIsCharge, String courseUrl, Blob courseImg, String courseImgUrl);

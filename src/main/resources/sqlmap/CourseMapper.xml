@@ -24,5 +24,10 @@
     <select id="findMaxId" resultType="Integer">
         SELECT MAX(course_id) from Course
     </select>
-    
+
+
+    <!--  find maximum course id  -->
+    <select id="findTotalPage" resultType="Integer">
+        SELECT TRUNCATE(COUNT(course_id)/4, 0) + 1 from Course
+    </select>
 </mapper>

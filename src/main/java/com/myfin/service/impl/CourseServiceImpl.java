@@ -20,9 +20,16 @@ public class CourseServiceImpl implements CourseService {
     CourseMapper courseMapper;
     
     @Override
-    public List<Course> findCoursePageByType(String courseType, int pageNum) {
+    public HashMap<String, Object> findCoursePageByType(String courseType, int pageNum) {
         int pageOffsite = (pageNum - 1) * 4;
-        return courseMapper.findCoursePageByType(courseType, pageOffsite);
+        HashMap<String, Object> resultMap = new HashMap<>();
+
+        List<Course> courseList = courseMapper.findCoursePageByType(courseType, pageOffsite);
+        int pageAmount = courseMapper.findTotalPage();
+
+        resultMap.put("courses", courseList);
+        resultMap.put("totalPage", pageAmount);
+        return resultMap;
     }
 
     @Override
