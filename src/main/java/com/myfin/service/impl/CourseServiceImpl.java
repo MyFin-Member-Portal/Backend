@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.Blob;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,10 +24,12 @@ public class CourseServiceImpl implements CourseService {
     public HashMap<String, Object> findCoursePageByType(String courseType, int pageNum) {
         int pageOffsite = (pageNum - 1) * 4;
         HashMap<String, Object> resultMap = new HashMap<>();
-
+        
+        // get result from database
         List<Course> courseList = courseMapper.findCoursePageByType(courseType, pageOffsite);
         int pageAmount = courseMapper.findTotalPage();
-
+        
+        // put result in a hashmap
         resultMap.put("courses", courseList);
         resultMap.put("totalPage", pageAmount);
         return resultMap;
@@ -44,5 +47,21 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void removeCourse(int courseId) {
         courseMapper.removeCourse(courseId);
+    }
+
+    @Override
+    public List<Object> findFavCourse(int userId) {
+        List<Object> resultList = courseMapper.findFavCourse(userId);
+        return resultList;
+    }
+
+    @Override
+    public void addFavCourse(int userId, int courseId) {
+        courseMapper.addFavCourse(userId, courseId);
+    }
+
+    @Override
+    public void removeFavCourse(int userId, int courseId) {
+        courseMapper.removeFavCourse(userId, courseId);
     }
 }

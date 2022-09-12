@@ -9,6 +9,8 @@ import java.sql.Blob;
  */
 @Data
 public class CourseRequest {
+    private int userId;
+    
     private int courseId;
 
     private String courseName;

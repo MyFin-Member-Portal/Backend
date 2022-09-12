@@ -26,8 +26,22 @@
     </select>
 
 
-    <!--  find maximum course id  -->
+    <!--  find course page amount in size of 4  -->
     <select id="findTotalPage" resultType="Integer">
         SELECT TRUNCATE(COUNT(course_id)/4, 0) + 1 from Course
     </select>
+
+    <!-- find Fav Course -->
+    <select id="findFavCourse" resultType="com.myfin.entity.Course">
+        SELECT * from Course NATURAL JOIN UserCourse WHERE user_id = #{userId}
+    </select>
+    
+    <insert id="addFavCourse">
+        INSERT INTO UserCourse(user_id, course_id) VALUES(#{userId}, #{courseId})
+    </insert>
+    
+    <delete id="removeFavCourse">
+        DELETE FROM UserCourse WHERE user_id = #{userId} AND course_id =  #{courseId}
+    </delete>
+    
 </mapper>

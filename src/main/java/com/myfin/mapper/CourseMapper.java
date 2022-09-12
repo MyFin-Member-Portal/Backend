@@ -24,4 +24,15 @@ public interface CourseMapper {
     int findMaxId();
 
     int findTotalPage();
+
+    /**
+     * find the favourite course list for a user
+     * @param userId user id 
+     * @return the course list
+     */
+    List<Object> findFavCourse(int userId);
+    
+    void addFavCourse(int userId, int courseId);
+
+    void removeFavCourse(int userId, int courseId);
 }

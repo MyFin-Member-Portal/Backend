@@ -17,4 +17,10 @@ public interface CourseService {
                   int courseIsCharge, String courseUrl, Blob courseImg, String courseImgUrl);
 
     void removeCourse(int courseId);
+    
+    List<Object> findFavCourse(int userId);
+
+    void addFavCourse(int userId, int courseId);
+
+    void removeFavCourse(int userId, int courseId);
 }
