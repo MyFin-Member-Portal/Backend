@@ -89,9 +89,6 @@ public class TransactionServiceImpl implements TransactionService {
         int inPinListSwitch;
         int inTypeListSwitch;
 
-        transactionDatetime = transactionDatetime*1000L;
-
-
 //        check transactionFreq input
         inFreqListSwitch = checkInput(transactionFreqList, transactionFreq);
 
