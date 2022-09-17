@@ -1,7 +1,5 @@
 package com.myfin.mapper;
 
-import com.myfin.entity.TransactionIncome;
-import com.myfin.entity.TransactionOutcome;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +13,9 @@ import java.util.List;
 @Mapper
 @Repository
 public interface VisualizationMapper {
-    List<HashMap<String, Object>> findLineChartData(int userId, int startTime, int endTime, String interval, String type);
+    List<HashMap<String, Object>> findIncomeLineChartData(int userId, int startTime, int endTime, String interval, String type);
 
-    List<HashMap<String, Object>> findOutcome(int userId, int startTime, int endTime, String interval, String type);
+    List<HashMap<String, Object>> findOutcomeLineChartData(int userId, int startTime, int endTime, String interval, String type);
     
     List<HashMap<String, Object>> findOutcomePieChartData(int userId, int startTime, int endTime);
 

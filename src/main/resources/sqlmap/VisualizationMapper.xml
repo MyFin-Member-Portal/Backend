@@ -3,19 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myfin.mapper.VisualizationMapper">
-    <select id="findLineChartData" resultType="map">
+    <select id="findIncomeLineChartData" resultType="map">
         SELECT
             SUM(tran_inc_cost) AS incomeData,
-            SUM(tran_out_cost) AS outcomeData,
             FROM_UNIXTIME(tran_inc_datetime, #{interval}) AS intervals
         FROM
-            TransactionIncome NATURAL JOIN TransactionOutcome
+            TransactionIncome
         WHERE
             (tran_inc_datetime BETWEEN  #{startTime} AND #{endTime})
-          AND (tran_out_datetime BETWEEN  #{startTime} AND #{endTime})
           AND user_id = #{userId}
         GROUP BY
-            intervals;
+            intervals
+        ORDER BY
+            tran_inc_datetime;
+    </select>
+
+    <select id="findOutcomeLineChartData" resultType="map">
+        SELECT
+            SUM(tran_out_cost) AS outcomeData,
+            FROM_UNIXTIME(tran_out_datetime, #{interval}) AS intervals
+        FROM
+            TransactionOutcome
+        WHERE
+            (tran_out_datetime BETWEEN   #{startTime} AND  #{endTime})
+          AND user_id = #{userId}
+        GROUP BY
+            intervals
+        ORDER BY
+            tran_out_datetime;
     </select>
 
     <select id="findOutcomePieChartData" resultType="map">

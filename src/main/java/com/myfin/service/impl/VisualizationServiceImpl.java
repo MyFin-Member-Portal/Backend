@@ -22,18 +22,22 @@ public class VisualizationServiceImpl implements VisualizationService {
     @Override
     public HashMap<String, ArrayList<Object>> findIncome(int userId, int startTime, int endTime, String interval, String type) {
         String sqlInterval = parseInterval(interval);
-        List<HashMap<String, Object>> result = mapper.findLineChartData(userId, startTime, endTime, sqlInterval, type);
-        log.info(result.toString());
+        List<HashMap<String, Object>> resultIncome = mapper.findIncomeLineChartData(userId, startTime, endTime, sqlInterval, type);
+        List<HashMap<String, Object>> resultOutcome = mapper.findOutcomeLineChartData(userId, startTime, endTime, sqlInterval, type);
+
         HashMap<String, ArrayList<Object>> resultMap = new HashMap<>(3);
         ArrayList<Object> categoryList = new ArrayList<>();
         ArrayList<Object> incomeData = new ArrayList<>();
         ArrayList<Object> outcomeData = new ArrayList<>();
 
-        for (HashMap item:result) {
+        for (HashMap item:resultIncome) {
             categoryList.add(item.get("intervals"));
             incomeData.add(item.get("incomeData"));
+        }
+        for (HashMap item:resultOutcome) {
             outcomeData.add(item.get("outcomeData"));
         }
+        
         
         resultMap.put("categories", categoryList);
         resultMap.put("incomeData", incomeData);
