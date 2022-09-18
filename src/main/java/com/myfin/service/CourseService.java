@@ -11,16 +11,16 @@ import java.util.List;
  */
 public interface CourseService {
 
-    HashMap<String, Object> findCoursePageByType(String courseType, int pageNum);
+    HashMap<String, Object> findCoursePageByType(String courseType, int pageNum, int userId);
 
     int addCourse(String courseName, String courseType, String courseDesc,
                   int courseIsCharge, String courseUrl, Blob courseImg, String courseImgUrl);
 
     void removeCourse(int courseId);
-    
-    List<Object> findFavCourse(int userId);
 
     void addFavCourse(int userId, int courseId);
 
     void removeFavCourse(int userId, int courseId);
+
+    List<HashMap<String, Integer>> findFavCourse(int userId);
 }

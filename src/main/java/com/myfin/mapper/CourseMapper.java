@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Blob;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 @Repository
 public interface CourseMapper {
     
-    List<Course> findCoursePageByType(String courseType, int pageNum);
+    List<HashMap<String, Object>> findCoursePageByType(String courseType, int pageNum);
     
     void addCourse(String courseName, String courseType, String courseDesc, 
                   int courseIsCharge, String courseUrl, Blob courseImg, String courseImgUrl);
@@ -30,7 +31,7 @@ public interface CourseMapper {
      * @param userId user id 
      * @return the course list
      */
-    List<Object> findFavCourse(int userId);
+    List<HashMap<String, Integer>> findFavCourse(int userId);
     
     void addFavCourse(int userId, int courseId);
 

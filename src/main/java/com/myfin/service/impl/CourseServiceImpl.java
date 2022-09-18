@@ -3,6 +3,7 @@ package com.myfin.service.impl;
 import com.myfin.entity.Course;
 import com.myfin.mapper.CourseMapper;
 import com.myfin.service.CourseService;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,17 +22,29 @@ public class CourseServiceImpl implements CourseService {
     CourseMapper courseMapper;
     
     @Override
-    public HashMap<String, Object> findCoursePageByType(String courseType, int pageNum) {
+    public HashMap<String, Object> findCoursePageByType(String courseType, int pageNum, int userId) {
         int pageOffsite = (pageNum - 1) * 4;
         HashMap<String, Object> resultMap = new HashMap<>();
-        
+        List<HashMap<String, Integer>> favCourseList = courseMapper.findFavCourse(userId);
         // get result from database
-        List<Course> courseList = courseMapper.findCoursePageByType(courseType, pageOffsite);
+        List<HashMap<String, Object>> courseList = courseMapper.findCoursePageByType(courseType, pageOffsite);
         int pageAmount = courseMapper.findTotalPage();
+        
+        for(HashMap course: courseList){
+            for(HashMap item: favCourseList){
+                int favId = (int) item.get("course_id");
+                if((int)course.get("course_id") == favId){
+                    course.put("courseIsFavorite", 1);
+                }else {
+                    course.put("courseIsFavorite", 0);
+                }
+            }
+        }
         
         // put result in a hashmap
         resultMap.put("courses", courseList);
         resultMap.put("totalPage", pageAmount);
+        
         return resultMap;
     }
 
@@ -50,12 +63,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Object> findFavCourse(int userId) {
-        List<Object> resultList = courseMapper.findFavCourse(userId);
-        return resultList;
-    }
-
-    @Override
     public void addFavCourse(int userId, int courseId) {
         courseMapper.addFavCourse(userId, courseId);
     }
@@ -64,4 +71,11 @@ public class CourseServiceImpl implements CourseService {
     public void removeFavCourse(int userId, int courseId) {
         courseMapper.removeFavCourse(userId, courseId);
     }
+
+    @Override
+    public List<HashMap<String, Integer>> findFavCourse(int userId) {
+        return findFavCourse(userId);
+    }
+
+
 }

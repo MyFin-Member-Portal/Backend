@@ -23,8 +23,8 @@ public class CourseController {
     
     
     @GetMapping("/page")
-    public Result<Object> coursePage(@RequestParam("pageNum") int pageNum, @RequestParam("courseType") String courseType){
-        return Response.success(courseService.findCoursePageByType(courseType, pageNum));
+    public Result<Object> coursePage(@RequestParam("pageNum") int pageNum, @RequestParam("courseType") String courseType, @RequestParam("userId") int userId){
+        return Response.success(courseService.findCoursePageByType(courseType, pageNum, userId));
     }
 
     @GetMapping("/remove")

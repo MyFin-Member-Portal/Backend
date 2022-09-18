@@ -5,7 +5,7 @@
 <mapper namespace="com.myfin.mapper.CourseMapper">
     
     <!--  find course by name  -->
-    <select id="findCoursePageByType" resultType="com.myfin.entity.Course">
+    <select id="findCoursePageByType" resultType="map">
         SELECT * from Course where course_type = #{courseType} LIMIT #{pageNum}, 4
     </select>
     
@@ -32,8 +32,8 @@
     </select>
 
     <!-- find Fav Course -->
-    <select id="findFavCourse" resultType="com.myfin.entity.Course">
-        SELECT * from Course NATURAL JOIN UserCourse WHERE user_id = #{userId}
+    <select id="findFavCourse" resultType="map">
+        SELECT course_id from Course NATURAL JOIN UserCourse WHERE user_id = #{userId}
     </select>
     
     <insert id="addFavCourse">
