@@ -5,7 +5,7 @@
 <mapper namespace="com.myfin.mapper.VisualizationMapper">
     <select id="findIncomeLineChartData" resultType="map">
         SELECT
-            SUM(tran_inc_cost) AS incomeData,
+            ROUND(SUM(tran_inc_cost), 2) AS incomeData,
             FROM_UNIXTIME(tran_inc_datetime, #{interval}) AS intervals
         FROM
             TransactionIncome
@@ -20,7 +20,7 @@
 
     <select id="findOutcomeLineChartData" resultType="map">
         SELECT
-            SUM(tran_out_cost) AS outcomeData,
+            ROUND(SUM(tran_out_cost), 2) AS outcomeData,
             FROM_UNIXTIME(tran_out_datetime, #{interval}) AS intervals
         FROM
             TransactionOutcome
@@ -35,7 +35,7 @@
 
     <select id="findOutcomePieChartData" resultType="map">
         SELECT
-            SUM(tran_out_cost) AS outcomeData,
+            ROUND(SUM(tran_out_cost), 2) AS outcomeData,
             tran_out_type AS type
         FROM
             TransactionOutcome
@@ -48,7 +48,7 @@
 
     <select id="findIncomePieChartData" resultType="map">
         SELECT
-            SUM(tran_inc_cost) AS incomeData,
+            ROUND(SUM(tran_inc_cost), 2) AS incomeData,
             tran_inc_type AS type
         FROM
             TransactionIncome
