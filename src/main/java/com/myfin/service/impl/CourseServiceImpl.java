@@ -74,7 +74,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<HashMap<String, Integer>> findFavCourse(int userId) {
-        return findFavCourse(userId);
+        return courseMapper.findFavCourse(userId);
     }
 
 

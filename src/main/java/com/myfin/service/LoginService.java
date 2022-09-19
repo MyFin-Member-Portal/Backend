@@ -16,6 +16,5 @@ public interface LoginService{
 
     String getMd5Password(String password);
 
-
     int addUser(String userName, String email, String password);
 }

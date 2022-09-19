@@ -33,7 +33,8 @@
 
     <!-- find Fav Course -->
     <select id="findFavCourse" resultType="map">
-        SELECT course_id from Course NATURAL JOIN UserCourse WHERE user_id = #{userId}
+        SELECT course_id, course_name, course_type, course_desc, course_is_charge, course_url, course_img, course_img_url 
+        from Course NATURAL JOIN UserCourse WHERE user_id = #{userId} LIMIT 3
     </select>
     
     <insert id="addFavCourse">
